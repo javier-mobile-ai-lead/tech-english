@@ -14,14 +14,14 @@
       "subtitle": "Master the 45-second 'Tell me about yourself' pitch using the BLUF principle (Bottom Line Up Front).",
       "category": "Speaking & Pitch",
       "listening": {
-        "title": "Senior Tech Lead explaining React Native vs Native Apps",
+        "title": "React Native Marketplace App Walkthrough (DoneWithIt)",
         "video_url": "https://www.youtube.com/embed/0-S5a0eXPoc",
         "real_youtube_link": "https://www.youtube.com/watch?v=0-S5a0eXPoc",
-        "video_description": "Listen to the speaker explain why companies choose cross-platform React Native over separate native iOS/Android apps.",
+        "video_description": "Watch the instructor demonstrate the mobile marketplace app: browsing listings, contacting the seller with push notifications, and publishing a new post.",
         "timestamp": "00:45 - 01:50",
-        "question": "According to the speaker, what was the main problem before React Native, and what is the key advantage of using it?",
-        "hint": "Listen for keywords like 'two separate teams', 'Swift', 'Kotlin', and 'single codebase'.",
-        "ideal_answer": "Before React Native, companies needed two separate teams with two distinct skill sets (Swift/Objective-C for iOS, Java/Kotlin for Android). React Native solves this by allowing developers to build native apps for both platforms using a single JavaScript codebase."
+        "question": "What key features of the mobile app does the instructor demonstrate in this demo?",
+        "hint": "Listen and watch for: browsing listings (mock data), messaging a seller, push notifications, and adding a new post/listing.",
+        "ideal_answer": "He demonstrates a marketplace mobile app, showing the UI/UX with mock listings, messaging a seller which triggers a push notification, and creating a new post with pictures."
       },
       "client_challenge": {
         "client_name": "Mark R.",
