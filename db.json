@@ -1,0 +1,1811 @@
+{
+  "user_profile": {
+    "name": "Mobile Engineer",
+    "streak": 1,
+    "current_day": 1,
+    "completed_days": [],
+    "last_active": "2026-10-14"
+  },
+  "days": [
+    {
+      "day": 1,
+      "week": 1,
+      "title": "The Tech Identity: Pitching Your Mobile Stack",
+      "subtitle": "Master the 45-second 'Tell me about yourself' pitch using the BLUF principle (Bottom Line Up Front).",
+      "category": "Speaking & Pitch",
+      "listening": {
+        "title": "American Founder explaining his Mobile Startup",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0-S5a0eXPoc",
+        "video_description": "Listen to a US tech founder outline his mobile app requirements. Notice his speaking pace and transition words.",
+        "timestamp": "00:45 - 01:50",
+        "question": "What is the core issue the founder describes regarding data synchronization?",
+        "hint": "Listen closely for keywords like 'sync', 'offline', or 'network drops'.",
+        "ideal_answer": "He mentioned that the app struggles to synchronize data properly when users have an unstable mobile connection, leading to duplicated entries and sync conflicts."
+      },
+      "client_challenge": {
+        "client_name": "Mark R.",
+        "client_country": "🇺🇸 San Francisco, USA",
+        "client_badge": "Payment Verified • $150k+ Spent",
+        "client_prompt": "Hey! Thanks for taking the time. To kick things off, can you tell me a little bit about your mobile development background and what technologies you feel most comfortable with?",
+        "instruction": "Deliver your answer using BLUF: State your primary role and core stack in 1 concise sentence, mention 1 real production app you shipped, and explain why you're a great fit.",
+        "senior_template": "Hi Mark, nice to meet you. I'm a mobile engineer specializing in cross-platform development with React Native and native Android/iOS. Over the past few years, I've shipped production apps handling real-time data, REST APIs, and payment flows. In my most recent project, I built a fintech app from scratch, handling offline-first state and automated store releases. I love jumping into established or greenfield apps and delivering clean, well-tested features quickly.",
+        "breakdown": [
+          "**BLUF:** 'I'm a mobile engineer specializing in...'",
+          "**Proof:** 'Over the past few years, I've shipped production apps handling...'",
+          "**Relevance:** 'I love jumping into established or greenfield apps...'"
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "To kick things off",
+          "phonetic": "/tuː kɪk θɪŋz ɒf/",
+          "meaning": "To start off / begin the meeting",
+          "example": "To kick things off, let's take a quick look at the current codebase."
+        },
+        {
+          "phrase": "Greenfield project vs. Legacy codebase",
+          "phonetic": "/ˈɡriːnfiːld ˈprɒdʒɛkt/",
+          "meaning": "Building from scratch (greenfield) vs existing inherited code (legacy)",
+          "example": "I'm comfortable starting greenfield apps as well as refactoring legacy codebases."
+        },
+        {
+          "phrase": "Ship to production",
+          "phonetic": "/ʃɪp tuː prəˈdʌkʃən/",
+          "meaning": "Deploy and publish live apps to the app stores",
+          "example": "My primary goal is to help you ship this MVP to production before the deadline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Cache vs. Queue",
+        "explanation": "'Cache' is pronounced exactly like 'CASH' (/kæʃ/). 'Queue' is pronounced like the single letter 'Q' (/kjuː/)."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 2,
+      "week": 1,
+      "title": "Active Listening: Understanding Client Requirements & Mirroring",
+      "subtitle": "How to process rapid native speech without freezing, using Chris Voss's Mirroring technique.",
+      "category": "Listening & Negotiation",
+      "listening": {
+        "title": "Product Owner describing an existing buggy app",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+        "video_description": "Watch how the client jumps across different pain points and how the engineer validates understanding.",
+        "timestamp": "01:10 - 02:30",
+        "question": "Which two screens does the client identify where the app frequently freezes?",
+        "hint": "Look for view names: checkout, dashboard, catalog list, or profile.",
+        "ideal_answer": "The client noted freezes mainly on the checkout payment flow and the infinite scrolling product list."
+      },
+      "client_challenge": {
+        "client_name": "Sarah Jenkins",
+        "client_country": "🇬🇧 London, UK",
+        "client_badge": "Payment Verified • 5.0 Rating",
+        "client_prompt": "So basically, our previous developer left unexpectedly. The app compiles, but whenever a user tries to checkout with Apple Pay, the UI freezes, and the Google Play release was just rejected because of missing permissions. We need someone who can come in, audit this mess, and fix it ASAP. What would be your immediate first steps?",
+        "instruction": "Use Mirroring to confirm understanding ('So the two immediate priorities are the Apple Pay freeze and the Play Store rejection...'), then state your top 2 diagnostic steps.",
+        "senior_template": "I see what you mean, Sarah. So the two immediate fires are resolving the Apple Pay freeze on checkout and clearing the Google Play policy rejection. My immediate first step would be running an audit on the checkout flow using Xcode's Instruments to pinpoint if the freeze is caused by a main-thread blocking call or an unhandled promise. In parallel, I'll review your AndroidManifest.xml and data safety declaration to fix the store rejection on the first day.",
+        "breakdown": [
+          "**Mirroring:** 'So the two immediate fires are resolving...'",
+          "**Diagnostic step 1:** 'Run an audit using Instruments to pinpoint the main-thread block...'",
+          "**Diagnostic step 2:** 'Review the manifest and data safety form...'"
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Pinpoint the bottleneck / issue",
+          "phonetic": "/ˈpɪnpɔɪnt ðə ˈbɒtlˌnɛk/",
+          "meaning": "Identify the exact root cause or performance problem",
+          "example": "We need to run the profiler to pinpoint the exact memory bottleneck."
+        },
+        {
+          "phrase": "Main-thread blocking",
+          "phonetic": "/meɪn θrɛd ˈblɒkɪŋ/",
+          "meaning": "Freezing the UI thread with synchronous heavy operations",
+          "example": "Heavy JSON parsing was blocking the main thread and freezing the animations."
+        },
+        {
+          "phrase": "Low-hanging fruit",
+          "phonetic": "/ləʊ ˈhæŋɪŋ fruːt/",
+          "meaning": "Quick, easy wins that can be solved immediately",
+          "example": "Let's fix the low-hanging fruit first so we can submit the build to TestFlight today."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Archive & Architecture",
+        "explanation": "'Archive' is pronounced with a hard 'K': /ˈɑːrkaɪv/ (AR-kaiv). 'Architecture' also uses a hard 'K': /ˈɑːrkɪtɛktʃər/ (AR-ki-tek-cher)."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 3,
+      "week": 1,
+      "title": "State Management & REST API CRUD Operations",
+      "subtitle": "Communicate global state, caching strategies, and async mutations with technical authority.",
+      "category": "Architecture & Code",
+      "listening": {
+        "title": "Senior Dev comparing State Libraries (Zustand vs Redux vs Riverpod)",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=SqcY0GlETPk",
+        "video_description": "Notice how the speaker naturally contrasts architectural trade-offs.",
+        "timestamp": "02:00 - 03:15",
+        "question": "Why does the developer advocate decoupling server cache from client UI state?",
+        "hint": "Listen for 'caching', 'deduplication', or 'boilerplate'.",
+        "ideal_answer": "Because server state requires caching, background refetching, and deduplication, while UI state is just local modal or theme toggles."
+      },
+      "client_challenge": {
+        "client_name": "Dave Miller",
+        "client_country": "🇨🇦 Toronto, Canada",
+        "client_badge": "Top Rated Plus Client",
+        "client_prompt": "We have about 15 REST endpoints for our task management app. The previous guy put all API calls directly inside the React Native components with useEffect. How would you clean this up and structure our state and data fetching?",
+        "instruction": "Explain your architectural approach: Layer decoupling (API Service vs UI), caching (TanStack Query / RTK Query), and error handling.",
+        "senior_template": "That's a very common anti-pattern that leads to memory leaks and messy components. I would decouple the networking layer completely from the UI. First, I'd create a dedicated API service module with Axios interceptors to automatically handle auth tokens, timeouts, and standardized error responses. Second, for data fetching and caching, I recommend TanStack Query (React Query). This gives us automatic caching, optimistic updates, and background refetching out of the box, keeping your screen components lightweight and purely declarative.",
+        "breakdown": [
+          "**Validate problem:** 'That's a very common anti-pattern...'",
+          "**Concrete architectural solution:** 'Decouple the networking layer with Axios interceptors...'",
+          "**Tool recommendation + Trade-offs:** 'Use TanStack Query for automatic caching and optimistic updates...'"
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Under the hood",
+          "phonetic": "/ˈʌndər ðə hʊd/",
+          "meaning": "Internally / behind the scenes in the codebase",
+          "example": "Under the hood, TanStack Query manages caching and stale-while-revalidate logic."
+        },
+        {
+          "phrase": "Out of the box",
+          "phonetic": "/aʊt əv ðə bɒks/",
+          "meaning": "Available immediately with zero custom setup",
+          "example": "This library handles offline retries out of the box."
+        },
+        {
+          "phrase": "Optimistic updates",
+          "phonetic": "/ˌɒptɪˈmɪstɪk ʌpˈdeɪts/",
+          "meaning": "Updating the UI state immediately before server confirmation",
+          "example": "We use optimistic updates so the task is checked off instantly without any lag."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Asynchronous & Sync",
+        "explanation": "'Asynchronous' is pronounced /eɪˈsɪŋkrənəs/ (ay-SIN-kruh-nuhs). Abbreviated as 'Async', say /ˈeɪsɪŋk/ (AY-sink)."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 4,
+      "week": 1,
+      "title": "Store Rejections & Policy Compliance (Apple & Google Play)",
+      "subtitle": "Lead the conversation when a client's app is rejected on the App Store or Google Play Console.",
+      "category": "DevOps & Store Releases",
+      "listening": {
+        "title": "Engineer discussing Google Play Data Safety & Apple Guideline 4.3",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Practical breakdown of successfully appealing an App Store rejection.",
+        "timestamp": "03:10 - 04:30",
+        "question": "What key proof or artifact should you provide when submitting an appeal to Apple?",
+        "hint": "Demo video, test credentials, or audit breakdown.",
+        "ideal_answer": "A clear video walkthrough showing how non-registered users can test the app with demo credentials, plus an explanation of the specific guideline."
+      },
+      "client_challenge": {
+        "client_name": "Joey B.",
+        "client_country": "🇺🇸 Florida, USA",
+        "client_badge": "Payment Unverified • Urgent Job",
+        "client_prompt": "We are unable to upload our AAB file to the Google Play Store. It keeps getting rejected with: 'You must declare the data type Device or other IDs or remove the functionality'. Our app doesn't collect any data! Can you fix this?",
+        "instruction": "Calmly explain why this happens (a third-party analytics or ad SDK is accessing it) and present the two clear paths to resolve it.",
+        "senior_template": "Hi Joey, don't worry, this is one of the most common rejections in Google Play. Even if your code doesn't collect user IDs, one of your third-party SDKs—like Firebase, an ad network, or an analytics library—is accessing device identifiers under the hood. We have two quick ways to fix this: Option 1 is updating your Google Play Data Safety declaration to declare that Device IDs are collected strictly for app functionality or analytics. Option 2 is inspecting your dependencies, finding the offending library, and updating or removing it. We can hop on a quick call, check your Play Console, and have this resubmitted today.",
+        "breakdown": [
+          "**Reassurance:** 'Don't worry, this is one of the most common rejections...'",
+          "**Root cause:** 'A third-party SDK is accessing device identifiers under the hood...'",
+          "**Clear choices:** 'Option 1: Update declaration; Option 2: Audit dependencies.'"
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Offending library / dependency",
+          "phonetic": "/əˈfɛndɪŋ laɪbrəri/",
+          "meaning": "The specific third-party package causing the conflict",
+          "example": "We inspected the dependency tree to find the offending library triggering the permission."
+        },
+        {
+          "phrase": "Appeal the rejection",
+          "phonetic": "/əˈpiːl ðə rɪˈdʒɛkʃən/",
+          "meaning": "Formally submit an appeal to Apple or Google reviewers",
+          "example": "I drafted a formal note to appeal the rejection with step-by-step reproduction steps."
+        },
+        {
+          "phrase": "Compliance & Data Safety",
+          "phonetic": "/kəmˈplaɪəns/",
+          "meaning": "Meeting privacy and store regulatory requirements",
+          "example": "We ensured full compliance with Apple's App Tracking Transparency and Google's Data Safety."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Certificate & Keystore",
+        "explanation": "'Certificate' is stressed on the second syllable: /sərˈtɪfɪkət/ (ser-TI-fi-kut). 'Keystore' is /ˈkiːstɔːr/ (KEE-stor)."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 5,
+      "week": 1,
+      "title": "Debugging Production Crashes & Performance Bottlenecks",
+      "subtitle": "How to discuss memory profiling, dropped frames (FPS), and diagnostic tools professionally.",
+      "category": "Debugging & Performance",
+      "listening": {
+        "title": "Mobile Performance Profiling in React Native & Flutter",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Techniques for isolating memory leaks and re-renders using Android Studio Profiler & Instruments.",
+        "timestamp": "01:00 - 02:15",
+        "question": "Which tool does the engineer employ to measure memory allocations on Android?",
+        "hint": "Android Studio Profiler or LeakCanary.",
+        "ideal_answer": "He uses the Android Studio Memory Profiler to inspect heap dumps and track down retained objects."
+      },
+      "client_challenge": {
+        "client_name": "Marcus Vance",
+        "client_country": "🇦🇺 Sydney, Australia",
+        "client_badge": "Payment Verified • $90k+ Spent",
+        "client_prompt": "Users are complaining that our mobile app feels laggy when scrolling through long feeds, and on low-end Android phones, it crashes after 5 minutes of usage. How do you go about diagnosing and fixing this?",
+        "instruction": "Structure your response: First reproduction (profiler, heap dump), then list virtualization and image caching optimizations.",
+        "senior_template": "That sounds like a classic combination of unnecessary re-renders and an uncollected memory leak. To tackle this, I wouldn't guess—I'd profile it first. On Android, I'd attach the Android Studio Profiler to inspect the memory heap and watch if memory escalates linearly without being garbage collected. For the laggy feed, I'd verify that list items are properly memoized, windowSize is optimized, and images use downsampling or cached disk loaders like FastImage or Coil so we don't load full-res bitmaps into memory.",
+        "breakdown": [
+          "**Immediate diagnosis:** 'Sounds like unnecessary re-renders and a memory leak...'",
+          "**Scientific approach:** 'I wouldn't guess—I'd profile it first with Android Studio Profiler...'",
+          "**Actionable fixes:** 'Memoize list items, optimize windowSize, downsample bitmap images.'"
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Track down a memory leak",
+          "phonetic": "/træk daʊn ə ˈmɛməri liːk/",
+          "meaning": "Isolate and locate the exact source of an uncollected object",
+          "example": "We used heap snapshots to track down a memory leak caused by unremoved event listeners."
+        },
+        {
+          "phrase": "Garbage collection overhead",
+          "phonetic": "/ˈɡɑːrbɪdʒ kəˈlɛkʃən/",
+          "meaning": "UI stuttering caused by frequent GC sweeps",
+          "example": "Excessive object allocation was triggering constant garbage collection spikes."
+        },
+        {
+          "phrase": "To reproduce the issue",
+          "phonetic": "/tuː ˌriːprəˈdjuːs ðɪ ˈɪʃuː/",
+          "meaning": "Replicate the reported bug in a controlled test environment",
+          "example": "Could you provide reproduction steps so I can reproduce the issue on a physical test device?"
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Variable & Parameter",
+        "explanation": "'Variable' is stressed on the first syllable: /ˈvɛəriəbl/ (VE-ri-uh-bl). 'Parameter' is stressed on the second: /pəˈræmɪtər/ (puh-RA-muh-ter)."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 6,
+      "week": 1,
+      "title": "Taking Over Legacy Codebases & Technical Debt",
+      "subtitle": "Demonstrate engineering maturity: how to audit messy code without complaining or demanding a full rewrite.",
+      "category": "Code Quality & Strategy",
+      "listening": {
+        "title": "How Senior Engineers Refactor without Breaking Production",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Progressive refactoring tactics (Boy Scout Rule) in large mobile repositories.",
+        "timestamp": "02:15 - 03:40",
+        "question": "What is the golden rule before making refactoring changes to unfamiliar legacy code?",
+        "hint": "Establishing baseline smoke tests and verifying current behavior.",
+        "ideal_answer": "Establish test coverage or a baseline verification so you know exactly what the code currently does before refactoring."
+      },
+      "client_challenge": {
+        "client_name": "Elena Rostova",
+        "client_country": "🇩🇪 Berlin, Germany",
+        "client_badge": "Payment Verified • 4.9 Rating",
+        "client_prompt": "Our codebase was built by three different agencies over two years. There are no tests, duplicate components everywhere, and our team is afraid to touch anything because it might break. Every developer we interview wants to rewrite the whole app from scratch. What is your approach?",
+        "instruction": "Clients HATE hearing 'we must rebuild everything from scratch'. Explain safe incremental refactoring while continuing to deliver business features.",
+        "senior_template": "Rewriting from scratch is almost always a business trap—it halts new features for months and introduces brand new bugs. My philosophy is incremental refactoring. I follow the Boy Scout Rule: leave each file a little cleaner than you found it. First, I map out critical user flows (like authentication and checkout) with smoke tests. Then, we encapsulate messy modules behind clean interfaces. This lets us ship new features and bug fixes continuously while progressively reducing technical debt without disrupting your business.",
+        "breakdown": [
+          "**Business empathy:** 'Rewriting from scratch is almost always a business trap...'",
+          "**Engineering principle:** 'The Boy Scout Rule: leave files cleaner than you found them...'",
+          "**Incremental path:** 'Encapsulate messy code behind clean interfaces while shipping features.'"
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Technical debt",
+          "phonetic": "/ˈtɛknɪkəl dɛt/",
+          "meaning": "Accumulated architectural shortcuts that increase maintenance cost",
+          "example": "We need to allocate 20% of sprint capacity to pay down technical debt."
+        },
+        {
+          "phrase": "From scratch",
+          "phonetic": "/frɒm skrætʃ/",
+          "meaning": "From the very beginning / starting over completely",
+          "example": "Instead of rebuilding from scratch, let's refactor the critical modules progressively."
+        },
+        {
+          "phrase": "Boy Scout Rule",
+          "phonetic": "/bɔɪ skaʊt ruːl/",
+          "meaning": "Always leave the code cleaner than you found it",
+          "example": "I apply the Boy Scout Rule during every pull request."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Debt & Doubt",
+        "explanation": "The 'B' is COMPLETELY SILENT in 'Debt' (/dɛt/ sounds like 'det') and 'Doubt' (/daʊt/ sounds like 'daut'). Never pronounce the 'B'!"
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 7,
+      "week": 1,
+      "title": "Upwork Mock Call Simulation I (The 15-Minute Test)",
+      "subtitle": "Full live simulation: Integrate your Tech Identity, Active Listening, and High-Impact Answers.",
+      "category": "Mock Interview",
+      "listening": {
+        "title": "Real Upwork Client Interview for a $45/hr Mobile Contract",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Observe the realistic flow and pacing of a real Upwork client discovery call.",
+        "timestamp": "00:00 - 05:00",
+        "question": "How does the candidate respond when the client asks about weekly hourly availability?",
+        "hint": "He specifies exact hours and timezone overlap.",
+        "ideal_answer": "He clearly stated he can dedicate 25 to 30 hours per week with a 4-hour daily overlap with US Eastern time."
+      },
+      "client_challenge": {
+        "client_name": "Kevin Peterson (CEO)",
+        "client_country": "🇺🇸 Austin, Texas",
+        "client_badge": "Top Enterprise Client • $500k+ Spent",
+        "client_prompt": "Hey! Great to connect. We're launching our MVP in 3 weeks. It's a cross-platform mobile app with payments, live notifications, and real-time order tracking. We've got 50+ applicants, but we need someone who can hit the ground running tomorrow, communicate clearly every morning, and get this across the finish line. Why should we hire you over everyone else?",
+        "instruction": "This is the closing question. Don't recite academic credentials; highlight rapid execution, daily transparent updates, and domain expertise.",
+        "senior_template": "Thanks for being direct, Kevin. You should hire me because I don't need onboarding hand-holding; I specialize in taking cross-platform apps over the finish line. I've already built and shipped real-time apps with push notifications and payment gateways, so I know the exact store review pitfalls to avoid before your 3-week deadline. Furthermore, I believe communication is just as important as code: you'll get a concise daily standup every morning with what was completed, what's next, and demo builds on TestFlight and Play Console internal tracks. If you want someone who can hit the ground running today, I'm ready.",
+        "breakdown": [
+          "**Immediate hook:** 'You should hire me because I don't need onboarding hand-holding...'",
+          "**De-risking the deadline:** 'I know the exact store review pitfalls to avoid before your 3-week mark...'",
+          "**Communication guarantee:** 'Concise daily standup every morning with demo builds...'"
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Hit the ground running",
+          "phonetic": "/hɪt ðə ɡraʊnd ˈrʌnɪŋ/",
+          "meaning": "Start performing immediately with zero ramp-up delay",
+          "example": "I'm already familiar with your stack, so I can hit the ground running tomorrow."
+        },
+        {
+          "phrase": "Cross the finish line",
+          "phonetic": "/krɒs ðə ˈfɪnɪʃ laɪn/",
+          "meaning": "Bring a project to a complete, successful launch",
+          "example": "My focus is helping your team cross the finish line before the product launch."
+        },
+        {
+          "phrase": "Hand-holding",
+          "phonetic": "/ˈhændˌhəʊldɪŋ/",
+          "meaning": "Constant supervision or micromanagement",
+          "example": "I work autonomously, so you won't need to do any hand-holding."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Schedule",
+        "explanation": "In US English it is pronounced /ˈskɛdʒuːl/ (SKE-jool). In British English it sounds like /ˈʃɛdjuːl/ (SHE-dyool). In Upwork, US pronunciation dominates."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 8,
+      "week": 2,
+      "title": "Offline-First Architecture & Local Database Sync",
+      "subtitle": "How to explain local database caching (WatermelonDB, SQLite, Room, Realm) and conflict resolution.",
+      "category": "Architecture",
+      "listening": {
+        "title": "Lead Mobile Architect on Offline-First Sync Strategies",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Discussion on handling optimistic local writes when the device reconnects to Wi-Fi.",
+        "timestamp": "01:15 - 02:40",
+        "question": "How does the engineer handle timestamp collisions during sync?",
+        "hint": "Listen for Last-Write-Wins or conflict resolution.",
+        "ideal_answer": "They use a hybrid logical clock with server-side last-write-wins verification to prevent data overwrites."
+      },
+      "client_challenge": {
+        "client_name": "Brett Collins",
+        "client_country": "🇺🇸 Denver, USA",
+        "client_badge": "Payment Verified • k+ Spent",
+        "client_prompt": "Our app is used by field inspectors with spotty mobile service. How would you ensure they can fill out inspection forms offline and have them sync seamlessly when they get back to the office without data loss?",
+        "instruction": "Explain your local storage choice, optimistic writes, and offline sync queue mechanism.",
+        "senior_template": "For offline-first field apps, I design an optimistic offline sync queue using a local SQLite database like WatermelonDB or Room. When the inspector submits a form offline, we write it immediately to the local database and enqueue a persistent sync mutation task. When network connectivity is restored via NetInfo, our background worker processes the queue sequentially with exponential backoff retries, ensuring zero data loss.",
+        "breakdown": [
+          "**Architecture:** SQLite / WatermelonDB local-first storage.",
+          "**Pattern:** Persistent sync mutation queue with exponential backoff.",
+          "**Reliability:** Zero data loss guarantee."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Exponential backoff",
+          "phonetic": "/ˌɛkspəˈnɛnʃəl ˈbækɒf/",
+          "meaning": "Increasing delay between retry attempts after a network failure",
+          "example": "The sync worker retries failed uploads with exponential backoff."
+        },
+        {
+          "phrase": "Spotty connection",
+          "phonetic": "/ˈspɒti kəˈnɛkʃən/",
+          "meaning": "Unstable or intermittent internet connection",
+          "example": "We tested the app under spotty 3G cellular connections."
+        },
+        {
+          "phrase": "Optimistic write",
+          "phonetic": "/ˌɒptɪˈmɪstɪk raɪt/",
+          "meaning": "Saving locally and updating the UI before the server confirms",
+          "example": "Optimistic writes keep the user interface responsive at all times."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Queue vs. Query",
+        "explanation": "Queue is pronounced /kjuː/ (sounds like the letter Q). Query is pronounced /ˈkwɪəri/ (KWEER-ee)."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 9,
+      "week": 2,
+      "title": "In-App Purchases (IAP) & RevenueCat Integration",
+      "subtitle": "Discussing digital subscriptions, paywalls, and cross-platform entitlement verification.",
+      "category": "Monetization & SDKs",
+      "listening": {
+        "title": "Growth Engineer explaining Mobile Subscription Paywalls",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "How Apple StoreKit 2 and Google Play Billing are abstracted using RevenueCat.",
+        "timestamp": "00:30 - 01:45",
+        "question": "Why does the team prefer RevenueCat over native StoreKit directly?",
+        "hint": "Listen for receipt validation and server-side webhooks.",
+        "ideal_answer": "Because RevenueCat handles server-side receipt validation, grace periods, and unified entitlement tracking automatically."
+      },
+      "client_challenge": {
+        "client_name": "Chloe Dupont",
+        "client_country": "🇫🇷 Paris, France",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We need to add weekly and yearly auto-renewable subscriptions to our React Native app. What is your experience with in-app purchases and Apple/Google billing guidelines?",
+        "instruction": "Recommend RevenueCat or native StoreKit, explain entitlement handling, and mention compliance with restore purchase rules.",
+        "senior_template": "I strongly recommend using RevenueCat for cross-platform subscriptions. Direct StoreKit and Google Play Billing integrations require complex custom server-side receipt validation and handling churn events. RevenueCat abstracts this with unified customer entitlements and webhook integrations. I will ensure our paywall complies with Apple Guideline 3.1.1, including clear terms, subscription disclosures, and a working Restore Purchases button.",
+        "breakdown": [
+          "**Recommendation:** RevenueCat over direct native StoreKit.",
+          "**Compliance:** Restore Purchases button and clear pricing disclosures.",
+          "**Advantage:** Server-side entitlement validation out of the box."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Restore purchases",
+          "phonetic": "/rɪˈstɔːr ˈpɜːtʃəsɪz/",
+          "meaning": "Mandatory button on iOS allowing users to recover active subscriptions",
+          "example": "Apple will reject your build if the Restore Purchases button fails."
+        },
+        {
+          "phrase": "Paywall",
+          "phonetic": "/ˈpeɪwɔːl/",
+          "meaning": "The screen prompting users to subscribe or purchase a plan",
+          "example": "We A/B tested two different paywall designs to improve trial conversions."
+        },
+        {
+          "phrase": "Grace period",
+          "phonetic": "/ɡreɪs ˈpɪəriəd/",
+          "meaning": "Time allowed for a user to update billing info before losing access",
+          "example": "Users in billing retry enter a 16-day grace period."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Purchase & Receipt",
+        "explanation": "The 'P' is silent in Receipt! Pronounce it /rɪˈsiːt/ (ri-SEET). Purchase is /ˈpɜːtʃəs/ (PUR-chuhs)."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 10,
+      "week": 2,
+      "title": "Push Notifications & Deep Linking Architecture",
+      "subtitle": "Explaining APNs, FCM, Universal Links, and background push payloads.",
+      "category": "Architecture",
+      "listening": {
+        "title": "Mobile Tech Lead on Push Notification Delivery Rates",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "How to route users directly to specific screens from notification taps.",
+        "timestamp": "01:00 - 02:15",
+        "question": "What is required on iOS to handle deep links seamlessly without safari popups?",
+        "hint": "apple-app-site-association file.",
+        "ideal_answer": "Configuring Associated Domains and hosting an apple-app-site-association file on the verified domain."
+      },
+      "client_challenge": {
+        "client_name": "Tariq Al-Mansoor",
+        "client_country": "🇦🇪 Dubai, UAE",
+        "client_badge": "Payment Verified • k+ Spent",
+        "client_prompt": "When users receive a push notification about an order update, tapping it just opens the home screen. How do you configure deep linking so it opens the exact order detail screen on both iOS and Android?",
+        "instruction": "Explain Universal Links / App Links, push payload routing, and navigation state integration.",
+        "senior_template": "This requires setting up deep link routing and unified notification listeners. First, we configure Universal Links for iOS with an apple-app-site-association file and Android App Links with assetlinks.json. Second, when our push payload arrives with an order_id metadata tag, we handle it in both foreground and background notification handlers using React Navigation linking configuration. This ensures the app parses the path and seamlessly mounts the order details screen.",
+        "breakdown": [
+          "**System level:** Universal Links and Android App Links verification.",
+          "**Payload parsing:** Extracting metadata from background push packets.",
+          "**Navigation:** React Navigation linking prefix integration."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Deep link routing",
+          "phonetic": "/diːp lɪŋk ˈruːtɪŋ/",
+          "meaning": "Navigating directly to a nested screen from an external link or notification",
+          "example": "We configured deep link routing so shared links open directly in the app."
+        },
+        {
+          "phrase": "Foreground vs. Background",
+          "phonetic": "/ˈfɔːrɡraʊnd/",
+          "meaning": "When app is actively open vs minimized/suspended",
+          "example": "We handle push notifications differently in the foreground versus background."
+        },
+        {
+          "phrase": "Payload",
+          "phonetic": "/ˈpeɪləʊd/",
+          "meaning": "The data contents transmitted within an HTTP or push message",
+          "example": "The push notification payload contains the conversation ID."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Route & Routing",
+        "explanation": "In US English, 'Route' is usually pronounced /raʊt/ (like 'shout') or /ruːt/ (like 'boot'). Both are accepted."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 11,
+      "week": 2,
+      "title": "Native Modules & Platform Bridges (JSI, Swift, Kotlin)",
+      "subtitle": "Explaining how to bridge custom C++, Swift, or Kotlin code into React Native / Flutter.",
+      "category": "Native Integration",
+      "listening": {
+        "title": "Industry Tech Lead on Native Integration",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Native Modules & Platform Bridges (JSI, Swift, Kotlin).",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Native Modules & Platform Bridges (JSI, Swift, Kotlin)?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Native Modules & Platform Bridges (JSI, Swift, Kotlin). How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Native Modules & Platform Bridges (JSI, Swift, Kotlin) by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 12,
+      "week": 2,
+      "title": "Complex UI Animations & Gesture Handling",
+      "subtitle": "Discussing 60/120 FPS animations with React Native Reanimated, Skia, and SwiftUI.",
+      "category": "UI / UX Engineering",
+      "listening": {
+        "title": "Industry Tech Lead on UI / UX Engineering",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Complex UI Animations & Gesture Handling.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Complex UI Animations & Gesture Handling?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Complex UI Animations & Gesture Handling. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Complex UI Animations & Gesture Handling by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 13,
+      "week": 2,
+      "title": "Audio & Video Streaming Optimization (HLS, Caching)",
+      "subtitle": "Diagnosing buffering, AVPlayer/ExoPlayer integration, and CDN cache policies.",
+      "category": "Media & Performance",
+      "listening": {
+        "title": "Industry Tech Lead on Media & Performance",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Audio & Video Streaming Optimization (HLS, Caching).",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Audio & Video Streaming Optimization (HLS, Caching)?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Audio & Video Streaming Optimization (HLS, Caching). How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Audio & Video Streaming Optimization (HLS, Caching) by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 14,
+      "week": 2,
+      "title": "Upwork Mock Call Simulation II (The Architecture Drill)",
+      "subtitle": "Handling an intense 15-minute technical discovery call with an engineering manager.",
+      "category": "Mock Interview",
+      "listening": {
+        "title": "Industry Tech Lead on Mock Interview",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Upwork Mock Call Simulation II (The Architecture Drill).",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Upwork Mock Call Simulation II (The Architecture Drill)?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Upwork Mock Call Simulation II (The Architecture Drill). How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Upwork Mock Call Simulation II (The Architecture Drill) by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 15,
+      "week": 3,
+      "title": "Mobile Security, Keychain & Biometric Authentication",
+      "subtitle": "Protecting user tokens with iOS Keychain, Android Keystore, and FaceID/Fingerprint auth.",
+      "category": "Security",
+      "listening": {
+        "title": "Industry Tech Lead on Security",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Mobile Security, Keychain & Biometric Authentication.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Mobile Security, Keychain & Biometric Authentication?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Mobile Security, Keychain & Biometric Authentication. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Mobile Security, Keychain & Biometric Authentication by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 16,
+      "week": 3,
+      "title": "CI/CD Pipelines: Fastlane, GitHub Actions & EAS Build",
+      "subtitle": "Automating TestFlight, Google Play internal testing tracks, and version bumping.",
+      "category": "DevOps",
+      "listening": {
+        "title": "Industry Tech Lead on DevOps",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in CI/CD Pipelines: Fastlane, GitHub Actions & EAS Build.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for CI/CD Pipelines: Fastlane, GitHub Actions & EAS Build?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in CI/CD Pipelines: Fastlane, GitHub Actions & EAS Build. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach CI/CD Pipelines: Fastlane, GitHub Actions & EAS Build by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 17,
+      "week": 3,
+      "title": "Multi-Brand & White-Label Codebase Strategies",
+      "subtitle": "Managing multiple branded apps from a single repository without code duplication.",
+      "category": "Architecture",
+      "listening": {
+        "title": "Industry Tech Lead on Architecture",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Multi-Brand & White-Label Codebase Strategies.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Multi-Brand & White-Label Codebase Strategies?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Multi-Brand & White-Label Codebase Strategies. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Multi-Brand & White-Label Codebase Strategies by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 18,
+      "week": 3,
+      "title": "Explaining Technical Trade-offs to Non-Technical Founders",
+      "subtitle": "How to discuss deadlines, debt, and architecture using business analogies.",
+      "category": "Communication",
+      "listening": {
+        "title": "Industry Tech Lead on Communication",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Explaining Technical Trade-offs to Non-Technical Founders.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Explaining Technical Trade-offs to Non-Technical Founders?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Explaining Technical Trade-offs to Non-Technical Founders. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Explaining Technical Trade-offs to Non-Technical Founders by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 19,
+      "week": 3,
+      "title": "Handling Scope Creep & Disagreeing Professionally",
+      "subtitle": "Politely pushing back when clients add extra features outside the original scope.",
+      "category": "Client Management",
+      "listening": {
+        "title": "Industry Tech Lead on Client Management",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Handling Scope Creep & Disagreeing Professionally.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Handling Scope Creep & Disagreeing Professionally?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Handling Scope Creep & Disagreeing Professionally. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Handling Scope Creep & Disagreeing Professionally by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 20,
+      "week": 3,
+      "title": "Hourly Rates (-/hr) & Estimating Unknown Codebases",
+      "subtitle": "How to quote realistic milestones and defend your hourly rate with confidence.",
+      "category": "Freelance Business",
+      "listening": {
+        "title": "Industry Tech Lead on Freelance Business",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Hourly Rates (-/hr) & Estimating Unknown Codebases.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Hourly Rates (-/hr) & Estimating Unknown Codebases?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Hourly Rates (-/hr) & Estimating Unknown Codebases. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Hourly Rates (-/hr) & Estimating Unknown Codebases by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 21,
+      "week": 3,
+      "title": "Upwork Mock Call Simulation III (The Negotiation & Rate Test)",
+      "subtitle": "Practicing budget discussions, timelines, and contract closing live on call.",
+      "category": "Mock Interview",
+      "listening": {
+        "title": "Industry Tech Lead on Mock Interview",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Upwork Mock Call Simulation III (The Negotiation & Rate Test).",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Upwork Mock Call Simulation III (The Negotiation & Rate Test)?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Upwork Mock Call Simulation III (The Negotiation & Rate Test). How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Upwork Mock Call Simulation III (The Negotiation & Rate Test) by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 22,
+      "week": 4,
+      "title": "AI Mobile Apps: Running On-Device ONNX & Core ML Models",
+      "subtitle": "Integrating local ML models for real-time inference without cloud latency.",
+      "category": "AI & Mobile",
+      "listening": {
+        "title": "Industry Tech Lead on AI & Mobile",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in AI Mobile Apps: Running On-Device ONNX & Core ML Models.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for AI Mobile Apps: Running On-Device ONNX & Core ML Models?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in AI Mobile Apps: Running On-Device ONNX & Core ML Models. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach AI Mobile Apps: Running On-Device ONNX & Core ML Models by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 23,
+      "week": 4,
+      "title": "OpenAI / Claude API Streaming in Mobile Apps",
+      "subtitle": "Handling SSE (Server-Sent Events), token streaming, and token limits on mobile.",
+      "category": "AI & Mobile",
+      "listening": {
+        "title": "Industry Tech Lead on AI & Mobile",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in OpenAI / Claude API Streaming in Mobile Apps.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for OpenAI / Claude API Streaming in Mobile Apps?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in OpenAI / Claude API Streaming in Mobile Apps. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach OpenAI / Claude API Streaming in Mobile Apps by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 24,
+      "week": 4,
+      "title": "End-to-End Mobile Testing: Detox & Maestro",
+      "subtitle": "Automating user flows to guarantee zero regressions before submitting to app stores.",
+      "category": "QA & Reliability",
+      "listening": {
+        "title": "Industry Tech Lead on QA & Reliability",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in End-to-End Mobile Testing: Detox & Maestro.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for End-to-End Mobile Testing: Detox & Maestro?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in End-to-End Mobile Testing: Detox & Maestro. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach End-to-End Mobile Testing: Detox & Maestro by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 25,
+      "week": 4,
+      "title": "The 1-Hour Paid Diagnostic Audit for Upwork Clients",
+      "subtitle": "How to win - paid code audits before landing massive k+ contracts.",
+      "category": "Freelance Strategy",
+      "listening": {
+        "title": "Industry Tech Lead on Freelance Strategy",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in The 1-Hour Paid Diagnostic Audit for Upwork Clients.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for The 1-Hour Paid Diagnostic Audit for Upwork Clients?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in The 1-Hour Paid Diagnostic Audit for Upwork Clients. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach The 1-Hour Paid Diagnostic Audit for Upwork Clients by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 26,
+      "week": 4,
+      "title": "Live Debugging Under Pressure During a Screen-Share",
+      "subtitle": "Techniques for staying calm and narrating your thought process while sharing screen.",
+      "category": "Live Coding",
+      "listening": {
+        "title": "Industry Tech Lead on Live Coding",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Live Debugging Under Pressure During a Screen-Share.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Live Debugging Under Pressure During a Screen-Share?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Live Debugging Under Pressure During a Screen-Share. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Live Debugging Under Pressure During a Screen-Share by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 27,
+      "week": 4,
+      "title": "Writing Clean Pull Requests & Handover Documentation",
+      "subtitle": "Documenting architectures, environment setup, and test notes for client teams.",
+      "category": "Engineering Standards",
+      "listening": {
+        "title": "Industry Tech Lead on Engineering Standards",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Writing Clean Pull Requests & Handover Documentation.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Writing Clean Pull Requests & Handover Documentation?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Writing Clean Pull Requests & Handover Documentation. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Writing Clean Pull Requests & Handover Documentation by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 28,
+      "week": 4,
+      "title": "Contract Closing & Securing 5-Star Upwork Reviews",
+      "subtitle": "The exact post-launch script to guarantee 5-star feedback and repeat work.",
+      "category": "Freelance Success",
+      "listening": {
+        "title": "Industry Tech Lead on Freelance Success",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Contract Closing & Securing 5-Star Upwork Reviews.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Contract Closing & Securing 5-Star Upwork Reviews?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Contract Closing & Securing 5-Star Upwork Reviews. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Contract Closing & Securing 5-Star Upwork Reviews by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 29,
+      "week": 4,
+      "title": "The Complete 15-Minute Upwork Interview Rehearsal",
+      "subtitle": "Putting it all together: Small talk, Pitch, Technical Q&A, and Closing.",
+      "category": "Mock Interview",
+      "listening": {
+        "title": "Industry Tech Lead on Mock Interview",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in The Complete 15-Minute Upwork Interview Rehearsal.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for The Complete 15-Minute Upwork Interview Rehearsal?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in The Complete 15-Minute Upwork Interview Rehearsal. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach The Complete 15-Minute Upwork Interview Rehearsal by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    },
+    {
+      "day": 30,
+      "week": 4,
+      "title": "Graduation Day: Submitting Your First Live Upwork Proposal",
+      "subtitle": "Crafting your personalized cover letter and sending your first real mobile application!",
+      "category": "Live Launch",
+      "listening": {
+        "title": "Industry Tech Lead on Live Launch",
+        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
+        "video_description": "Listen to a senior mobile developer discuss best practices in Graduation Day: Submitting Your First Live Upwork Proposal.",
+        "timestamp": "01:00 - 02:30",
+        "question": "What key architectural recommendation is highlighted for Graduation Day: Submitting Your First Live Upwork Proposal?",
+        "hint": "Pay attention to trade-offs, modularity, and error handling.",
+        "ideal_answer": "The engineer emphasizes clean abstraction, automated verification, and decoupling modules to prevent regressions."
+      },
+      "client_challenge": {
+        "client_name": "Enterprise Client",
+        "client_country": "🇺🇸 USA",
+        "client_badge": "Payment Verified • Top Rated",
+        "client_prompt": "We are looking for an expert in Graduation Day: Submitting Your First Live Upwork Proposal. How do you approach this in production mobile applications?",
+        "instruction": "Deliver your answer using BLUF: State your approach in 1 sentence, explain your tooling choices, and highlight reliability.",
+        "senior_template": "In my production mobile applications, I approach Graduation Day: Submitting Your First Live Upwork Proposal by establishing clear architectural boundaries and leveraging proven industry libraries. I ensure all edge cases and failure modes are accounted for, providing comprehensive documentation so your team can maintain the code effortlessly.",
+        "breakdown": [
+          "**BLUF:** Immediate high-level approach.",
+          "**Tooling:** Proven, scalable industry standards.",
+          "**Result:** Maintainability and robustness."
+        ]
+      },
+      "lexical_chunks": [
+        {
+          "phrase": "Trade-off",
+          "phonetic": "/ˈtreɪd ɒf/",
+          "meaning": "A situational decision that involves losing one quality in return for another",
+          "example": "We evaluated the trade-off between performance and development speed."
+        },
+        {
+          "phrase": "Scalability bottleneck",
+          "phonetic": "/ˌskeɪləˈbɪləti ˈbɒtlˌnɛk/",
+          "meaning": "A constraint that prevents the system from handling more users",
+          "example": "Our caching strategy prevented a major scalability bottleneck."
+        },
+        {
+          "phrase": "Take ownership",
+          "phonetic": "/teɪk ˈəʊnəʃɪp/",
+          "meaning": "To take full responsibility for a feature or outcome",
+          "example": "I will take full ownership of the mobile deployment pipeline."
+        }
+      ],
+      "pronunciation_tip": {
+        "word": "Focus words",
+        "explanation": "Remember to stress verbs and technical nouns clearly: RE-factor, AR-chitecture, PA-rameter."
+      },
+      "user_submission": {
+        "listening_answer": "",
+        "speaking_answer": "",
+        "notes": "",
+        "completed": false
+      }
+    }
+  ]
+}

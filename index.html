@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech English Studio — Mobile Developer Upwork Bootcamp</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* CUSTOM SCROLLBAR */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    
+    /* ANIMATIONS & MICRO-INTERACTIONS */
+    @keyframes flame {
+      0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 3px rgba(245, 158, 11, 0.4)); }
+      50% { transform: scale(1.15) rotate(-3deg); filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.7)); }
+    }
+    .flame-anim {
+      display: inline-block;
+      animation: flame 2.2s infinite ease-in-out;
+    }
+
+    @keyframes barWave1 { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+    @keyframes barWave2 { 0%, 100% { height: 14px; } 50% { height: 6px; } }
+    @keyframes barWave3 { 0%, 100% { height: 8px; } 50% { height: 18px; } }
+    @keyframes barWave4 { 0%, 100% { height: 16px; } 50% { height: 5px; } }
+    .bar-anim-1 { animation: barWave1 0.6s infinite ease-in-out; }
+    .bar-anim-2 { animation: barWave2 0.7s infinite ease-in-out; }
+    .bar-anim-3 { animation: barWave3 0.5s infinite ease-in-out; }
+    .bar-anim-4 { animation: barWave4 0.65s infinite ease-in-out; }
+
+    /* CARD GLOW EFFECTS */
+    .card-completed-glow {
+      border-color: #10b981 !important;
+      box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.12), 0 0 0 1px rgba(16, 185, 129, 0.2) !important;
+    }
+    .interactive-card {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .interactive-card:hover {
+      transform: translateY(-2px);
+    }
+    .btn-bounce:active {
+      transform: scale(0.96);
+    }
+    @keyframes toastSlide {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .toast-anim {
+      animation: toastSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800 dark:bg-[#0B0F19] dark:text-slate-200 selection:bg-brand-500 selection:text-white transition-colors duration-200">
+
+  <!-- TOP NAVBAR -->
+  <header class="border-b border-slate-200/80 bg-white/90 dark:border-slate-800 dark:bg-[#111827]/90 backdrop-blur-md sticky top-0 z-40 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logo & App Status -->
+      <div class="flex items-center space-x-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center shadow-md shadow-emerald-500/20 text-white">
+          <i data-lucide="terminal" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-lg bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent dark:from-emerald-400 dark:to-cyan-400">
+            Tech English Studio
+          </span>
+          <span class="hidden sm:inline-block ml-2 text-xs font-medium text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-md px-2 py-0.5 bg-slate-100/70 dark:bg-slate-800/60">
+            Upwork Mobile Bootcamp
+          </span>
+        </div>
+      </div>
+
+      <!-- Streak, XP & 30-Day Overall Progress -->
+      <div class="flex items-center space-x-2.5 sm:space-x-4">
+        <!-- Streak -->
+        <div class="flex items-center space-x-1.5 bg-amber-50 dark:bg-dark-base border border-amber-200 dark:border-dark-border px-3 py-1.5 rounded-full text-xs font-semibold text-amber-700 dark:text-amber-400 shadow-xs">
+          <span class="flame-anim text-sm">🔥</span>
+          <span id="streakCount">1 Day Streak</span>
+        </div>
+
+        <!-- XP Badge -->
+        <div class="hidden sm:flex items-center space-x-1.5 bg-cyan-50 dark:bg-dark-base border border-cyan-200 dark:border-dark-border px-3 py-1.5 rounded-full text-xs font-bold text-cyan-800 dark:text-cyan-400 shadow-xs">
+          <span class="text-amber-500">⚡</span>
+          <span id="xpBadge">150 XP</span>
+        </div>
+
+        <!-- Overall Progress -->
+        <div class="hidden md:flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400 bg-slate-100/80 dark:bg-dark-base border border-slate-200 dark:border-dark-border px-3.5 py-1.5 rounded-full">
+          <span class="font-medium">Overall:</span>
+          <div class="w-28 bg-slate-200 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div id="progressBar" class="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all duration-500" style="width: 3.3%;"></div>
+          </div>
+          <span id="progressPercent" class="font-mono text-emerald-600 dark:text-emerald-400 font-bold">0/30 (0%)</span>
+        </div>
+      </div>
+
+      <!-- Playbook Modal, Sound & Theme Toggle -->
+      <div class="flex items-center space-x-2">
+        <!-- Theme Switcher (Light / Dark) -->
+        <button onclick="toggleTheme()" id="themeToggleBtn" title="Switch Theme (Light/Dark)" class="p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg text-xs transition border border-slate-200 dark:border-slate-700 shadow-xs btn-bounce">
+          <i data-lucide="moon" id="themeIcon" class="w-4 h-4 text-slate-700 dark:text-amber-400"></i>
+        </button>
+
+        <!-- Sound Toggle -->
+        <button onclick="toggleAudioMute()" id="soundToggleBtn" title="Toggle Sound FX" class="p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-lg text-xs transition border border-slate-200 dark:border-slate-700 shadow-xs btn-bounce">
+          <i data-lucide="volume-2" id="soundIcon" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+        </button>
+
+        <!-- Playbook Button -->
+        <button onclick="openPlaybookModal()" class="flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 text-xs font-semibold px-3 py-2 rounded-lg transition border border-transparent dark:border-slate-700 shadow-sm btn-bounce">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>My Playbook (.md)</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (Fixed Sticky Sidebar + Content) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 flex flex-col lg:flex-row gap-6 w-full items-start">
+
+    <!-- SIDEBAR: 30-DAY CURRICULUM (Sticky & Independent Scroll) -->
+    <aside class="w-full lg:w-72 lg:sticky lg:top-20 flex-shrink-0">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <h2 class="text-xs uppercase font-extrabold tracking-wider text-slate-400 dark:text-slate-400 flex items-center space-x-1.5">
+            <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400"></i>
+            <span>30-Day Program</span>
+          </h2>
+          <span id="currentDayBadge" class="text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/40 px-2 py-0.5 rounded-full">
+            Day 1
+          </span>
+        </div>
+
+        <div id="daysList" class="space-y-1.5 max-h-[calc(100vh-12rem)] overflow-y-auto custom-scrollbar pr-1">
+          <!-- Dynamically populated days -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN LESSON CONTENT -->
+    <main class="flex-1 w-full space-y-6">
+
+      <!-- DAY HEADER & LIVE DAILY TASK CHECKLIST -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 relative overflow-hidden shadow-sm">
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div class="flex items-center space-x-2">
+            <span id="badgeCategory" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300">
+              Speaking & Pitch
+            </span>
+            <span id="badgeWeek" class="text-xs text-slate-500 dark:text-slate-400 font-mono font-medium">Week 1</span>
+          </div>
+          
+          <div id="statusCompletedTag" class="hidden items-center space-x-1 text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/50 px-3 py-1 rounded-full font-bold">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+            <span>Day Completed</span>
+          </div>
+        </div>
+
+        <h1 id="dayTitle" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          The Tech Identity: Pitching Your Mobile Stack
+        </h1>
+        <p id="daySubtitle" class="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+          Master the 45-second 'Tell me about yourself' pitch using the BLUF principle (Bottom Line Up Front).
+        </p>
+
+        <!-- LIVE DAILY STEPS PROGRESS (4 STEPS) -->
+        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="flex flex-wrap items-center gap-3 text-slate-600 dark:text-slate-300">
+            <span class="text-slate-500 dark:text-slate-400 font-semibold">Today's Progress:</span>
+            <span id="stepListeningCheck" class="flex items-center space-x-1 text-slate-400">
+              <span class="w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold">1</span>
+              <span>Listening</span>
+            </span>
+            <span id="stepSpeakingCheck" class="flex items-center space-x-1 text-slate-400">
+              <span class="w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold">2</span>
+              <span>Speaking</span>
+            </span>
+            <button type="button" id="stepChunksCheck" onclick="toggleChunksDone()" title="Click to toggle Chunks reviewed" class="flex items-center space-x-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition btn-bounce">
+              <span class="w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold">3</span>
+              <span>Lexical Chunks</span>
+            </button>
+            <span id="stepNotesCheck" class="flex items-center space-x-1 text-slate-400">
+              <span class="w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold">4</span>
+              <span>Wrap-up</span>
+            </span>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <div class="w-24 bg-slate-200 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
+              <div id="dailyProgressBar" class="bg-emerald-500 h-1.5 rounded-full transition-all duration-300" style="width: 0%;"></div>
+            </div>
+            <span id="dailyProgressText" class="font-mono text-emerald-600 dark:text-emerald-400 text-[11px] font-bold">0/4 Done</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 1: ACTIVE LISTENING GYM -->
+      <section id="card1Section" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm transition-all duration-300 interactive-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 border border-indigo-200 dark:border-indigo-700/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+              <i data-lucide="headphones" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                <span>Part 1: Active Listening Gym</span>
+                <span class="text-xs font-normal text-slate-500 dark:text-slate-400 font-mono">(10 mins)</span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Train your ear with real native US client and tech lead speech.</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span id="card1DoneBadge" class="hidden text-[11px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/40 px-2 py-0.5 rounded-full font-bold">
+              ✓ Step Done
+            </span>
+            <span id="listeningTimestamp" class="text-xs font-mono bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded text-cyan-700 dark:text-cyan-300 font-medium">
+              ⏱️ 00:45 - 01:50
+            </span>
+          </div>
+        </div>
+
+        <!-- Video Clip Reference & Embedded Player -->
+        <div class="bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 rounded-xl p-4 mb-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+            <div>
+              <h3 id="listeningTitle" class="text-sm font-bold text-slate-800 dark:text-slate-200">
+                American Founder explaining his Mobile Startup
+              </h3>
+              <p id="listeningDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
+                Listen to a US tech founder outline his mobile app requirements. Notice his speaking pace and transition words.
+              </p>
+            </div>
+            <a id="listeningVideoLink" href="https://www.youtube.com" target="_blank" class="inline-flex items-center justify-center space-x-1.5 text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400 text-xs font-semibold transition flex-shrink-0">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>Open in YouTube ↗</span>
+            </a>
+          </div>
+
+          <!-- Direct Embedded Video Player -->
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-black">
+            <iframe id="listeningIframe" class="w-full h-full" src="" title="Tech English Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Listening Question & Interactive Input -->
+        <div class="space-y-3">
+          <div class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center space-x-1.5">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400"></i>
+            <span id="listeningQuestion">What is the core issue the founder describes regarding data synchronization?</span>
+          </div>
+
+          <textarea id="listeningInput" rows="2" placeholder="Type what you understood in English (or Spanish)..." class="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-4 py-3 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 outline-none transition custom-scrollbar font-sans"></textarea>
+
+          <div class="flex items-center justify-between">
+            <button onclick="toggleListeningAnswer()" class="text-xs text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition flex items-center space-x-1 font-semibold btn-bounce">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+              <span>Reveal Reference Answer</span>
+            </button>
+            <span id="listeningHint" class="text-xs text-slate-500 italic">
+              Hint: Listen for 'sync', 'offline', or 'network drops'.
+            </span>
+          </div>
+
+          <!-- Ideal Answer Box (Collapsible) -->
+          <div id="listeningIdealBox" class="hidden mt-3 p-3.5 bg-emerald-50/70 dark:bg-slate-950 border border-emerald-200 dark:border-slate-800 rounded-xl text-xs space-y-1">
+            <span class="font-extrabold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider text-[10px]">Interviewer Reference Answer:</span>
+            <p id="listeningIdealAnswer" class="text-slate-700 dark:text-slate-300 italic leading-relaxed"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 2: UPWORK CLIENT CHALLENGE (ACTIVE PRODUCTION) -->
+      <section id="card2Section" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm transition-all duration-300 interactive-card">
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-700/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+              <i data-lucide="message-square" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                <span>Part 2: Upwork Client Challenge</span>
+                <span class="text-xs font-normal text-slate-500 dark:text-slate-400 font-mono">(15 mins)</span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">The client asks you this during the call. Deliver your answer in English.</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span id="card2DoneBadge" class="hidden text-[11px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/40 px-2 py-0.5 rounded-full font-bold">
+              ✓ Step Done
+            </span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-50 dark:bg-cyan-950 border border-cyan-200 dark:border-cyan-800 text-cyan-800 dark:text-cyan-300 font-medium">
+              BLUF + CAR Framework
+            </span>
+          </div>
+        </div>
+
+        <!-- Client Profile & Question Box -->
+        <div class="bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 rounded-xl p-4 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center space-x-2">
+              <div class="w-7 h-7 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
+                <span id="clientAvatarInitials">MR</span>
+              </div>
+              <div>
+                <span id="clientName" class="text-xs font-bold text-slate-800 dark:text-slate-200">Mark R.</span>
+                <span id="clientCountry" class="text-[11px] text-slate-500 dark:text-slate-400 ml-1.5">🇺🇸 San Francisco, USA</span>
+              </div>
+            </div>
+            <span id="clientBadge" class="text-[10px] text-amber-800 dark:text-amber-300 bg-amber-100/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/40 px-2 py-0.5 rounded-full font-semibold">
+              Payment Verified
+            </span>
+          </div>
+
+          <!-- Prompt with Speech Audio Button -->
+          <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-3.5 mt-2 shadow-xs">
+            <p id="clientPrompt" class="text-sm font-medium text-slate-700 dark:text-slate-200 italic pr-8 leading-relaxed">
+              "Hey! Thanks for taking the time. To kick things off, can you tell me a little bit about your mobile development background and what technologies you feel most comfortable with?"
+            </p>
+            <button onclick="speakText('clientPrompt')" title="Listen to Client Voice" class="absolute top-3 right-3 p-1.5 text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 bg-slate-100 dark:bg-slate-800 rounded-md transition btn-bounce">
+              <i data-lucide="volume-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <p id="clientInstruction" class="text-xs text-slate-500 dark:text-slate-400 mt-2.5">
+            Deliver your answer using BLUF: State your primary role and core stack in 1 concise sentence.
+          </p>
+        </div>
+
+        <!-- User Answer Textarea with Live Equalizer & Dictation -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-400 flex items-center space-x-1.5">
+              <span>Your Spoken Response (Type or Dictate with Mic):</span>
+            </label>
+            <div class="flex items-center space-x-2">
+              <!-- Animated Mic Button with Equalizer Wave -->
+              <button id="micBtn" onclick="toggleSpeechRecognition()" class="flex items-center space-x-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-lg text-xs transition border border-slate-200 dark:border-slate-700 font-semibold btn-bounce shadow-xs">
+                <!-- Equalizer mini waves (shown on recording) -->
+                <div id="micEqualizer" class="hidden items-end space-x-0.5 h-3.5">
+                  <span class="w-0.5 bg-red-500 rounded-full bar-anim-1"></span>
+                  <span class="w-0.5 bg-red-500 rounded-full bar-anim-2"></span>
+                  <span class="w-0.5 bg-red-500 rounded-full bar-anim-3"></span>
+                  <span class="w-0.5 bg-red-500 rounded-full bar-anim-4"></span>
+                </div>
+                <i id="micIcon" data-lucide="mic" class="w-3.5 h-3.5 text-red-500"></i>
+                <span id="micStatusText">Speak with Mic</span>
+              </button>
+              
+              <button onclick="speakText('speakingInput')" title="Listen to your answer" class="p-1.5 text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 btn-bounce">
+                <i data-lucide="volume-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <textarea id="speakingInput" rows="4" placeholder="Speak or write your response in English. Force your brain to form natural sentences..." class="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-4 py-3 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 outline-none transition custom-scrollbar font-sans leading-relaxed"></textarea>
+
+          <!-- Word Quality Meter & Senior Breakdown Trigger -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+            <div class="flex items-center space-x-2">
+              <span id="wordCount" class="text-xs text-slate-500 font-mono font-bold">0 words</span>
+              <span id="wordQualityBadge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700">
+                Aim for 25-50 words
+              </span>
+            </div>
+            
+            <button onclick="toggleSeniorAnswer()" class="text-xs text-slate-600 hover:text-cyan-700 dark:text-slate-400 dark:hover:text-cyan-400 transition flex items-center space-x-1 font-semibold btn-bounce">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400"></i>
+              <span>Compare with Senior Native Dev Answer</span>
+            </button>
+          </div>
+
+          <!-- Senior Model Answer (Collapsible) -->
+          <div id="seniorAnswerBox" class="hidden mt-4 p-4 bg-cyan-50/60 dark:bg-slate-950 border border-cyan-200 dark:border-cyan-800/40 rounded-xl space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-cyan-800 dark:text-cyan-400 flex items-center space-x-1.5">
+                <i data-lucide="shield-check" class="w-4 h-4 text-cyan-600 dark:text-cyan-400"></i>
+                <span>Senior Mobile Engineer Benchmark (How a US dev answers)</span>
+              </span>
+              <button onclick="speakText('seniorAnswerText')" class="p-1 text-slate-500 hover:text-cyan-700 dark:hover:text-cyan-400 transition btn-bounce" title="Listen to Senior Audio">
+                <i data-lucide="volume-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <p id="seniorAnswerText" class="text-xs text-slate-700 dark:text-slate-300 italic leading-relaxed bg-white dark:bg-dark-base p-3 rounded-lg border border-cyan-100 dark:border-dark-border shadow-xs"></p>
+            <div id="seniorBreakdownList" class="space-y-1 text-xs text-slate-600 dark:text-slate-400 border-t border-cyan-200/60 dark:border-slate-800 pt-2">
+              <!-- Breakdown points -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 3: LEXICAL CHUNKS & AUDIO -->
+      <section id="card3Section" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm transition-all duration-300 interactive-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-teal-50 dark:bg-cyan-950/80 border border-teal-200 dark:border-cyan-700/50 flex items-center justify-center text-teal-600 dark:text-cyan-400">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                <span>Part 3: Lexical Chunks of the Day</span>
+                <span class="text-xs font-normal text-slate-500 dark:text-slate-400 font-mono">(5 mins)</span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Idiomatic engineering phrases used in US tech teams. Click 🔊 to listen.</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span id="card3DoneBadge" class="hidden text-[11px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/40 px-2 py-0.5 rounded-full font-bold">
+              ✓ Step Done
+            </span>
+            <button id="markChunksBtn" onclick="toggleChunksDone()" class="text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center space-x-1.5 transition shadow-xs btn-bounce font-medium">
+              <span id="markChunksIcon">○</span>
+              <span id="markChunksLabel">Mark as Practiced</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="chunksGrid" class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <!-- Dynamically populated Chunks -->
+        </div>
+
+        <!-- Pronunciation Trap Alert Box -->
+        <div id="pronunciationCard" class="mt-4 p-4 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-600/30 flex items-start space-x-3">
+          <div class="p-2 rounded-lg bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 flex-shrink-0">
+            <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-extrabold text-amber-900 dark:text-amber-300 uppercase tracking-wider">Pronunciation Trap for Non-Native Developers:</h4>
+            <p id="pronunciationText" class="text-xs text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
+              'Cache' is pronounced exactly like 'CASH' (/kæʃ/). 'Queue' is pronounced like the single letter 'Q' (/kjuː/).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 4: PERSONAL NOTES & DAY COMPLETION -->
+      <section id="card4Section" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm transition-all duration-300 interactive-card">
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-700/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+              <i data-lucide="check-square" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                <span>Part 4: Personal Notes & Day Completion</span>
+                <span class="text-xs font-normal text-slate-500 dark:text-slate-400 font-mono">(5 mins)</span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Save personal takeaways. Auto-syncs with your living Markdown playbook.</p>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 font-bold">
+            Final Step
+          </span>
+        </div>
+        
+        <textarea id="notesInput" rows="3" placeholder="Add any personal reminders, words you learned, or notes for your upcoming calls..." class="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-4 py-3 text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 outline-none transition custom-scrollbar font-mono leading-relaxed"></textarea>
+
+        <!-- Final Navigation & Submit Controls -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-5 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <div class="flex items-center space-x-2">
+            <button onclick="navigateDay(-1)" id="prevDayBtn" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold transition border border-slate-200 dark:border-slate-700 flex items-center space-x-1.5 btn-bounce">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              <span>Previous</span>
+            </button>
+            <button onclick="navigateDay(1)" id="nextDayBtn" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold transition border border-slate-200 dark:border-slate-700 flex items-center space-x-1.5 btn-bounce">
+              <span>Next</span>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+            <span class="text-[11px] text-slate-400 font-mono hidden sm:inline-block ml-2">Shortcuts: ⌘S to save • Alt+→ next</span>
+            <span id="autoSaveStatus" class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 hidden sm:inline-flex items-center space-x-1 ml-2">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Saved to disk</span>
+            </span>
+          </div>
+
+          <div class="flex items-center space-x-2 w-full sm:w-auto">
+            <button onclick="saveCurrentDay(false)" class="flex-1 sm:flex-none px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-semibold transition border border-slate-200 dark:border-slate-700 btn-bounce">
+              Save Progress
+            </button>
+            <button onclick="saveCurrentDay(true)" class="flex-1 sm:flex-none flex items-center justify-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold rounded-xl text-xs shadow-md shadow-emerald-600/25 transition transform btn-bounce">
+              <i data-lucide="check" class="w-4 h-4"></i>
+              <span>Mark Day Completed & Next (+50 XP)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- PLAYBOOK MODAL -->
+  <div id="playbookModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-4xl max-h-[90vh] rounded-2xl flex flex-col shadow-2xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-950">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-7 h-7 rounded-lg bg-cyan-100 dark:bg-cyan-950 border border-cyan-200 dark:border-cyan-700 flex items-center justify-center text-cyan-700 dark:text-cyan-400">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">MY_INTERVIEW_PLAYBOOK.md</h3>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">Your live cheatsheet to keep on screen during Upwork video calls</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="copyPlaybookMarkdown()" id="copyPlaybookBtn" class="flex items-center space-x-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 rounded-lg text-xs font-semibold transition border border-transparent dark:border-slate-700 btn-bounce">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copy Markdown</span>
+          </button>
+          <button onclick="closePlaybookModal()" class="p-1.5 text-slate-400 hover:text-slate-800 dark:hover:text-white rounded-lg transition btn-bounce">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto custom-scrollbar flex-1 bg-white dark:bg-slate-950 font-mono text-xs text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap" id="playbookContent">
+        <!-- Rendered text -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    let appData = null;
+    let selectedDayNum = 1;
+    let recognition = null;
+    let isRecording = false;
+    let chunksPracticed = {}; // { [dayNum]: boolean }
+    let soundEnabled = true;
+
+    // THEME SWITCHER (Light by default as requested!)
+    function initTheme() {
+      const savedTheme = localStorage.getItem('tech_english_theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.add('light');
+        document.documentElement.classList.remove('dark');
+      }
+      updateThemeIcon();
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        localStorage.setItem('tech_english_theme', 'light');
+        showToast('Switched to Clean Light Mode ☀️');
+      } else {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+        localStorage.setItem('tech_english_theme', 'dark');
+        showToast('Switched to Dark Mode 🌙');
+      }
+      updateThemeIcon();
+      SoundFX.playPop();
+    }
+
+    function updateThemeIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+        lucide.createIcons();
+      }
+    }
+
+    // WEB AUDIO SOUND EFFECTS
+    const SoundFX = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
+        }
+      },
+      playPop() {
+        if (!soundEnabled) return;
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(400, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(800, this.ctx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.08);
+        } catch(e) {}
+      },
+      playChime() {
+        if (!soundEnabled) return;
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const notes = [523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, i) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime + i * 0.07);
+            gain.gain.setValueAtTime(0.12, this.ctx.currentTime + i * 0.07);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + i * 0.07 + 0.3);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(this.ctx.currentTime + i * 0.07);
+            osc.stop(this.ctx.currentTime + i * 0.07 + 0.3);
+          });
+        } catch(e) {}
+      }
+    };
+
+    function toggleAudioMute() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('soundIcon');
+      if (soundEnabled) {
+        icon.className = "w-4 h-4 text-emerald-600 dark:text-emerald-400";
+        showToast('Sound Effects Enabled 🔊');
+      } else {
+        icon.className = "w-4 h-4 text-slate-400";
+        showToast('Sound Effects Muted 🔇');
+      }
+    }
+
+    // TOAST NOTIFICATIONS
+    function showToast(message, isSuccess = true) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast-anim pointer-events-auto px-4 py-2.5 rounded-xl border text-xs font-bold flex items-center space-x-2 shadow-xl backdrop-blur-md ${
+        isSuccess 
+          ? 'bg-white/95 border-emerald-300 text-emerald-800 dark:bg-slate-900/90 dark:border-emerald-500/50 dark:text-emerald-300' 
+          : 'bg-white/95 border-red-300 text-red-800 dark:bg-slate-900/90 dark:border-red-500/50 dark:text-red-300'
+      }`;
+      toast.innerHTML = `<span>${isSuccess ? '✓' : '⚠️'}</span><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.transition = 'all 0.3s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    // Toggle Chunks Reviewed
+    function toggleChunksDone() {
+      chunksPracticed[selectedDayNum] = !chunksPracticed[selectedDayNum];
+      SoundFX.playPop();
+      updateDailyStepChecks();
+    }
+
+    // Load Data on Startup
+    async function loadData() {
+      initTheme();
+      try {
+        const res = await fetch('/api/data');
+        appData = await res.json();
+        
+        // Remember exact last viewed day
+        const savedLastDay = parseInt(localStorage.getItem('tech_english_last_day'));
+        selectedDayNum = (savedLastDay >= 1 && savedLastDay <= appData.days.length) ? savedLastDay : (appData.user_profile.current_day || 1);
+
+        renderCurriculumList();
+        renderDay(selectedDayNum);
+        updateOverallStats();
+
+        // Welcome back notification
+        setTimeout(() => {
+          showToast(`Welcome back! Resumed on Day ${selectedDayNum} 🎯`);
+        }, 500);
+      } catch (err) {
+        console.error('Error loading data:', err);
+        document.getElementById('dayTitle').innerText = 'Could not load curriculum. Make sure server.py is running!';
+      }
+    }
+
+    // Render 30 Days in Sidebar
+    function renderCurriculumList() {
+      const container = document.getElementById('daysList');
+      container.innerHTML = '';
+
+      appData.days.forEach(day => {
+        const isSelected = day.day === selectedDayNum;
+        const isDone = (appData.user_profile.completed_days || []).includes(day.day);
+
+        const btn = document.createElement('button');
+        btn.id = `sidebar-day-${day.day}`;
+        btn.onclick = () => selectDay(day.day);
+        btn.className = `w-full text-left p-2.5 rounded-xl text-xs font-semibold transition flex items-center justify-between border ${
+          isSelected 
+            ? 'active-day-btn bg-emerald-50 border-emerald-300 text-emerald-900 shadow-xs dark:bg-emerald-950/50 dark:border-emerald-500/60 dark:text-emerald-300' 
+            : isDone 
+              ? 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 dark:bg-slate-800/60 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800' 
+              : 'bg-transparent border-transparent text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
+        }`;
+
+        btn.innerHTML = `
+          <div class="flex items-center space-x-2 truncate">
+            <span class="w-5 h-5 rounded-md ${
+              isDone 
+                ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400 font-bold' 
+                : isSelected 
+                  ? 'bg-emerald-200 text-emerald-900 dark:bg-emerald-500/20 dark:text-emerald-300 font-bold' 
+                  : 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+            } flex items-center justify-center font-mono text-[10px] flex-shrink-0">
+              ${isDone ? '✓' : day.day}
+            </span>
+            <span class="truncate">${day.title}</span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-400 dark:text-slate-500 ml-1 flex-shrink-0">W${day.week}</span>
+        `;
+
+        container.appendChild(btn);
+      });
+
+      const activeEl = container.querySelector('.active-day-btn');
+      if (activeEl) {
+        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      lucide.createIcons();
+    }
+
+    // Navigation buttons
+    function navigateDay(delta) {
+      const target = selectedDayNum + delta;
+      if (target >= 1 && target <= appData.days.length) {
+        SoundFX.playPop();
+        selectDay(target);
+      }
+    }
+
+    // Select Day (Remembers last viewed day in localStorage)
+    function selectDay(dayNum) {
+      selectedDayNum = dayNum;
+      localStorage.setItem('tech_english_last_day', dayNum);
+      renderCurriculumList();
+      renderDay(dayNum);
+    }
+
+    // Extract YouTube embed URL with timestamp start
+    function getYoutubeEmbedUrl(rawUrl, timestamp) {
+      if (!rawUrl) return '';
+      let videoId = '';
+      if (rawUrl.includes('v=')) {
+        videoId = rawUrl.split('v=')[1].split('&')[0];
+      } else if (rawUrl.includes('youtu.be/')) {
+        videoId = rawUrl.split('youtu.be/')[1].split('?')[0];
+      } else if (rawUrl.includes('/embed/')) {
+        videoId = rawUrl.split('/embed/')[1].split('?')[0];
+      }
+      if (!videoId) videoId = '0-S5a0eXPoc';
+
+      let startSec = 0;
+      if (timestamp) {
+        const match = timestamp.match(/(\d{1,2}):(\d{2})/);
+        if (match) {
+          startSec = parseInt(match[1]) * 60 + parseInt(match[2]);
+        }
+      }
+      return `https://www.youtube-nocookie.com/embed/${videoId}?start=${startSec}&rel=0`;
+    }
+
+    // Render Current Day Content
+    function renderDay(dayNum) {
+      const day = appData.days.find(d => d.day === dayNum) || appData.days[0];
+      const sub = day.user_submission || {};
+      const isDone = (appData.user_profile.completed_days || []).includes(day.day);
+
+      // Header
+      document.getElementById('currentDayBadge').innerText = `Day ${day.day}`;
+      document.getElementById('badgeCategory').innerText = day.category;
+      document.getElementById('badgeWeek').innerText = `Week ${day.week}`;
+      document.getElementById('dayTitle').innerText = day.title;
+      document.getElementById('daySubtitle').innerText = day.subtitle;
+
+      if (isDone) {
+        document.getElementById('statusCompletedTag').classList.remove('hidden');
+        document.getElementById('statusCompletedTag').classList.add('flex');
+      } else {
+        document.getElementById('statusCompletedTag').classList.add('hidden');
+        document.getElementById('statusCompletedTag').classList.remove('flex');
+      }
+
+      // Prev / Next button states
+      document.getElementById('prevDayBtn').disabled = (dayNum <= 1);
+      document.getElementById('prevDayBtn').classList.toggle('opacity-40', dayNum <= 1);
+      document.getElementById('nextDayBtn').disabled = (dayNum >= appData.days.length);
+      document.getElementById('nextDayBtn').classList.toggle('opacity-40', dayNum >= appData.days.length);
+
+      // Listening Gym
+      document.getElementById('listeningTitle').innerText = day.listening.title;
+      document.getElementById('listeningDesc').innerText = day.listening.video_description;
+      document.getElementById('listeningTimestamp').innerText = `⏱️ ${day.listening.timestamp}`;
+      document.getElementById('listeningQuestion').innerText = day.listening.question;
+      document.getElementById('listeningHint').innerText = `Hint: ${day.listening.hint}`;
+      document.getElementById('listeningInput').value = sub.listening_answer || '';
+      document.getElementById('listeningIdealAnswer').innerText = day.listening.ideal_answer;
+      document.getElementById('listeningIdealBox').classList.add('hidden');
+      document.getElementById('listeningVideoLink').href = day.listening.real_youtube_link;
+
+      // Set direct embedded video player
+      const embedUrl = getYoutubeEmbedUrl(day.listening.real_youtube_link || day.listening.video_url, day.listening.timestamp);
+      document.getElementById('listeningIframe').src = embedUrl;
+
+      // Client Challenge
+      document.getElementById('clientName').innerText = day.client_challenge.client_name;
+      document.getElementById('clientCountry').innerText = day.client_challenge.client_country;
+      document.getElementById('clientBadge').innerText = day.client_challenge.client_badge;
+      document.getElementById('clientAvatarInitials').innerText = day.client_challenge.client_name.split(' ').map(n=>n[0]).join('');
+      document.getElementById('clientPrompt').innerText = `"${day.client_challenge.client_prompt}"`;
+      document.getElementById('clientInstruction').innerText = day.client_challenge.instruction;
+      document.getElementById('speakingInput').value = sub.speaking_answer || '';
+      updateWordCount();
+
+      document.getElementById('seniorAnswerText').innerText = day.client_challenge.senior_template;
+      document.getElementById('seniorAnswerBox').classList.add('hidden');
+      
+      const breakdownContainer = document.getElementById('seniorBreakdownList');
+      breakdownContainer.innerHTML = '';
+      (day.client_challenge.breakdown || []).forEach(item => {
+        const div = document.createElement('div');
+        div.className = "flex items-start space-x-1.5";
+        div.innerHTML = `<span class="text-emerald-600 dark:text-emerald-400">▹</span> <span>${item.replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-800 dark:text-slate-200">$1</strong>')}</span>`;
+        breakdownContainer.appendChild(div);
+      });
+
+      // Lexical Chunks
+      const chunksContainer = document.getElementById('chunksGrid');
+      chunksContainer.innerHTML = '';
+      day.lexical_chunks.forEach(chunk => {
+        const card = document.createElement('div');
+        card.className = "p-3.5 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2 hover:border-cyan-400 dark:hover:border-cyan-500/50 transition-all duration-200 group interactive-card shadow-2xs";
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-teal-800 dark:text-cyan-300 group-hover:text-teal-950 dark:group-hover:text-cyan-200">${chunk.phrase}</span>
+            <button onclick="speakDirect('${chunk.phrase.replace(/'/g, "\\'")}')" class="p-1 text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition btn-bounce" title="Listen pronunciation">
+              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+          <p class="text-[11px] font-mono text-slate-500">${chunk.phonetic}</p>
+          <p class="text-xs font-medium text-slate-700 dark:text-slate-300">${chunk.meaning}</p>
+          <div class="text-[11px] text-slate-600 dark:text-slate-400 italic bg-white dark:bg-dark-card p-2 rounded-lg border border-slate-200/80 dark:border-dark-border">
+            "${chunk.example}"
+          </div>
+        `;
+        chunksContainer.appendChild(card);
+      });
+
+      // Pronunciation Gotcha
+      if (day.pronunciation_tip) {
+        document.getElementById('pronunciationText').innerText = day.pronunciation_tip.explanation;
+        document.getElementById('pronunciationCard').classList.remove('hidden');
+      } else {
+        document.getElementById('pronunciationCard').classList.add('hidden');
+      }
+
+      // Notes
+      document.getElementById('notesInput').value = sub.notes || '';
+
+      updateDailyStepChecks();
+      lucide.createIcons();
+    }
+
+    // Track Live Daily Checklist & Card Glow
+    function updateDailyStepChecks() {
+      const listeningVal = document.getElementById('listeningInput').value.trim();
+      const speakingVal = document.getElementById('speakingInput').value.trim();
+      const notesVal = document.getElementById('notesInput').value.trim();
+      
+      let stepsCompleted = 0;
+
+      // Step 1: Listening
+      const s1 = document.getElementById('stepListeningCheck');
+      const c1 = document.getElementById('card1Section');
+      const b1 = document.getElementById('card1DoneBadge');
+      if (listeningVal.length > 5) {
+        stepsCompleted++;
+        s1.className = "flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 font-bold";
+        s1.firstElementChild.innerText = '✓';
+        s1.firstElementChild.className = 'w-4 h-4 rounded-full bg-emerald-100 border border-emerald-400 text-emerald-700 dark:bg-emerald-500/20 dark:border-emerald-500 dark:text-emerald-400 flex items-center justify-center text-[10px]';
+        c1.classList.add('card-completed-glow');
+        b1.classList.remove('hidden');
+      } else {
+        s1.className = "flex items-center space-x-1 text-slate-400";
+        s1.firstElementChild.innerText = '1';
+        s1.firstElementChild.className = 'w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold';
+        c1.classList.remove('card-completed-glow');
+        b1.classList.add('hidden');
+      }
+
+      // Step 2: Speaking
+      const s2 = document.getElementById('stepSpeakingCheck');
+      const c2 = document.getElementById('card2Section');
+      const b2 = document.getElementById('card2DoneBadge');
+      if (speakingVal.length > 15) {
+        stepsCompleted++;
+        s2.className = "flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 font-bold";
+        s2.firstElementChild.innerText = '✓';
+        s2.firstElementChild.className = 'w-4 h-4 rounded-full bg-emerald-100 border border-emerald-400 text-emerald-700 dark:bg-emerald-500/20 dark:border-emerald-500 dark:text-emerald-400 flex items-center justify-center text-[10px]';
+        c2.classList.add('card-completed-glow');
+        b2.classList.remove('hidden');
+      } else {
+        s2.className = "flex items-center space-x-1 text-slate-400";
+        s2.firstElementChild.innerText = '2';
+        s2.firstElementChild.className = 'w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold';
+        c2.classList.remove('card-completed-glow');
+        b2.classList.add('hidden');
+      }
+
+      // Step 3: Chunks
+      const s3 = document.getElementById('stepChunksCheck');
+      const c3 = document.getElementById('card3Section');
+      const b3 = document.getElementById('card3DoneBadge');
+      const isDayDone = appData && appData.user_profile && (appData.user_profile.completed_days || []).includes(selectedDayNum);
+      const isChunksDone = Boolean(chunksPracticed[selectedDayNum] || isDayDone);
+      
+      const markChunksBtn = document.getElementById('markChunksBtn');
+      const markChunksIcon = document.getElementById('markChunksIcon');
+      const markChunksLabel = document.getElementById('markChunksLabel');
+
+      if (isChunksDone) {
+        stepsCompleted++;
+        s3.className = "flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 font-bold cursor-pointer btn-bounce";
+        s3.firstElementChild.innerText = '✓';
+        s3.firstElementChild.className = 'w-4 h-4 rounded-full bg-emerald-100 border border-emerald-400 text-emerald-700 dark:bg-emerald-500/20 dark:border-emerald-500 dark:text-emerald-400 flex items-center justify-center text-[10px]';
+        c3.classList.add('card-completed-glow');
+        b3.classList.remove('hidden');
+        if (markChunksBtn) {
+          markChunksBtn.className = "text-xs px-2.5 py-1 rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-500/40 dark:bg-emerald-950/40 dark:text-emerald-300 flex items-center space-x-1.5 transition btn-bounce font-bold";
+          markChunksIcon.innerText = '✓';
+          markChunksLabel.innerText = 'Practiced';
+        }
+      } else {
+        s3.className = "flex items-center space-x-1 text-slate-400 cursor-pointer hover:text-slate-700 dark:hover:text-slate-300 btn-bounce";
+        s3.firstElementChild.innerText = '3';
+        s3.firstElementChild.className = 'w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold';
+        c3.classList.remove('card-completed-glow');
+        b3.classList.add('hidden');
+        if (markChunksBtn) {
+          markChunksBtn.className = "text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-400 flex items-center space-x-1.5 transition shadow-2xs btn-bounce font-medium";
+          markChunksIcon.innerText = '○';
+          markChunksLabel.innerText = 'Mark as Practiced';
+        }
+      }
+
+      // Step 4: Notes / Wrap-up
+      const s4 = document.getElementById('stepNotesCheck');
+      const c4 = document.getElementById('card4Section');
+      if (notesVal.length > 5 || isDayDone) {
+        stepsCompleted++;
+        s4.className = "flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 font-bold";
+        s4.firstElementChild.innerText = '✓';
+        s4.firstElementChild.className = 'w-4 h-4 rounded-full bg-emerald-100 border border-emerald-400 text-emerald-700 dark:bg-emerald-500/20 dark:border-emerald-500 dark:text-emerald-400 flex items-center justify-center text-[10px]';
+        c4.classList.add('card-completed-glow');
+      } else {
+        s4.className = "flex items-center space-x-1 text-slate-400";
+        s4.firstElementChild.innerText = '4';
+        s4.firstElementChild.className = 'w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold';
+        c4.classList.remove('card-completed-glow');
+      }
+
+      const pct = Math.round((stepsCompleted / 4) * 100);
+      document.getElementById('dailyProgressBar').style.width = `${pct}%`;
+      document.getElementById('dailyProgressText').innerText = `${stepsCompleted}/4 Done`;
+    }
+
+    document.getElementById('listeningInput').addEventListener('input', () => { updateDailyStepChecks(); queueAutoSave(); });
+    document.getElementById('speakingInput').addEventListener('input', () => { updateDailyStepChecks(); queueAutoSave(); });
+    document.getElementById('notesInput').addEventListener('input', () => { updateDailyStepChecks(); queueAutoSave(); });
+
+    document.getElementById('listeningInput').addEventListener('blur', () => saveCurrentDay(false, true));
+    document.getElementById('speakingInput').addEventListener('blur', () => saveCurrentDay(false, true));
+    document.getElementById('notesInput').addEventListener('blur', () => saveCurrentDay(false, true));
+
+    window.addEventListener('beforeunload', () => {
+      // Final flush
+      saveCurrentDay(false, true);
+    });
+
+    // Toggle Collapsibles
+    function toggleListeningAnswer() {
+      SoundFX.playPop();
+      const box = document.getElementById('listeningIdealBox');
+      box.classList.toggle('hidden');
+    }
+
+    function toggleSeniorAnswer() {
+      SoundFX.playPop();
+      const box = document.getElementById('seniorAnswerBox');
+      box.classList.toggle('hidden');
+    }
+
+    // Word Counter with Quality Indicator
+    document.getElementById('speakingInput').addEventListener('input', updateWordCount);
+    function updateWordCount() {
+      const text = document.getElementById('speakingInput').value.trim();
+      const count = text ? text.split(/\s+/).length : 0;
+      document.getElementById('wordCount').innerText = `${count} words`;
+
+      const badge = document.getElementById('wordQualityBadge');
+      if (count === 0) {
+        badge.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700 font-semibold";
+        badge.innerText = "Aim for 25-50 words";
+      } else if (count < 15) {
+        badge.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/40 font-semibold";
+        badge.innerText = "Keep going (add details)...";
+      } else if (count < 30) {
+        badge.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-50 dark:bg-cyan-950/40 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/40 font-semibold";
+        badge.innerText = "Good answer length!";
+      } else {
+        badge.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40 font-bold";
+        badge.innerText = "🔥 Senior Dev depth!";
+      }
+    }
+
+    // Speech Synthesis (TTS)
+    function speakText(elementId) {
+      const text = document.getElementById(elementId).innerText || document.getElementById(elementId).value;
+      if (!text) return;
+      speakDirect(text);
+    }
+
+    function speakDirect(phrase) {
+      chunksPracticed[selectedDayNum] = true;
+      updateDailyStepChecks();
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(phrase);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.95;
+        
+        const voices = window.speechSynthesis.getVoices();
+        const usVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+        if (usVoice) utterance.voice = usVoice;
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('Speech Synthesis is not supported in this browser.');
+      }
+    }
+
+    // Speech Recognition with Live Equalizer
+    function toggleSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert('Web Speech API is not supported in this browser. Please use Google Chrome.');
+        return;
+      }
+
+      if (isRecording) {
+        recognition.stop();
+        return;
+      }
+
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      const micBtn = document.getElementById('micBtn');
+      const micStatusText = document.getElementById('micStatusText');
+      const micEqualizer = document.getElementById('micEqualizer');
+      const micIcon = document.getElementById('micIcon');
+      const speakingInput = document.getElementById('speakingInput');
+
+      let sessionBaseText = '';
+
+      recognition.onstart = () => {
+        isRecording = true;
+        SoundFX.playPop();
+        sessionBaseText = speakingInput.value ? speakingInput.value.trim() + ' ' : '';
+        micBtn.classList.add('border-red-500', 'bg-red-50', 'text-red-700', 'dark:bg-red-950/60', 'dark:text-red-300');
+        micEqualizer.classList.remove('hidden');
+        micEqualizer.classList.add('flex');
+        micIcon.classList.add('hidden');
+        micStatusText.innerText = 'Listening... (Speak English)';
+      };
+
+      recognition.onresult = (event) => {
+        let finalChunk = '';
+        let interimChunk = '';
+
+        for (let i = 0; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalChunk += event.results[i][0].transcript + ' ';
+          } else {
+            interimChunk += event.results[i][0].transcript;
+          }
+        }
+
+        speakingInput.value = (sessionBaseText + finalChunk + interimChunk).trim();
+        updateWordCount();
+        updateDailyStepChecks();
+        queueAutoSave();
+      };
+
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        stopMicUI();
+      };
+
+      recognition.onend = () => {
+        stopMicUI();
+        saveCurrentDay(false, true);
+      };
+
+      function stopMicUI() {
+        isRecording = false;
+        micBtn.classList.remove('border-red-500', 'bg-red-50', 'text-red-700', 'dark:bg-red-950/60', 'dark:text-red-300');
+        micEqualizer.classList.add('hidden');
+        micEqualizer.classList.remove('flex');
+        micIcon.classList.remove('hidden');
+        micStatusText.innerText = 'Speak with Mic';
+      }
+
+      recognition.start();
+    }
+
+    // Auto-save logic
+    let autoSaveTimer = null;
+    function queueAutoSave() {
+      clearTimeout(autoSaveTimer);
+      const indicator = document.getElementById('autoSaveStatus');
+      if (indicator) {
+        indicator.innerHTML = `<span class="inline-block animate-spin mr-1">⏳</span><span>Saving...</span>`;
+        indicator.className = "text-[11px] font-mono text-amber-600 dark:text-amber-400 inline-flex items-center ml-2";
+      }
+      autoSaveTimer = setTimeout(() => {
+        saveCurrentDay(false, true);
+      }, 1200);
+    }
+
+    // Save Data to Server (Manual or Silent Autosave)
+    async function saveCurrentDay(markCompleted = false, isSilent = false) {
+      const payload = {
+        day: selectedDayNum,
+        listening_answer: document.getElementById('listeningInput').value,
+        speaking_answer: document.getElementById('speakingInput').value,
+        notes: document.getElementById('notesInput').value,
+        mark_completed: markCompleted
+      };
+
+      try {
+        const res = await fetch('/api/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (result.success) {
+          appData = result.db;
+          updateOverallStats();
+          renderCurriculumList();
+          updateDailyStepChecks();
+
+          const indicator = document.getElementById('autoSaveStatus');
+          if (indicator) {
+            indicator.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>Saved to disk</span>`;
+            indicator.className = "text-[11px] font-mono text-emerald-600 dark:text-emerald-400 inline-flex items-center space-x-1 ml-2";
+            lucide.createIcons();
+          }
+
+          if (markCompleted) {
+            SoundFX.playChime();
+            showToast('Day Completed! +50 XP Earned! 🚀');
+
+            // MULTI-BURST CONFETTI
+            const count = 200;
+            const defaults = { origin: { y: 0.7 } };
+            function fire(particleRatio, opts) {
+              confetti(Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio)
+              }));
+            }
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45 });
+
+            if (selectedDayNum < appData.days.length) {
+              setTimeout(() => {
+                selectDay(selectedDayNum + 1);
+              }, 1200);
+            }
+          } else if (!isSilent) {
+            SoundFX.playPop();
+            showToast('Progress saved & synced to Playbook! ✓');
+          }
+        }
+      } catch (err) {
+        console.error('Save error:', err);
+        const indicator = document.getElementById('autoSaveStatus');
+        if (indicator) {
+          indicator.innerHTML = `<span>⚠️ Offline</span>`;
+          indicator.className = "text-[11px] font-mono text-red-500 inline-flex items-center ml-2";
+        }
+        if (!isSilent) {
+          showToast('Save failed. Check local server.', false);
+        }
+      }
+    }
+
+    // Overall 30-Day Stats & XP
+    function updateOverallStats() {
+      const completedList = appData.user_profile.completed_days || [];
+      const completedCount = completedList.length;
+      const totalDays = appData.days.length || 30;
+      const pct = Math.round((completedCount / totalDays) * 100);
+
+      document.getElementById('progressBar').style.width = `${Math.max(pct, completedCount > 0 ? pct : 2)}%`;
+      document.getElementById('progressPercent').innerText = `${completedCount}/${totalDays} (${pct}%)`;
+      document.getElementById('streakCount').innerText = `${appData.user_profile.streak || 1} Day Streak`;
+      
+      const xp = 150 + (completedCount * 50);
+      document.getElementById('xpBadge').innerText = `${xp} XP`;
+    }
+
+    // Playbook Modal View
+    async function openPlaybookModal() {
+      SoundFX.playPop();
+      try {
+        const res = await fetch('/MY_INTERVIEW_PLAYBOOK.md');
+        const text = await res.text();
+        document.getElementById('playbookContent').innerText = text;
+        document.getElementById('playbookModal').classList.remove('hidden');
+        document.getElementById('playbookModal').classList.add('flex');
+        lucide.createIcons();
+      } catch (err) {
+        showToast('Could not load playbook: ' + err, false);
+      }
+    }
+
+    function closePlaybookModal() {
+      SoundFX.playPop();
+      document.getElementById('playbookModal').classList.add('hidden');
+      document.getElementById('playbookModal').classList.remove('flex');
+    }
+
+    function copyPlaybookMarkdown() {
+      SoundFX.playPop();
+      const text = document.getElementById('playbookContent').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Playbook copied to clipboard! 📋');
+        const btn = document.getElementById('copyPlaybookBtn');
+        btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400"></i><span>Copied!</span>`;
+        lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = `<i data-lucide="copy" class="w-3.5 h-3.5"></i><span>Copy Markdown</span>`;
+          lucide.createIcons();
+        }, 2000);
+      });
+    }
+
+    // KEYBOARD SHORTCUTS
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+        e.preventDefault();
+        saveCurrentDay(false);
+      }
+      if (e.altKey && e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigateDay(1);
+      }
+      if (e.altKey && e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigateDay(-1);
+      }
+    });
+
+    // Init
+    window.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>
