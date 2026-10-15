@@ -14,14 +14,14 @@
       "subtitle": "Master the 45-second 'Tell me about yourself' pitch using the BLUF principle (Bottom Line Up Front).",
       "category": "Speaking & Pitch",
       "listening": {
-        "title": "American Founder explaining his Mobile Startup",
-        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "title": "Senior Tech Lead explaining React Native vs Native Apps",
+        "video_url": "https://www.youtube.com/embed/0-S5a0eXPoc",
         "real_youtube_link": "https://www.youtube.com/watch?v=0-S5a0eXPoc",
-        "video_description": "Listen to a US tech founder outline his mobile app requirements. Notice his speaking pace and transition words.",
+        "video_description": "Listen to the speaker explain why companies choose cross-platform React Native over separate native iOS/Android apps.",
         "timestamp": "00:45 - 01:50",
-        "question": "What is the core issue the founder describes regarding data synchronization?",
-        "hint": "Listen closely for keywords like 'sync', 'offline', or 'network drops'.",
-        "ideal_answer": "He mentioned that the app struggles to synchronize data properly when users have an unstable mobile connection, leading to duplicated entries and sync conflicts."
+        "question": "According to the speaker, what was the main problem before React Native, and what is the key advantage of using it?",
+        "hint": "Listen for keywords like 'two separate teams', 'Swift', 'Kotlin', and 'single codebase'.",
+        "ideal_answer": "Before React Native, companies needed two separate teams with two distinct skill sets (Swift/Objective-C for iOS, Java/Kotlin for Android). React Native solves this by allowing developers to build native apps for both platforms using a single JavaScript codebase."
       },
       "client_challenge": {
         "client_name": "Mark R.",
