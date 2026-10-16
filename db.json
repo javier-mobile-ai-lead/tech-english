@@ -123,9 +123,9 @@
         "explanation": "'Archive' is pronounced with a hard 'K': /ˈɑːrkaɪv/ (AR-kaiv). 'Architecture' also uses a hard 'K': /ˈɑːrkɪtɛktʃər/ (AR-ki-tek-cher)."
       },
       "user_submission": {
-        "listening_answer": "",
-        "speaking_answer": "",
-        "notes": "",
+        "listening_answer": "The two main threads are the UI Thread and the JavaScript Thread. In React Native, blocking the JavaScript Thread prevents touch events from responding, but from my native mobile experience, blocking the UI Thread freezes the entire application completely.",
+        "speaking_answer": "\"Hi Sarah, don't worry, we can definitely resolve this. Here are my immediate first steps: 1. First, grant me repository access and forward me the Google Play rejection email so I can check the exact policy violation. 2. Second, I will reproduce the Apple Pay freeze locally and attach the debugger to check the logs and see if a blocking call is freezing the UI thread. 3. Finally, I will audit the AndroidManifest to remove any unneeded permissions and get the new build submitted to Google Play.\"\n",
+        "notes": "- When the JavaScript thread is blocked by heavy operations or unhandled sync calls, touch events cannot be processed and the app feels completely frozen.\n- Low-hanging fruit-> when is the task or fix is very easy.\n- solicitar acceso a repositorio -> grant me repository access\n- como de consuelo tratar de decir -> don't worry. I will solve the problem.",
         "completed": false
       }
     },
@@ -136,14 +136,14 @@
       "subtitle": "Communicate global state, caching strategies, and async mutations with technical authority.",
       "category": "Architecture & Code",
       "listening": {
-        "title": "Senior Dev comparing State Libraries (Zustand vs Redux vs Riverpod)",
-        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        "real_youtube_link": "https://www.youtube.com/watch?v=SqcY0GlETPk",
-        "video_description": "Notice how the speaker naturally contrasts architectural trade-offs.",
-        "timestamp": "02:00 - 03:15",
-        "question": "Why does the developer advocate decoupling server cache from client UI state?",
-        "hint": "Listen for 'caching', 'deduplication', or 'boilerplate'.",
-        "ideal_answer": "Because server state requires caching, background refetching, and deduplication, while UI state is just local modal or theme toggles."
+        "title": "React Native State Management: Zustand vs Redux",
+        "video_url": "https://www.youtube.com/embed/ca2_36r5OQ8",
+        "real_youtube_link": "https://www.youtube.com/watch?v=ca2_36r5OQ8",
+        "video_description": "Watch a senior engineer compare Zustand and Redux in React Native, explaining differences in boilerplate, store creation, and handling async actions.",
+        "timestamp": "00:15 - 01:45",
+        "question": "According to the speaker, what makes Zustand simpler to set up and use compared to Redux?",
+        "hint": "Listen for: 'boilerplate', 'create', 'async functions', and 'providers'.",
+        "ideal_answer": "Zustand is simpler because it requires almost zero boilerplate: you don't need context providers wrapping the app, and you can write async/await functions directly inside store actions without complex middleware."
       },
       "client_challenge": {
         "client_name": "Dave Miller",
