@@ -2,9 +2,10 @@
   "user_profile": {
     "name": "Mobile Engineer",
     "streak": 1,
-    "current_day": 2,
+    "current_day": 3,
     "completed_days": [
-      1
+      1,
+      2
     ],
     "last_active": "2026-10-14"
   },
@@ -126,7 +127,7 @@
         "listening_answer": "The two main threads are the UI Thread and the JavaScript Thread. In React Native, blocking the JavaScript Thread prevents touch events from responding, but from my native mobile experience, blocking the UI Thread freezes the entire application completely.",
         "speaking_answer": "\"Hi Sarah, don't worry, we can definitely resolve this. Here are my immediate first steps: 1. First, grant me repository access and forward me the Google Play rejection email so I can check the exact policy violation. 2. Second, I will reproduce the Apple Pay freeze locally and attach the debugger to check the logs and see if a blocking call is freezing the UI thread. 3. Finally, I will audit the AndroidManifest to remove any unneeded permissions and get the new build submitted to Google Play.\"\n",
         "notes": "- When the JavaScript thread is blocked by heavy operations or unhandled sync calls, touch events cannot be processed and the app feels completely frozen.\n- Low-hanging fruit-> when is the task or fix is very easy.\n- solicitar acceso a repositorio -> grant me repository access\n- como de consuelo tratar de decir -> don't worry. I will solve the problem.",
-        "completed": false
+        "completed": true
       }
     },
     {

@@ -25,6 +25,22 @@ def update_playbook_markdown(db):
     md.append("- **To switch to code / visual demo:** *\"It's actually easier if I show you on screen. Let me share my screen real quick.\"*\n\n")
     md.append("---\n\n")
 
+    md.append("## ⏱️ The 3 Grammar Time Zones of an Upwork Interview\n")
+    md.append("> *Never get confused about which tense to use. Pick the right zone based on the client question:*\n\n")
+    md.append("### 1️⃣ PRESENT ZONE: Who You Are & How Code Works (Facts)\n")
+    md.append("- **When:** Describing your stack, what libraries do, or explaining architecture.\n")
+    md.append("- **Auxiliaries & Triggers:** *Currently, I specialize in..., My core stack includes..., Under the hood, this handles...*\n")
+    md.append("- **Formula:** `I specialize in [stack]` • `This library prevents [bug]` • `Under the hood, it manages...`\n\n")
+    md.append("### 2️⃣ PAST ZONE: What You Shipped & Bugs You Solved (CAR Stories)\n")
+    md.append("- **When:** Describing your past apps, previous companies, or past production crises.\n")
+    md.append("- **Auxiliaries & Triggers:** *In my previous project..., Over the past few years, I have built..., Most recently, I led...*\n")
+    md.append("- **Formula:** `I built...` • `I architected...` • `We encountered [issue], and I resolved it by [action]...`\n\n")
+    md.append("### 3️⃣ FUTURE & CONDITIONAL ZONE: Your Action Plan for THEIR App (Proposals)\n")
+    md.append("- **When:** The client asks 'What would you do?' or 'How would you fix our app?'.\n")
+    md.append("- **Auxiliaries & Triggers:** *First, I will..., I would start by..., In parallel, I can..., Once pinpointed, I will...*\n")
+    md.append("- **Formula:** `First, I will [audit]...` • `I would recommend [library] because...` • `Once resolved, I can [ship]...`\n\n")
+    md.append("---\n\n")
+
     md.append("## 🎯 My Prepared Interview Responses (CAR Framework)\n\n")
 
     for day in db.get("days", []):
