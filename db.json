@@ -2,8 +2,10 @@
   "user_profile": {
     "name": "Mobile Engineer",
     "streak": 1,
-    "current_day": 1,
-    "completed_days": [],
+    "current_day": 2,
+    "completed_days": [
+      1
+    ],
     "last_active": "2026-10-14"
   },
   "days": [
@@ -61,10 +63,10 @@
         "explanation": "'Cache' is pronounced exactly like 'CASH' (/kæʃ/). 'Queue' is pronounced like the single letter 'Q' (/kjuː/)."
       },
       "user_submission": {
-        "listening_answer": "",
-        "speaking_answer": "",
-        "notes": "",
-        "completed": false
+        "listening_answer": "I understood that the speaker explained an e-commerce demo app. He highlighted the UX, sending messages to the seller, syncing data with pull-to-refresh, and push notifications.",
+        "speaking_answer": "hi Mark great to meet you. I am mobile technically especializing in Android, iOS and react native  over the past few years if architected production mobile apps with a strong focus and performance and clean code  most recently I let the development of a fintech of integrating India's real-time UPI payment Gateway. I feel very comfortable thinking full ownership of mobile apps from architecture to store the primary",
+        "notes": "caché = cash\nempecemos = to kick things off\nproyecto desde 0 = Greenfield Project \n- Adjectives never have an s\n- to start professionally, use: \"great to meet you\"\n",
+        "completed": true
       }
     },
     {
@@ -74,14 +76,14 @@
       "subtitle": "How to process rapid native speech without freezing, using Chris Voss's Mirroring technique.",
       "category": "Listening & Negotiation",
       "listening": {
-        "title": "Product Owner describing an existing buggy app",
-        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        "real_youtube_link": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
-        "video_description": "Watch how the client jumps across different pain points and how the engineer validates understanding.",
-        "timestamp": "01:10 - 02:30",
-        "question": "Which two screens does the client identify where the app frequently freezes?",
-        "hint": "Look for view names: checkout, dashboard, catalog list, or profile.",
-        "ideal_answer": "The client noted freezes mainly on the checkout payment flow and the infinite scrolling product list."
+        "title": "Chris Voss: The Art of Mirroring in Conversation",
+        "video_url": "https://www.youtube.com/embed/SJ2az4HxlTs",
+        "real_youtube_link": "https://www.youtube.com/watch?v=SJ2az4HxlTs",
+        "video_description": "Watch former FBI lead hostage negotiator Chris Voss explain the Mirroring technique: why repeating 1 to 3 words is an invitation to talk without interrogation.",
+        "timestamp": "00:00 - 01:50",
+        "question": "According to Chris Voss, what is mirroring, and why does it make the other person open up and give more details?",
+        "hint": "Listen for: repeating the last 1 to 3 words, 'invitation to talk', and not feeling interrogated or cornered.",
+        "ideal_answer": "Chris Voss explains that mirroring is simply repeating the last 1 to 3 words (or critical keywords) of what the person said with an upward inflection. It works because it acts as an invitation to talk; the person doesn't feel cornered or interrogated, so they naturally elaborate and share more details."
       },
       "client_challenge": {
         "client_name": "Sarah Jenkins",
