@@ -184,9 +184,9 @@
         "explanation": "'Asynchronous' is pronounced /eɪˈsɪŋkrənəs/ (ay-SIN-kruh-nuhs). Abbreviated as 'Async', say /ˈeɪsɪŋk/ (AY-sink)."
       },
       "user_submission": {
-        "listening_answer": "",
-        "speaking_answer": "",
-        "notes": "",
+        "listening_answer": "Basically, Zustand is much simpler because everything is managed in a single store file. Its philosophy is focused on small-to-medium apps, and state updates are much simpler without boilerplate.",
+        "speaking_answer": "I want to go bowl that I'm working later completely from the UI first  I create  a dedicate API service module with access interceptors to automatically handle auth tokens time out and standarized error response, second for data fetching and catching I recommend TanStack Query.  This Give Us automatic touching optimistic updates and background reflecting all of the box keeping your screen components lightweight purely declarative",
+        "notes": "revisar lo que hay internamente en la implementacion = Under the hood\nlisto para usarse = Out of the box\nDifferences between Zustand vs Redux = Zustand is much easy implement in the project instead Redux is complex and your proposal is build big apps.\n",
         "completed": false
       }
     },
@@ -197,14 +197,14 @@
       "subtitle": "Lead the conversation when a client's app is rejected on the App Store or Google Play Console.",
       "category": "DevOps & Store Releases",
       "listening": {
-        "title": "Engineer discussing Google Play Data Safety & Apple Guideline 4.3",
-        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
-        "video_description": "Practical breakdown of successfully appealing an App Store rejection.",
-        "timestamp": "03:10 - 04:30",
-        "question": "What key proof or artifact should you provide when submitting an appeal to Apple?",
-        "hint": "Demo video, test credentials, or audit breakdown.",
-        "ideal_answer": "A clear video walkthrough showing how non-registered users can test the app with demo credentials, plus an explanation of the specific guideline."
+        "title": "Google Play Developers: How to Handle Policy Violations & Rejections",
+        "video_url": "https://www.youtube.com/embed/xjRqFbTHUOQ",
+        "real_youtube_link": "https://www.youtube.com/watch?v=xjRqFbTHUOQ",
+        "video_description": "Official guide from Google Play Developers explaining how to read rejection notices, fix policy violations in your code or declaration, and submit an update or appeal.",
+        "timestamp": "00:15 - 01:50",
+        "question": "According to Google Play, what two places should you check to understand why your app violated policy, and what should you do after fixing it?",
+        "hint": "Listen for: notification email, Play Console Policy status, and submitting an update or appeal.",
+        "ideal_answer": "You should check the notification email from Google Play and review the Policy status section in the Google Play Console. Once you fix the code or update your declaration, you can submit an updated app bundle or file an appeal."
       },
       "client_challenge": {
         "client_name": "Joey B.",
