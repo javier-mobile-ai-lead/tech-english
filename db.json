@@ -72,18 +72,18 @@
     {
       "day": 2,
       "week": 1,
-      "title": "Active Listening: Understanding Client Requirements & Mirroring",
-      "subtitle": "How to process rapid native speech without freezing, using Chris Voss's Mirroring technique.",
-      "category": "Listening & Negotiation",
+      "title": "Performance & Diagnostics: Debugging App Freezes & Main-Thread Blocking",
+      "subtitle": "Master how to diagnose and explain UI freezes and store rejections to an urgent client.",
+      "category": "Performance & Client Rescue",
       "listening": {
-        "title": "Chris Voss: The Art of Mirroring in Conversation",
-        "video_url": "https://www.youtube.com/embed/SJ2az4HxlTs",
-        "real_youtube_link": "https://www.youtube.com/watch?v=SJ2az4HxlTs",
-        "video_description": "Watch former FBI lead hostage negotiator Chris Voss explain the Mirroring technique: why repeating 1 to 3 words is an invitation to talk without interrogation.",
-        "timestamp": "00:00 - 01:50",
-        "question": "According to Chris Voss, what is mirroring, and why does it make the other person open up and give more details?",
-        "hint": "Listen for: repeating the last 1 to 3 words, 'invitation to talk', and not feeling interrogated or cornered.",
-        "ideal_answer": "Chris Voss explains that mirroring is simply repeating the last 1 to 3 words (or critical keywords) of what the person said with an upward inflection. It works because it acts as an invitation to talk; the person doesn't feel cornered or interrogated, so they naturally elaborate and share more details."
+        "title": "Technical Interview: Why Mobile Apps Freeze (JS Thread vs UI Thread)",
+        "video_url": "https://www.youtube.com/embed/PCcZRQ3oL0A",
+        "real_youtube_link": "https://www.youtube.com/watch?v=PCcZRQ3oL0A",
+        "video_description": "Watch a mobile engineer explain one of the most common technical interview topics: why React Native apps freeze, and the difference between the JavaScript Thread and the UI/Main Thread.",
+        "timestamp": "00:20 - 01:45",
+        "question": "According to the speaker, what are the two main threads in React Native, and which thread causes the app to feel frozen when blocked?",
+        "hint": "Listen for: 'JavaScript thread', 'UI thread', 'touches', and 'frozen'.",
+        "ideal_answer": "The speaker explains the two core threads: the JavaScript Thread and the UI Thread (Main Thread). When the JavaScript thread is blocked by heavy operations or unhandled sync calls, touch events cannot be processed and the app feels completely frozen."
       },
       "client_challenge": {
         "client_name": "Sarah Jenkins",
