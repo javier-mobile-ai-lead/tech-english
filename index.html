@@ -455,6 +455,161 @@
               <!-- Breakdown points -->
             </div>
           </div>
+
+          <!-- Quick Action Buttons: Shadowing & Roleplay -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <!-- Shadowing Practice Toggle Button -->
+            <button onclick="toggleShadowingBox()" class="flex items-center justify-between p-3 rounded-xl border border-indigo-200/80 dark:border-indigo-900/60 bg-gradient-to-r from-indigo-50/70 via-indigo-50/30 to-purple-50/50 dark:from-indigo-950/40 dark:via-slate-900 dark:to-purple-950/30 hover:border-indigo-400 dark:hover:border-indigo-700 transition text-left group btn-bounce shadow-2xs">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <i data-lucide="mic-2" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center space-x-1.5">
+                    <span>🎙️ Shadowing Practice (BLUF)</span>
+                    <span class="text-[9px] font-mono px-1.5 py-0.2 rounded-full bg-indigo-100 dark:bg-indigo-900/70 text-indigo-700 dark:text-indigo-300 font-bold">Rhythm</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400">Chunk-by-chunk spoken pacing & stress</div>
+                </div>
+              </div>
+              <i id="shadowingChevron" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-transform"></i>
+            </button>
+
+            <!-- Roleplay Challenge Toggle Button -->
+            <button onclick="toggleRoleplayBox()" class="flex items-center justify-between p-3 rounded-xl border border-amber-200/80 dark:border-amber-900/60 bg-gradient-to-r from-amber-50/70 via-amber-50/30 to-orange-50/50 dark:from-amber-950/40 dark:via-slate-900 dark:to-orange-950/30 hover:border-amber-400 dark:hover:border-amber-700 transition text-left group btn-bounce shadow-2xs">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <i data-lucide="messages-square" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center space-x-1.5">
+                    <span>🎭 Interactive Client Roleplay</span>
+                    <span class="text-[9px] font-mono px-1.5 py-0.2 rounded-full bg-amber-100 dark:bg-amber-900/70 text-amber-700 dark:text-amber-300 font-bold">3 Turns</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400">Pushback simulation + 1-5★ scorecard</div>
+                </div>
+              </div>
+              <i id="roleplayChevron" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-transform"></i>
+            </button>
+          </div>
+
+          <!-- SHADOWING MODULE CONTAINER (Collapsible) -->
+          <div id="shadowingModuleBox" class="hidden mt-3 p-4 bg-indigo-50/40 dark:bg-slate-950/80 border border-indigo-200 dark:border-indigo-900/50 rounded-xl space-y-3 transition-all duration-300">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-indigo-100 dark:border-indigo-900/40">
+              <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-bold">1</div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center space-x-2">
+                    <span>BLUF Shadowing Module</span>
+                    <span class="text-[10px] font-mono text-indigo-600 dark:text-indigo-400 font-normal">Bottom Line Up Front</span>
+                  </h4>
+                  <p class="text-[11px] text-slate-500 dark:text-slate-400">Listen to each phrase chunk, pause at the <span class="font-bold text-indigo-600 dark:text-indigo-400">//</span> mark, and hit the stressed syllables.</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2">
+                <button onclick="playAllShadowingChunks()" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold transition flex items-center space-x-1.5 btn-bounce shadow-xs">
+                  <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+                  <span>Play Full Flow</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Full Script Preview -->
+            <div class="p-3 bg-white/80 dark:bg-slate-900/80 rounded-lg border border-indigo-100 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 italic leading-relaxed">
+              <span class="font-bold text-indigo-600 dark:text-indigo-400 not-italic mr-1.5 font-mono text-[10px] uppercase">BLUF Target:</span>
+              <span id="shadowingFullScript">"The rejection is caused by a third-party SDK collecting device IDs. I recommend decoupling this offending library immediately. This allows us to submit an appeal and get the app live today."</span>
+            </div>
+
+            <!-- Chunks Grid -->
+            <div id="shadowingChunksList" class="space-y-2 pt-1">
+              <!-- Dynamically populated chunks -->
+            </div>
+
+            <!-- Pronunciation Warning / Gotcha Box -->
+            <div id="shadowingWarningBox" class="p-3 bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 rounded-lg flex items-start space-x-2 text-xs">
+              <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5"></i>
+              <div>
+                <span class="font-bold text-amber-800 dark:text-amber-300">Rhythm & Linking Warning:</span>
+                <span id="shadowingWarningText" class="text-amber-900/90 dark:text-amber-200/90 ml-1">Focus on the stress in 'offending' (of-FEN-ding) and link the words 'fix' and 'it' (fix_it).</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE ROLEPLAY CHALLENGE CONTAINER (Collapsible) -->
+          <div id="roleplayModuleBox" class="hidden mt-3 p-4 bg-amber-50/30 dark:bg-slate-950/80 border border-amber-200/80 dark:border-amber-900/50 rounded-xl space-y-3 transition-all duration-300">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-amber-100 dark:border-amber-900/40">
+              <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 rounded bg-amber-500/20 text-amber-700 dark:text-amber-400 flex items-center justify-center text-xs font-bold">2</div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center space-x-2">
+                    <span>Interactive Roleplay Simulator</span>
+                    <span id="roleplayTurnBadge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 font-bold">Turn 1 of 3</span>
+                  </h4>
+                  <p class="text-[11px] text-slate-500 dark:text-slate-400">The client will push back with friction. Answer with BLUF or tap a Quick Rescue starter.</p>
+                </div>
+              </div>
+              <button onclick="resetRoleplay()" class="text-[11px] text-slate-500 hover:text-amber-700 dark:hover:text-amber-400 flex items-center space-x-1 font-semibold btn-bounce">
+                <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+                <span>Restart Simulation</span>
+              </button>
+            </div>
+
+            <!-- Dialogue History / Chat Stream -->
+            <div id="roleplayChatStream" class="space-y-3 max-h-72 overflow-y-auto pr-1 custom-scrollbar">
+              <!-- Populated turn by turn -->
+            </div>
+
+            <!-- Quick Scaffold Rescue Options (For fast response without freezing) -->
+            <div id="roleplayScaffoldBox" class="pt-2 border-t border-amber-100 dark:border-amber-900/40 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold text-slate-600 dark:text-slate-400 flex items-center space-x-1">
+                  <i data-lucide="life-buoy" class="w-3.5 h-3.5 text-amber-600 dark:text-amber-400"></i>
+                  <span>Quick Rescue Options (Tap to Speak / Load):</span>
+                </span>
+                <span class="text-[10px] font-mono text-slate-400">Pick or adapt one below</span>
+              </div>
+              <div id="roleplayOptionsList" class="grid grid-cols-1 gap-2">
+                <!-- Dynamically populated clickable option pills -->
+              </div>
+            </div>
+
+            <!-- Custom User Reply Input for Roleplay -->
+            <div id="roleplayInputRow" class="flex items-center space-x-2 pt-1">
+              <input id="roleplayCustomInput" type="text" placeholder="Or type your custom response here..." class="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 rounded-lg px-3 py-2 text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 outline-none" onkeydown="if(event.key==='Enter') sendRoleplayTurnCustom()">
+              <button onclick="sendRoleplayTurnCustom()" class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold transition flex items-center space-x-1 btn-bounce shadow-xs">
+                <span>Send</span>
+                <i data-lucide="send" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <!-- Evaluation Scorecard (Shown on Turn 3 Completion) -->
+            <div id="roleplayScorecard" class="hidden p-4 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-slate-900 border border-emerald-200 dark:border-emerald-800/60 rounded-xl space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <div class="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xs">
+                    ✓
+                  </div>
+                  <div>
+                    <h5 class="text-xs font-bold text-emerald-950 dark:text-emerald-300">Roleplay Completed!</h5>
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400">Simulation feedback & BLUF communication score</p>
+                  </div>
+                </div>
+                <!-- Star Rating Display -->
+                <div id="roleplayStarRow" class="flex items-center space-x-1 text-amber-500 text-sm font-bold">
+                  <span>⭐⭐⭐⭐⭐</span>
+                </div>
+              </div>
+              <div id="roleplayFeedbackSummary" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed bg-white/70 dark:bg-slate-950/70 p-3 rounded-lg border border-emerald-100 dark:border-slate-800">
+                <!-- Evaluation notes -->
+              </div>
+              <div class="flex justify-end">
+                <button onclick="copyRoleplayToSpeaking()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition flex items-center space-x-1.5 btn-bounce">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  <span>Copy Best Response to Spoken Field</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -952,9 +1107,387 @@
       // Notes
       document.getElementById('notesInput').value = sub.notes || '';
 
+      // Shadowing Module Render
+      renderShadowingModule(day);
+
+      // Interactive Roleplay Module Render
+      initRoleplayModule(day);
+
       updateDailyStepChecks();
       lucide.createIcons();
     }
+
+    // ==========================================
+    // SHADOWING MODULE LOGIC
+    // ==========================================
+    let activeShadowingData = null;
+
+    function toggleShadowingBox() {
+      const box = document.getElementById('shadowingModuleBox');
+      const chevron = document.getElementById('shadowingChevron');
+      const isHidden = box.classList.contains('hidden');
+      if (isHidden) {
+        box.classList.remove('hidden');
+        chevron.classList.add('rotate-180');
+        SoundFX.playPop();
+      } else {
+        box.classList.add('hidden');
+        chevron.classList.remove('rotate-180');
+      }
+    }
+
+    function renderShadowingModule(day) {
+      const shadowData = day.client_challenge.shadowing_module || generateDefaultShadowing(day);
+      activeShadowingData = shadowData;
+
+      document.getElementById('shadowingFullScript').innerText = `"${shadowData.full_script}"`;
+      document.getElementById('shadowingWarningText').innerText = shadowData.pronunciation_warning || "Focus on rhythm and natural breath pauses at marked intervals.";
+
+      const chunksContainer = document.getElementById('shadowingChunksList');
+      chunksContainer.innerHTML = '';
+
+      shadowData.chunks.forEach((chunk, idx) => {
+        const item = document.createElement('div');
+        item.id = `shadowChunkCard-${idx}`;
+        item.className = "flex items-center justify-between p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-indigo-100 dark:border-indigo-950 hover:border-indigo-300 dark:hover:border-indigo-700/60 transition group shadow-2xs";
+
+        // Highlight stressed word in bold indigo
+        let formattedText = chunk.text;
+        if (chunk.stress_word) {
+          const regex = new RegExp(`(${chunk.stress_word})`, 'gi');
+          formattedText = formattedText.replace(regex, '<span class="font-extrabold text-indigo-700 dark:text-indigo-300 underline decoration-indigo-400 decoration-2 underline-offset-2">$1</span>');
+        }
+
+        const pauseBadge = chunk.pause_after 
+          ? `<span class="ml-2 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300" title="Take a micro breath pause here">// PAUSE</span>`
+          : '';
+
+        item.innerHTML = `
+          <div class="flex items-center space-x-2.5 flex-1 pr-2">
+            <span class="w-5 h-5 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-mono text-[11px] font-bold flex items-center justify-center shrink-0 border border-indigo-200 dark:border-indigo-900">${idx + 1}</span>
+            <div class="text-xs text-slate-800 dark:text-slate-200">
+              <span id="chunkTextSpan-${idx}" class="font-medium">${formattedText}</span>
+              ${pauseBadge}
+            </div>
+          </div>
+          <div class="flex items-center space-x-1.5 shrink-0">
+            <button onclick="playShadowingChunk(${idx})" class="p-1.5 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950 rounded-lg transition btn-bounce" title="Listen to this chunk">
+              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="copyChunkToAnswer('${chunk.text.replace(/'/g, "\\'")}')" class="p-1.5 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition btn-bounce" title="Add chunk to your answer">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        `;
+        chunksContainer.appendChild(item);
+      });
+    }
+
+    function generateDefaultShadowing(day) {
+      const template = day.client_challenge.senior_template || "";
+      const sentences = template.match(/[^.!?]+[.!?]+/g) || [template];
+      const selected = sentences.slice(0, 2).join(' ');
+      
+      const words = selected.split(' ');
+      const chunks = [];
+      for (let i = 0; i < words.length; i += 5) {
+        const slice = words.slice(i, i + 5).join(' ');
+        if (slice) {
+          const wArr = slice.split(' ');
+          const stress = wArr[Math.min(2, wArr.length - 1)].replace(/[^a-zA-Z]/g, '');
+          chunks.push({
+            text: slice,
+            pause_after: (i + 5 >= words.length) || (i % 10 === 0),
+            stress_word: stress
+          });
+        }
+      }
+      return {
+        full_script: selected || "I understand the priority and will audit this immediately.",
+        chunks: chunks.length ? chunks : [{ text: "I understand the priority", pause_after: true, stress_word: "priority" }],
+        pronunciation_warning: "Keep a steady cadence and avoid rushing between conjunctions."
+      };
+    }
+
+    function playShadowingChunk(idx) {
+      if (!activeShadowingData || !activeShadowingData.chunks[idx]) return;
+      const chunk = activeShadowingData.chunks[idx];
+      
+      // Highlight card
+      const card = document.getElementById(`shadowChunkCard-${idx}`);
+      if (card) {
+        card.classList.add('ring-2', 'ring-indigo-500', 'bg-indigo-50/70', 'dark:bg-indigo-950/60');
+        setTimeout(() => {
+          card.classList.remove('ring-2', 'ring-indigo-500', 'bg-indigo-50/70', 'dark:bg-indigo-950/60');
+        }, 1200);
+      }
+
+      speakDirect(chunk.text);
+    }
+
+    async function playAllShadowingChunks() {
+      if (!activeShadowingData || !activeShadowingData.chunks.length) return;
+      
+      for (let i = 0; i < activeShadowingData.chunks.length; i++) {
+        playShadowingChunk(i);
+        const chunk = activeShadowingData.chunks[i];
+        // Wait based on word count plus pause
+        const waitTime = Math.max(1400, chunk.text.split(' ').length * 360) + (chunk.pause_after ? 700 : 250);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+      }
+      showToast('Completed Shadowing Flow! Try repeating it out loud! 🎙️');
+    }
+
+    function copyChunkToAnswer(text) {
+      const input = document.getElementById('speakingInput');
+      const current = input.value.trim();
+      input.value = current ? current + ' ' + text : text;
+      updateWordCount();
+      updateDailyStepChecks();
+      queueAutoSave();
+      SoundFX.playPop();
+      showToast('Chunk added to spoken response! ✍️');
+    }
+
+    // ==========================================
+    // INTERACTIVE ROLEPLAY CHALLENGE LOGIC
+    // ==========================================
+    let activeRoleplayState = {
+      turn: 1,
+      maxTurns: 3,
+      history: [],
+      clientPersona: null,
+      turnsData: []
+    };
+
+    function toggleRoleplayBox() {
+      const box = document.getElementById('roleplayModuleBox');
+      const chevron = document.getElementById('roleplayChevron');
+      const isHidden = box.classList.contains('hidden');
+      if (isHidden) {
+        box.classList.remove('hidden');
+        chevron.classList.add('rotate-180');
+        SoundFX.playPop();
+      } else {
+        box.classList.add('hidden');
+        chevron.classList.remove('rotate-180');
+      }
+    }
+
+    function initRoleplayModule(day) {
+      const challenge = day.client_challenge;
+      const roleplayDef = challenge.roleplay_simulation || generateDefaultRoleplay(day);
+
+      activeRoleplayState = {
+        turn: 1,
+        maxTurns: 3,
+        history: [],
+        clientPersona: {
+          name: challenge.client_name,
+          country: challenge.client_country
+        },
+        turnsData: roleplayDef.turns || []
+      };
+
+      document.getElementById('roleplayTurnBadge').innerText = "Turn 1 of 3";
+      document.getElementById('roleplayScorecard').classList.add('hidden');
+      document.getElementById('roleplayInputRow').classList.remove('hidden');
+      document.getElementById('roleplayScaffoldBox').classList.remove('hidden');
+      document.getElementById('roleplayCustomInput').value = '';
+
+      const chatStream = document.getElementById('roleplayChatStream');
+      chatStream.innerHTML = '';
+
+      // Post initial client opening turn
+      const turn1Data = activeRoleplayState.turnsData[0] || {
+        client_speech: challenge.client_prompt,
+        quick_options: [
+          "I understand the urgency and will start with a root-cause audit immediately.",
+          "Let's jump on a quick call so I can review your console and get this resolved today."
+        ]
+      };
+
+      appendChatMessage('client', challenge.client_name, turn1Data.client_speech);
+      renderRoleplayOptions(turn1Data.quick_options || []);
+    }
+
+    function generateDefaultRoleplay(day) {
+      const client = day.client_challenge.client_name;
+      return {
+        turns: [
+          {
+            turn_num: 1,
+            client_speech: day.client_challenge.client_prompt,
+            quick_options: [
+              "I understand your concern. The immediate priority is diagnosing why the store rejected the build.",
+              "Don't worry, this is straightforward to resolve once we inspect the logs and policy flags."
+            ]
+          },
+          {
+            turn_num: 2,
+            client_speech: "I need this live today. Other developers told me it was fine, so why is it failing now? What guarantee do I have?",
+            quick_options: [
+              "Third-party libraries often update permissions automatically. I will isolate the offending dependency in the first hour.",
+              "We have two paths: update the Data Safety declaration in 15 minutes, or remove the conflicting library."
+            ]
+          },
+          {
+            turn_num: 3,
+            client_speech: "Okay, option 1 sounds fast. Let's do that. What do you need from me to submit the appeal right now?",
+            quick_options: [
+              "Please grant me Play Console admin access and share the rejection email. I will submit the appeal within two hours.",
+              "Grant me console access and I will update the declaration and submit the build immediately."
+            ]
+          }
+        ],
+        scorecard: {
+          stars: 5,
+          bluf_rating: "5/5 - Bottom Line Up Front",
+          feedback: "Great assertive tone! You mirrored the client's urgency, didn't sound defensive, and provided 2 crystal-clear paths forward."
+        }
+      };
+    }
+
+    function appendChatMessage(sender, name, text) {
+      const chatStream = document.getElementById('roleplayChatStream');
+      const bubble = document.createElement('div');
+      
+      const isClient = sender === 'client';
+      bubble.className = `flex items-start space-x-2.5 ${isClient ? '' : 'flex-row-reverse space-x-reverse'} animate-fade-in`;
+
+      const avatarBg = isClient ? 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300' : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300';
+      const bubbleBg = isClient ? 'bg-white dark:bg-slate-900 border-amber-200 dark:border-amber-950/80 text-slate-800 dark:text-slate-200' : 'bg-emerald-50/80 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900/60 text-slate-800 dark:text-slate-100';
+
+      const initial = name.split(' ').map(n=>n[0]).join('');
+
+      bubble.innerHTML = `
+        <div class="w-7 h-7 rounded-full ${avatarBg} font-mono font-bold text-xs flex items-center justify-center shrink-0 border border-current shadow-2xs">
+          ${initial}
+        </div>
+        <div class="max-w-[85%] p-3 rounded-2xl border ${bubbleBg} shadow-2xs space-y-1">
+          <div class="flex items-center justify-between gap-3 text-[10px] font-bold ${isClient ? 'text-amber-800 dark:text-amber-400' : 'text-emerald-700 dark:text-emerald-400'}">
+            <span>${name}</span>
+            <button onclick="speakDirect('${text.replace(/'/g, "\\'")}')" class="opacity-70 hover:opacity-100 transition p-0.5" title="Listen audio">
+              <i data-lucide="volume-2" class="w-3 h-3"></i>
+            </button>
+          </div>
+          <p class="text-xs leading-relaxed font-sans">${text}</p>
+        </div>
+      `;
+
+      chatStream.appendChild(bubble);
+      chatStream.scrollTop = chatStream.scrollHeight;
+      lucide.createIcons();
+    }
+
+    function renderRoleplayOptions(options) {
+      const container = document.getElementById('roleplayOptionsList');
+      container.innerHTML = '';
+
+      if (!options || !options.length) {
+        document.getElementById('roleplayScaffoldBox').classList.add('hidden');
+        return;
+      }
+      document.getElementById('roleplayScaffoldBox').classList.remove('hidden');
+
+      options.forEach((optText, i) => {
+        const btn = document.createElement('button');
+        btn.onclick = () => selectRoleplayOption(optText);
+        btn.className = "w-full text-left p-2.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-amber-50 dark:hover:bg-amber-950/40 border border-slate-200 dark:border-slate-800 hover:border-amber-300 dark:hover:border-amber-700 transition text-xs text-slate-700 dark:text-slate-300 flex items-start space-x-2 group btn-bounce shadow-2xs";
+        btn.innerHTML = `
+          <span class="w-4 h-4 rounded bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 text-[10px] font-mono font-bold flex items-center justify-center shrink-0 mt-0.5">
+            ${i + 1}
+          </span>
+          <span class="flex-1 leading-snug group-hover:text-amber-900 dark:group-hover:text-amber-200">${optText}</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 shrink-0 self-center transition-transform"></i>
+        `;
+        container.appendChild(btn);
+      });
+      lucide.createIcons();
+    }
+
+    function selectRoleplayOption(chosenText) {
+      handleUserRoleplayInput(chosenText);
+    }
+
+    function sendRoleplayTurnCustom() {
+      const input = document.getElementById('roleplayCustomInput');
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = '';
+      handleUserRoleplayInput(val);
+    }
+
+    function handleUserRoleplayInput(userSpeech) {
+      SoundFX.playPop();
+      appendChatMessage('user', 'You (Senior Dev)', userSpeech);
+      activeRoleplayState.history.push({ turn: activeRoleplayState.turn, user: userSpeech });
+
+      const currentTurn = activeRoleplayState.turn;
+
+      if (currentTurn < activeRoleplayState.maxTurns) {
+        activeRoleplayState.turn += 1;
+        document.getElementById('roleplayTurnBadge').innerText = `Turn ${activeRoleplayState.turn} of 3`;
+
+        // Simulate client reply after realistic brief pause
+        setTimeout(() => {
+          const nextTurnData = activeRoleplayState.turnsData[activeRoleplayState.turn - 1];
+          if (nextTurnData) {
+            appendChatMessage('client', activeRoleplayState.clientPersona.name, nextTurnData.client_speech);
+            renderRoleplayOptions(nextTurnData.quick_options || []);
+            speakDirect(nextTurnData.client_speech);
+          }
+        }, 800);
+      } else {
+        // Simulation complete! Show Scorecard
+        setTimeout(() => {
+          finishRoleplaySimulation();
+        }, 900);
+      }
+    }
+
+    function finishRoleplaySimulation() {
+      SoundFX.playChime();
+      document.getElementById('roleplayInputRow').classList.add('hidden');
+      document.getElementById('roleplayScaffoldBox').classList.add('hidden');
+      document.getElementById('roleplayTurnBadge').innerText = "Completed ✓";
+      document.getElementById('roleplayTurnBadge').className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-bold";
+
+      const scorecard = document.getElementById('roleplayScorecard');
+      scorecard.classList.remove('hidden');
+
+      const dayObj = appData.days.find(d => d.day === selectedDayNum) || appData.days[0];
+      const customScore = (dayObj.client_challenge.roleplay_simulation && dayObj.client_challenge.roleplay_simulation.scorecard)
+        ? dayObj.client_challenge.roleplay_simulation.scorecard
+        : {
+            stars: 5,
+            bluf_rating: "5/5 - Outstanding BLUF Execution",
+            feedback: "Excellent client de-escalation! You kept each answer under 35 words, led with the bottom line (BLUF), and turned client anxiety into a concrete action plan."
+          };
+
+      const stars = "★".repeat(customScore.stars || 5) + "☆".repeat(5 - (customScore.stars || 5));
+      document.getElementById('roleplayStarRow').innerHTML = `<span class="tracking-widest">${stars}</span> <span class="text-xs text-emerald-700 dark:text-emerald-400 font-mono ml-2">(${customScore.bluf_rating})</span>`;
+      document.getElementById('roleplayFeedbackSummary').innerText = customScore.feedback;
+      lucide.createIcons();
+    }
+
+    function copyRoleplayToSpeaking() {
+      const bestAnswer = activeRoleplayState.history.map(h => h.user).join(' ');
+      if (!bestAnswer) return;
+      document.getElementById('speakingInput').value = bestAnswer;
+      updateWordCount();
+      updateDailyStepChecks();
+      queueAutoSave();
+      SoundFX.playPop();
+      showToast('Roleplay response synced to your daily spoken answer! ✨');
+    }
+
+    function resetRoleplay() {
+      const dayObj = appData.days.find(d => d.day === selectedDayNum) || appData.days[0];
+      initRoleplayModule(dayObj);
+      showToast('Roleplay simulation reset. Ready for Turn 1! 🔄');
+    }
+
 
     // Track Live Daily Checklist & Card Glow
     function updateDailyStepChecks() {

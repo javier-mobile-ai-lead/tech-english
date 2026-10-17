@@ -2,10 +2,11 @@
   "user_profile": {
     "name": "Mobile Engineer",
     "streak": 1,
-    "current_day": 3,
+    "current_day": 4,
     "completed_days": [
       1,
-      2
+      2,
+      3
     ],
     "last_active": "2026-10-14"
   },
@@ -186,8 +187,8 @@
       "user_submission": {
         "listening_answer": "Basically, Zustand is much simpler because everything is managed in a single store file. Its philosophy is focused on small-to-medium apps, and state updates are much simpler without boilerplate.",
         "speaking_answer": "I want to go bowl that I'm working later completely from the UI first  I create  a dedicate API service module with access interceptors to automatically handle auth tokens time out and standarized error response, second for data fetching and catching I recommend TanStack Query.  This Give Us automatic touching optimistic updates and background reflecting all of the box keeping your screen components lightweight purely declarative",
-        "notes": "revisar lo que hay internamente en la implementacion = Under the hood\nlisto para usarse = Out of the box\nDifferences between Zustand vs Redux = Zustand is much easy implement in the project instead Redux is complex and your proposal is build big apps.\n",
-        "completed": false
+        "notes": "revisar lo que hay internamente en la implementacion = Under the hood\nlisto para usarse = Out of the box\nDifferences between Zustand vs Redux = Zustand is much easier to implement in a project, whereas Redux is more complex and its purpose is to build large-scale apps.\n",
+        "completed": true
       }
     },
     {
@@ -217,7 +218,53 @@
           "**Reassurance:** 'Don't worry, this is one of the most common rejections...'",
           "**Root cause:** 'A third-party SDK is accessing device identifiers under the hood...'",
           "**Clear choices:** 'Option 1: Update declaration; Option 2: Audit dependencies.'"
-        ]
+        ],
+        "shadowing_module": {
+          "full_script": "The rejection is caused by a third-party SDK collecting device IDs. I recommend decoupling this offending library immediately. This allows us to submit an appeal and get the app live today.",
+          "chunks": [
+            { "text": "The rejection is caused", "pause_after": true, "stress_word": "caused" },
+            { "text": "by a third-party SDK", "pause_after": false, "stress_word": "SDK" },
+            { "text": "collecting device IDs.", "pause_after": true, "stress_word": "IDs" },
+            { "text": "I recommend decoupling", "pause_after": false, "stress_word": "decoupling" },
+            { "text": "this offending library immediately.", "pause_after": true, "stress_word": "immediately" },
+            { "text": "This allows us to submit an appeal", "pause_after": false, "stress_word": "appeal" },
+            { "text": "and get the app live today.", "pause_after": true, "stress_word": "live" }
+          ],
+          "pronunciation_warning": "Focus on the stress in 'offending' (of-FEN-ding) and link the words 'fix' and 'it' (fix_it)."
+        },
+        "roleplay_simulation": {
+          "turns": [
+            {
+              "turn_num": 1,
+              "client_speech": "We can't upload our AAB file to Google Play. It was rejected for 'Device IDs'. Our app doesn't collect any data! What's going on?",
+              "quick_options": [
+                "Even if your code doesn't collect IDs, a third-party SDK is accessing them under the hood.",
+                "Don't worry, this rejection is very common. An analytics or ad library is requesting this permission."
+              ]
+            },
+            {
+              "turn_num": 2,
+              "client_speech": "I need this live today! The other devs said it was fine, why is Google blocking us? Can we just appeal and ignore it?",
+              "quick_options": [
+                "Google checks the compiled binary. An appeal will fail unless we declare it in Data Safety or remove the library.",
+                "We can fix this today: Option 1 is updating the declaration in 15 minutes, or Option 2 is removing the offending SDK."
+              ]
+            },
+            {
+              "turn_num": 3,
+              "client_speech": "Updating the Data Safety form sounds fastest. Can you handle that right now so we can submit?",
+              "quick_options": [
+                "Absolutely. Grant me Play Console admin access, and I will update the form and trigger resubmission in under an hour.",
+                "Yes, invite me to your Google Play Console and I'll submit the updated declaration and notify review immediately."
+              ]
+            }
+          ],
+          "scorecard": {
+            "stars": 5,
+            "bluf_rating": "5/5 - Senior BLUF Execution",
+            "feedback": "Outstanding! You explained the root cause without blaming the client, provided 2 crisp actionable paths, and closed with a clear next step."
+          }
+        }
       },
       "lexical_chunks": [
         {
