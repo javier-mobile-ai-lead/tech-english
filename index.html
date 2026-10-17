@@ -816,13 +816,33 @@
         </div>
       </div>
 
-      <!-- Modal Body (The Prompt) -->
+      <!-- Modal Body (The Prompt & Scenario Selector) -->
       <div class="p-6 overflow-y-auto custom-scrollbar flex-1 bg-slate-50/40 dark:bg-slate-950/80 space-y-4">
+        <!-- Scenario Switcher Bar (5 Scenarios per Day) -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 bg-white dark:bg-slate-900 rounded-xl border border-purple-100 dark:border-purple-900/40 shadow-2xs">
+          <div class="flex items-center space-x-1.5">
+            <span class="text-xs font-bold text-slate-700 dark:text-slate-300 mr-1 flex items-center space-x-1">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-purple-600 dark:text-purple-400"></i>
+              <span>Scenario:</span>
+            </span>
+            <div id="geminiScenarioTabs" class="flex items-center space-x-1">
+              <!-- Tabs 1 to 5 populated by JS -->
+            </div>
+          </div>
+          <button onclick="nextGeminiScenario()" class="px-3 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 dark:bg-purple-950/60 dark:hover:bg-purple-900/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 text-xs font-bold flex items-center space-x-1.5 transition btn-bounce">
+            <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+            <span>Next Scenario (5 Variations)</span>
+          </button>
+        </div>
+
         <div class="space-y-1.5">
-          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center justify-between">
-            <span>Generated Prompt for Today's Topic:</span>
-            <span id="geminiDayLabel" class="font-mono text-[10px] text-purple-600 dark:text-purple-400 font-bold">Day 4</span>
-          </label>
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center space-x-2">
+              <span id="geminiScenarioTitleBadge" class="px-2 py-0.5 rounded-md bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 font-mono text-[10px] font-bold">Scenario 1: Urgent Store Rejection</span>
+              <span id="geminiDayLabel" class="font-mono text-[10px] text-slate-500 font-normal">Day 4</span>
+            </label>
+            <span class="text-[10px] font-mono text-slate-400">Ready to paste into Gemini Live</span>
+          </div>
           <div class="relative">
             <pre id="geminiPromptContent" class="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl font-mono text-[11px] text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-wrap select-all shadow-2xs"></pre>
           </div>
@@ -1658,47 +1678,134 @@
     }
 
     // ==========================================
-    // GEMINI WEB LIVE VOICE COACH PROMPT LOGIC
+    // GEMINI WEB LIVE VOICE COACH PROMPT LOGIC (5 SCENARIOS PER DAY)
     // ==========================================
-    function generateGeminiRoleplayPrompt(day) {
+    let activeGeminiScenarioIndex = 0;
+
+    function getDayScenarios(day) {
       const client = day.client_challenge;
       const chunksStr = (day.lexical_chunks || []).map(c => `• "${c.phrase}": ${c.meaning}`).join('\n');
-      const pronunciationHint = day.pronunciation_tip ? day.pronunciation_tip.explanation : "";
+      
+      return [
+        {
+          title: "1. Urgent Store Rejection / Hotfix",
+          persona: `${client.client_name} (Stressed Founder, ${client.client_country})`,
+          angle: "High stress, angry client. App is currently blocked or down.",
+          problem: client.client_prompt,
+          challengeRule: "Interrupt once with impatience: 'Can't we just bypass this policy? Why does Google/Apple make this so complicated?'"
+        },
+        {
+          title: "2. Skeptical Technical Client",
+          persona: "Marcus Vance (Head of Engineering, 🇺🇸 Austin, TX)",
+          angle: "Senior tech lead vetting your architectural reasoning and diagnostic methodology.",
+          problem: `I saw your profile for our ${day.title} issue. We've had two offshore devs touch this codebase and break our release pipeline. Walk me through your exact diagnostic checklist before touching a single line of code.`,
+          challengeRule: "Push back on estimates: 'That diagnostic sounds standard, but how do you verify you won't introduce regressions in production?'"
+        },
+        {
+          title: "3. Non-Technical Product Manager",
+          persona: "Chloe Bennett (Non-technical PM, 🇬🇧 London, UK)",
+          angle: "Client doesn't understand engineering jargon. Demands plain-English explanation.",
+          problem: `Hi! Our investors are asking why our build isn't live yet. I don't code, so please explain like I'm five: what is broken with our ${day.title}, what are our two options, and when can I tell the board it's fixed?`,
+          challengeRule: "Stop me if I use too much tech jargon without explaining business impact."
+        },
+        {
+          title: "4. Scope & Budget Negotiation",
+          persona: "David Ross (Bootstrapped Startup Founder, 🇺🇸 San Francisco)",
+          angle: "Worried about hourly billings and timeline creep.",
+          problem: `We need someone to take ownership of this ${day.title} task immediately. But my budget is tight and I can't afford an open-ended hourly audit. Can you give me a fixed scope and timeline?`,
+          challengeRule: "Push back on pricing/hours: 'Is this really a full day of work? Other developers said it takes 2 hours.'"
+        },
+        {
+          title: "5. High-Pressure Final Interview / Live Audit",
+          persona: "Alex Chen (VP of Mobile, 🇺🇸 New York)",
+          angle: "Senior engineering interview defense. Tests assertiveness and architectural tradeoffs.",
+          problem: `Welcome to the technical call. We are reviewing our architectural strategy regarding ${day.title}. What is your philosophical rule of thumb for this, and what common traps have you seen junior engineers fall into?`,
+          challengeRule: "Probe deeply: 'Give me a concrete production war-story where that failed and how you salvaged it.'"
+        }
+      ];
+    }
+
+    function generateGeminiRoleplayPrompt(day, scenarioIdx = 0) {
+      const scenarios = getDayScenarios(day);
+      const sc = scenarios[scenarioIdx] || scenarios[0];
+      const chunksStr = (day.lexical_chunks || []).map(c => `• "${c.phrase}": ${c.meaning}`).join('\n');
 
       return `You are acting as my American Upwork Client & Technical English Coach in a live spoken simulation.
 
 CONTEXT & TOPIC:
-• Topic: Day ${day.day} - ${day.title} (${day.subtitle})
-• Client Persona: ${client.client_name} from ${client.client_country}
-• Client Problem / Scenario: "${client.client_prompt}"
+• Topic: Day ${day.day} - ${day.title}
+• Scenario Angle: ${sc.title} (${sc.angle})
+• Client Persona: ${sc.persona}
+• Client Problem / Opening Line: "${sc.problem}"
 
 MY BACKGROUND:
 I am a Senior Mobile / Frontend Software Engineer preparing for high-paying US remote roles. I need to train my spoken English, assertiveness, and BLUF (Bottom Line Up Front) delivery under time pressure.
 
 SIMULATION RULES (PLEASE FOLLOW STRICTLY):
-1. Immediately start the conversation in character as "${client.client_name}" by repeating your urgent problem in a direct, natural tone (under 35 words).
+1. Immediately start the conversation in character as "${sc.persona.split('(')[0].trim()}" by saying your opening line out loud in a natural, direct tone (under 35 words).
 2. Wait for my spoken response.
-3. In Turn 2, introduce friction or skepticism (e.g., "I need this live today", "The last developer told me it was working fine, why should I trust your approach?").
-4. In Turn 3, push back one last time asking for a concrete 24-hour guarantee or diagnostic plan.
+3. In Turn 2, push back or introduce friction: "${sc.challengeRule}".
+4. In Turn 3, ask for a concrete next step or deadline commitment.
 5. If my explanation is technically sound and follows BLUF, accept the plan.
 6. After 4-5 total turns, end the simulation and give me:
    a) A 1-5 Star Rating on my BLUF delivery and clarity.
    b) "Native Senior Upgrade": Take 1 sentence I said and rewrite it how a Staff/Principal US Mobile Engineer would say it.
-   c) Pronunciation / Grammar Check: Point out any grammar or phonetic hiccups.
+   c) Pronunciation & Vocabulary Check: Did I use any of today's target phrases correctly?
 
 TARGET VOCABULARY I MUST TRY TO USE TODAY:
 ${chunksStr}
 
-START NOW: Send your first message as "${client.client_name}" right away!`;
+START NOW: Speak your first message as "${sc.persona.split('(')[0].trim()}" right away!`;
+    }
+
+    function renderGeminiScenarioTabs(day) {
+      const scenarios = getDayScenarios(day);
+      const container = document.getElementById('geminiScenarioTabs');
+      container.innerHTML = '';
+
+      scenarios.forEach((sc, i) => {
+        const btn = document.createElement('button');
+        btn.onclick = () => selectGeminiScenario(i);
+        const isActive = i === activeGeminiScenarioIndex;
+        btn.className = `px-2.5 py-1 rounded-lg text-xs font-mono font-bold transition btn-bounce ${
+          isActive 
+            ? 'bg-purple-600 text-white shadow-xs' 
+            : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300'
+        }`;
+        btn.innerText = `${i + 1}`;
+        btn.title = sc.title;
+        container.appendChild(btn);
+      });
+    }
+
+    function selectGeminiScenario(idx) {
+      activeGeminiScenarioIndex = idx;
+      const dayObj = appData.days.find(d => d.day === selectedDayNum) || appData.days[0];
+      const scenarios = getDayScenarios(dayObj);
+      const currentSc = scenarios[idx] || scenarios[0];
+
+      document.getElementById('geminiScenarioTitleBadge').innerText = currentSc.title;
+      document.getElementById('geminiPromptContent').innerText = generateGeminiRoleplayPrompt(dayObj, idx);
+      renderGeminiScenarioTabs(dayObj);
+      SoundFX.playPop();
+    }
+
+    function nextGeminiScenario() {
+      const dayObj = appData.days.find(d => d.day === selectedDayNum) || appData.days[0];
+      const scenarios = getDayScenarios(dayObj);
+      activeGeminiScenarioIndex = (activeGeminiScenarioIndex + 1) % scenarios.length;
+      selectGeminiScenario(activeGeminiScenarioIndex);
+      showToast(`Switched to ${scenarios[activeGeminiScenarioIndex].title}! 🎲`);
     }
 
     function openGeminiPromptModal() {
       SoundFX.playPop();
       const dayObj = appData.days.find(d => d.day === selectedDayNum) || appData.days[0];
-      const promptText = generateGeminiRoleplayPrompt(dayObj);
+      activeGeminiScenarioIndex = 0;
 
       document.getElementById('geminiDayLabel').innerText = `Day ${dayObj.day}: ${dayObj.title}`;
-      document.getElementById('geminiPromptContent').innerText = promptText;
+      renderGeminiScenarioTabs(dayObj);
+      selectGeminiScenario(0);
 
       const modal = document.getElementById('geminiPromptModal');
       modal.classList.remove('hidden');
