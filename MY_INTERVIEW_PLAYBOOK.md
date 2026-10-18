@@ -10,26 +10,6 @@
 
 ---
 
-## ⏱️ The 3 Grammar Time Zones of an Upwork Interview
-> *Never get confused about which tense to use. Pick the right zone based on the client question:*
-
-### 1️⃣ PRESENT ZONE: Who You Are & How Code Works (Facts)
-- **When:** Describing your stack, what libraries do, or explaining architecture.
-- **Auxiliaries & Triggers:** *Currently, I specialize in..., My core stack includes..., Under the hood, this handles...*
-- **Formula:** `I specialize in [stack]` • `This library prevents [bug]` • `Under the hood, it manages...`
-
-### 2️⃣ PAST ZONE: What You Shipped & Bugs You Solved (CAR Stories)
-- **When:** Describing your past apps, previous companies, or past production crises.
-- **Auxiliaries & Triggers:** *In my previous project..., Over the past few years, I have built..., Most recently, I led...*
-- **Formula:** `I built...` • `I architected...` • `We encountered [issue], and I resolved it by [action]...`
-
-### 3️⃣ FUTURE & CONDITIONAL ZONE: Your Action Plan for THEIR App (Proposals)
-- **When:** The client asks 'What would you do?' or 'How would you fix our app?'.
-- **Auxiliaries & Triggers:** *First, I will..., I would start by..., In parallel, I can..., Once pinpointed, I will...*
-- **Formula:** `First, I will [audit]...` • `I would recommend [library] because...` • `Once resolved, I can [ship]...`
-
----
-
 ## 🎯 My Prepared Interview Responses (CAR Framework)
 
 ### 📍 Day 1: The Tech Identity: Pitching Your Mobile Stack
@@ -64,6 +44,48 @@ proyecto desde 0 = Greenfield Project
 - Low-hanging fruit-> when is the task or fix is very easy.
 - solicitar acceso a repositorio -> grant me repository access
 - como de consuelo tratar de decir -> don't worry. I will solve the problem.
+
+---
+
+### 📍 Day 3: State Management & REST API CRUD Operations
+**Client Question:** *"We have about 15 REST endpoints for our task management app. The previous guy put all API calls directly inside the React Native components with useEffect. How would you clean this up and structure our state and data fetching?"*
+
+**My Answer (What I say):**
+> I want to go bowl that I'm working later completely from the UI first  I create  a dedicate API service module with access interceptors to automatically handle auth tokens time out and standarized error response, second for data fetching and catching I recommend TanStack Query.  This Give Us automatic touching optimistic updates and background reflecting all of the box keeping your screen components lightweight purely declarative
+
+**Senior Native Reference:**
+> That's a very common anti-pattern that leads to memory leaks and messy components. I would decouple the networking layer completely from the UI. First, I'd create a dedicated API service module with Axios interceptors to automatically handle auth tokens, timeouts, and standardized error responses. Second, for data fetching and caching, I recommend TanStack Query (React Query). This gives us automatic caching, optimistic updates, and background refetching out of the box, keeping your screen components lightweight and purely declarative.
+
+**Personal Notes:** revisar lo que hay internamente en la implementacion = Under the hood
+listo para usarse = Out of the box
+Differences between Zustand vs Redux = Zustand is much easier to implement in a project, whereas Redux is more complex and its purpose is to build large-scale apps.
+
+
+---
+
+### 📍 Day 4: Store Rejections & Policy Compliance (Apple & Google Play)
+**Client Question:** *"We are unable to upload our AAB file to the Google Play Store. It keeps getting rejected with: 'You must declare the data type Device or other IDs or remove the functionality'. Our app doesn't collect any data! Can you fix this?"*
+
+**My Answer (What I say):**
+> I recommend reviewing the Compliance & Data Safety . We can either declare it or remove the offending library to appeal the rejection today." 
+
+**Senior Native Reference:**
+> Hi Joey, don't worry, this is one of the most common rejections in Google Play. Even if your code doesn't collect user IDs, one of your third-party SDKs—like Firebase, an ad network, or an analytics library—is accessing device identifiers under the hood. We have two quick ways to fix this: Option 1 is updating your Google Play Data Safety declaration to declare that Device IDs are collected strictly for app functionality or analytics. Option 2 is inspecting your dependencies, finding the offending library, and updating or removing it. We can hop on a quick call, check your Play Console, and have this resubmitted today.
+
+**Personal Notes:**  "I recommend [VERB + ING]..." 
+"We can" either declare it or remove the"
+Debería = You should
+
+---
+
+### 📍 Day 5: Debugging Production Crashes & Performance Bottlenecks
+**Client Question:** *"Users are complaining that our mobile app feels laggy when scrolling through long feeds, and on low-end Android phones, it crashes after 5 minutes of usage. How do you go about diagnosing and fixing this?"*
+
+**My Answer (What I say):**
+> I would prepare  
+
+**Senior Native Reference:**
+> That sounds like a classic combination of unnecessary re-renders and an uncollected memory leak. To tackle this, I wouldn't guess—I'd profile it first. On Android, I'd attach the Android Studio Profiler to inspect the memory heap and watch if memory escalates linearly without being garbage collected. For the laggy feed, I'd verify that list items are properly memoized, windowSize is optimized, and images use downsampling or cached disk loaders like FastImage or Coil so we don't load full-res bitmaps into memory.
 
 ---
 

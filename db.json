@@ -2,11 +2,12 @@
   "user_profile": {
     "name": "Mobile Engineer",
     "streak": 1,
-    "current_day": 4,
+    "current_day": 5,
     "completed_days": [
       1,
       2,
-      3
+      3,
+      4
     ],
     "last_active": "2026-10-14"
   },
@@ -222,13 +223,41 @@
         "shadowing_module": {
           "full_script": "The rejection is caused by a third-party SDK collecting device IDs. I recommend decoupling this offending library immediately. This allows us to submit an appeal and get the app live today.",
           "chunks": [
-            { "text": "The rejection is caused", "pause_after": true, "stress_word": "caused" },
-            { "text": "by a third-party SDK", "pause_after": false, "stress_word": "SDK" },
-            { "text": "collecting device IDs.", "pause_after": true, "stress_word": "IDs" },
-            { "text": "I recommend decoupling", "pause_after": false, "stress_word": "decoupling" },
-            { "text": "this offending library immediately.", "pause_after": true, "stress_word": "immediately" },
-            { "text": "This allows us to submit an appeal", "pause_after": false, "stress_word": "appeal" },
-            { "text": "and get the app live today.", "pause_after": true, "stress_word": "live" }
+            {
+              "text": "The rejection is caused",
+              "pause_after": true,
+              "stress_word": "caused"
+            },
+            {
+              "text": "by a third-party SDK",
+              "pause_after": false,
+              "stress_word": "SDK"
+            },
+            {
+              "text": "collecting device IDs.",
+              "pause_after": true,
+              "stress_word": "IDs"
+            },
+            {
+              "text": "I recommend decoupling",
+              "pause_after": false,
+              "stress_word": "decoupling"
+            },
+            {
+              "text": "this offending library immediately.",
+              "pause_after": true,
+              "stress_word": "immediately"
+            },
+            {
+              "text": "This allows us to submit an appeal",
+              "pause_after": false,
+              "stress_word": "appeal"
+            },
+            {
+              "text": "and get the app live today.",
+              "pause_after": true,
+              "stress_word": "live"
+            }
           ],
           "pronunciation_warning": "Focus on the stress in 'offending' (of-FEN-ding) and link the words 'fix' and 'it' (fix_it)."
         },
@@ -291,10 +320,10 @@
         "explanation": "'Certificate' is stressed on the second syllable: /sərˈtɪfɪkət/ (ser-TI-fi-kut). 'Keystore' is /ˈkiːstɔːr/ (KEE-stor)."
       },
       "user_submission": {
-        "listening_answer": "",
-        "speaking_answer": "",
-        "notes": "",
-        "completed": false
+        "listening_answer": "You should check the notification email from google play and review the policy status section in the google play console. Once you fix the code or update your declaration, you can submit an update bundle or apk file.",
+        "speaking_answer": "I recommend reviewing the Compliance & Data Safety . We can either declare it or remove the offending library to appeal the rejection today.\" ",
+        "notes": " \"I recommend [VERB + ING]...\" \n\"We can\" either declare it or remove the\"\nDebería = You should",
+        "completed": true
       }
     },
     {
@@ -352,7 +381,7 @@
       },
       "user_submission": {
         "listening_answer": "",
-        "speaking_answer": "",
+        "speaking_answer": "I would prepare  ",
         "notes": "",
         "completed": false
       }
