@@ -92,6 +92,58 @@ class TechEnglishHandler(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(content.encode("utf-8"))
             return
+
+        if parsed.path == "/api/tts":
+            import urllib.parse
+            import hashlib
+            import asyncio
+            try:
+                import edge_tts
+            except ImportError:
+                edge_tts = None
+
+            query_params = urllib.parse.parse_qs(parsed.query)
+            text = query_params.get("text", [""])[0].strip()
+            voice = query_params.get("voice", ["en-US-ChristopherNeural"])[0]
+
+            if not text:
+                self.send_error(400, "Missing text parameter")
+                return
+
+            if not edge_tts:
+                self.send_error(501, "edge_tts not installed on server")
+                return
+
+            cache_dir = os.path.join(BASE_DIR, ".tts_cache")
+            os.makedirs(cache_dir, exist_ok=True)
+            text_hash = hashlib.md5(f"{voice}:{text}".encode("utf-8")).hexdigest()
+            cache_file = os.path.join(cache_dir, f"{text_hash}.mp3")
+
+            if not os.path.exists(cache_file):
+                async def generate():
+                    communicate = edge_tts.Communicate(text, voice)
+                    await communicate.save(cache_file)
+                try:
+                    asyncio.run(generate())
+                except Exception as e:
+                    self.send_error(500, f"TTS Generation Error: {e}")
+                    return
+
+            try:
+                with open(cache_file, "rb") as f:
+                    audio_bytes = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "audio/mpeg")
+                self.send_header("Content-Length", str(len(audio_bytes)))
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.send_header("Cache-Control", "public, max-age=86400")
+                self.end_headers()
+                self.wfile.write(audio_bytes)
+                return
+            except Exception as e:
+                self.send_error(500, f"Error reading audio cache: {e}")
+                return
+
         return super().do_GET()
 
     def do_POST(self):

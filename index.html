@@ -1274,7 +1274,7 @@
     }
 
     function playShadowingChunk(idx) {
-      if (!activeShadowingData || !activeShadowingData.chunks[idx]) return;
+      if (!activeShadowingData || !activeShadowingData.chunks[idx]) return Promise.resolve();
       const chunk = activeShadowingData.chunks[idx];
       
       shadowingCompleted[selectedDayNum] = true;
@@ -1289,7 +1289,7 @@
         }, 1200);
       }
 
-      speakDirect(chunk.text);
+      return speakDirect(chunk.text);
     }
 
     async function playAllShadowingChunks() {
@@ -1299,11 +1299,11 @@
       updateDailyStepChecks();
 
       for (let i = 0; i < activeShadowingData.chunks.length; i++) {
-        playShadowingChunk(i);
         const chunk = activeShadowingData.chunks[i];
-        // Wait based on word count plus pause
-        const waitTime = Math.max(1400, chunk.text.split(' ').length * 360) + (chunk.pause_after ? 700 : 250);
-        await new Promise(resolve => setTimeout(resolve, waitTime));
+        await playShadowingChunk(i);
+        // Micro pause between chunks to let user shadow / breath
+        const pauseTime = chunk.pause_after ? 900 : 400;
+        await new Promise(resolve => setTimeout(resolve, pauseTime));
       }
       showToast('Completed Shadowing Flow! Try repeating it out loud! 🎙️');
     }
@@ -1943,24 +1943,58 @@ START NOW: Speak your first message as "${sc.persona.split('(')[0].trim()}" righ
       speakDirect(text);
     }
 
+    let currentAudio = null;
+
     function speakDirect(phrase) {
+      if (!phrase || !phrase.trim()) return;
       chunksPracticed[selectedDayNum] = true;
       updateDailyStepChecks();
 
+      // Clean phrase for speech
+      const cleanPhrase = phrase.replace(/\/\/.*$/g, '').trim();
+
+      // Stop any existing playing audio
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(phrase);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.95;
-        
-        const voices = window.speechSynthesis.getVoices();
-        const usVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
-        if (usVoice) utterance.voice = usVoice;
-
-        window.speechSynthesis.speak(utterance);
-      } else {
-        alert('Speech Synthesis is not supported in this browser.');
       }
+
+      // 1. Try High-Quality Neural AI Voice via local /api/tts
+      return new Promise((resolve) => {
+        const ttsUrl = `/api/tts?voice=en-US-ChristopherNeural&text=${encodeURIComponent(cleanPhrase)}`;
+        const audio = new Audio(ttsUrl);
+        currentAudio = audio;
+
+        audio.onended = () => resolve();
+        audio.onerror = () => {
+          fallbackSpeech();
+        };
+
+        function fallbackSpeech() {
+          if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(cleanPhrase);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.95;
+            const voices = window.speechSynthesis.getVoices();
+            const usVoice = voices.find(v => (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Eddy')) && v.lang.startsWith('en')) 
+                         || voices.find(v => v.lang.startsWith('en'));
+            if (usVoice) utterance.voice = usVoice;
+            utterance.onend = () => resolve();
+            utterance.onerror = () => resolve();
+            window.speechSynthesis.speak(utterance);
+          } else {
+            resolve();
+          }
+        }
+
+        audio.play().catch(err => {
+          console.warn('Neural audio play error, fallback:', err);
+          fallbackSpeech();
+        });
+      });
     }
 
     // Speech Recognition with Live Equalizer
