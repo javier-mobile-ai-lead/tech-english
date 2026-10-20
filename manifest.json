@@ -19,5 +19,31 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Repasar Anki Hoy",
+      "short_name": "Anki Hoy",
+      "description": "Repasar las flashcards programadas para hoy con SM-2",
+      "url": "./index.html?view=anki",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Mi Playbook",
+      "short_name": "Playbook",
+      "description": "Ver apuntes y notas personales",
+      "url": "./index.html?view=playbook",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ]
 }

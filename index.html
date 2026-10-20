@@ -142,6 +142,18 @@
           <span id="streakCount">1 Day Streak</span>
         </div>
 
+        <!-- Mobile / Global Focus Mode Switcher (Anki First vs Full Curriculum) -->
+        <div class="flex items-center bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-0.5 text-xs font-semibold">
+          <button id="tabAnkiModeBtn" onclick="switchAppMode('anki')" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-bold transition flex items-center space-x-1.5 shadow-xs">
+            <span>⚡ Anki</span>
+            <span id="tabDueBadge" class="px-1.5 py-0.2 rounded-full text-[10px] bg-white/20 font-mono">0</span>
+          </button>
+          <button id="tabStudyModeBtn" onclick="switchAppMode('study')" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center space-x-1.5">
+            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Estudio Completo</span>
+            <span class="sm:hidden">Lección</span>
+          </button>
+        </div>
         <!-- XP Badge -->
         <div class="hidden sm:flex items-center space-x-1.5 bg-cyan-50 dark:bg-dark-base border border-cyan-200 dark:border-dark-border px-3 py-1.5 rounded-full text-xs font-bold text-cyan-800 dark:text-cyan-400 shadow-xs">
           <span class="text-amber-500">⚡</span>
@@ -204,6 +216,52 @@
 
     <!-- MAIN LESSON CONTENT -->
     <main class="flex-1 w-full space-y-6">
+
+      <!-- ANKI FOCUS MODE HERO (DEFAULT FOR MOBILE & DESKTOP) -->
+      <div id="ankiFocusHero" class="bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 border border-indigo-500/30 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div class="absolute -right-8 -bottom-8 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div class="space-y-1">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 font-mono">
+              <span>⚡ MODO ANKI SM-2 ACTIVADO</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white">
+              Tarjetas Diarias de Alto Impacto
+            </h2>
+            <p class="text-xs sm:text-sm text-indigo-200/80 leading-relaxed max-w-xl">
+              Tu meta diaria: Di cada molde en voz alta antes de voltear la tarjeta. Califica con honestidad para que el algoritmo programe tu próximo repaso.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center sm:items-end justify-center bg-white/5 border border-white/10 rounded-2xl p-4 shrink-0">
+            <span class="text-[11px] uppercase tracking-wider text-indigo-300 font-bold font-mono">Pendientes Hoy</span>
+            <div class="flex items-baseline space-x-1 my-1">
+              <span id="ankiHeroDueNumber" class="text-4xl font-extrabold text-amber-400 font-mono">0</span>
+              <span class="text-xs text-indigo-300">tarjetas</span>
+            </div>
+            <button onclick="toggleAnkiPracticeModal()" class="w-full mt-1 px-5 py-2.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-500/20 transition transform active:scale-95 flex items-center justify-center space-x-2 btn-bounce">
+              <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+              <span>¡Comenzar Sesión!</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 30-Day Progress Bar Pill in Anki Mode -->
+        <div class="bg-black/30 border border-white/10 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center space-x-2">
+            <span class="text-indigo-300 font-bold">Progreso 30 Días:</span>
+            <span id="ankiHeroCompletedDaysText" class="font-mono font-bold text-emerald-400">1 de 30 Días Completados</span>
+          </div>
+          <div class="flex items-center space-x-3 w-full sm:w-64">
+            <div class="flex-1 bg-white/10 rounded-full h-2 overflow-hidden">
+              <div id="ankiHeroProgressBar" class="bg-gradient-to-r from-emerald-400 to-cyan-400 h-2 rounded-full transition-all duration-500" style="width: 3.3%;"></div>
+            </div>
+            <span id="ankiHeroProgressPct" class="font-mono text-emerald-400 font-bold">3%</span>
+          </div>
+        </div>
+      </div>
+
 
       <!-- DAY HEADER & LIVE DAILY TASK CHECKLIST -->
       <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 relative overflow-hidden shadow-sm">
@@ -877,6 +935,67 @@
     let soundEnabled = true;
 
     // THEME SWITCHER (Light by default as requested!)
+    
+    // ==========================================
+    // APP MODE SWITCHER (ANKI FIRST vs FULL STUDY)
+    // ==========================================
+    let currentAppMode = localStorage.getItem('tech_english_mode_pref') || 'anki';
+
+    function switchAppMode(mode) {
+      currentAppMode = mode;
+      localStorage.setItem('tech_english_mode_pref', mode);
+
+      const ankiBtn = document.getElementById('tabAnkiModeBtn');
+      const studyBtn = document.getElementById('tabStudyModeBtn');
+      const ankiHero = document.getElementById('ankiFocusHero');
+      const ankiSection = document.getElementById('ankiSection');
+      
+      const card1 = document.getElementById('card1Section');
+      const card2 = document.getElementById('card2Section');
+      const card3 = document.getElementById('card3Section');
+      const card4 = document.getElementById('card4Section');
+      const triggers = document.getElementById('emergencyTriggersBox');
+
+      if (mode === 'anki') {
+        // Anki First Mode: Highlights Anki and hides heavy curriculum sections
+        if (ankiBtn) {
+          ankiBtn.className = "px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-bold transition flex items-center space-x-1.5 shadow-xs";
+        }
+        if (studyBtn) {
+          studyBtn.className = "px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center space-x-1.5";
+        }
+        if (ankiHero) ankiHero.classList.remove('hidden');
+        if (ankiSection) ankiSection.classList.remove('hidden');
+
+        // Hide heavy sections in pure Anki mode
+        if (card1) card1.classList.add('hidden');
+        if (card2) card2.classList.add('hidden');
+        if (card3) card3.classList.add('hidden');
+        if (triggers) triggers.classList.add('hidden');
+        if (card4) card4.classList.remove('hidden'); // Keep quick notes / completion accessible
+      } else {
+        // Full Study Mode: Shows video, input comprensible and shadowing
+        if (studyBtn) {
+          studyBtn.className = "px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition flex items-center space-x-1.5 shadow-xs";
+        }
+        if (ankiBtn) {
+          ankiBtn.className = "px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center space-x-1.5";
+        }
+        if (ankiHero) ankiHero.classList.add('hidden');
+        if (ankiSection) ankiSection.classList.remove('hidden');
+
+        if (card1) card1.classList.remove('hidden');
+        if (card2) card2.classList.remove('hidden');
+        if (card3) card3.classList.remove('hidden');
+        if (triggers) triggers.classList.remove('hidden');
+        if (card4) card4.classList.remove('hidden');
+      }
+
+      updateAnkiDueCount();
+      updateOverallStats();
+      lucide.createIcons();
+    }
+
     function initTheme() {
       const savedTheme = localStorage.getItem('tech_english_theme') || 'light';
       if (savedTheme === 'dark') {
@@ -1054,6 +1173,7 @@
         renderDay(selectedDayNum);
         updateOverallStats();
         renderAnkiTodayWidget();
+        switchAppMode(currentAppMode);
 
         setTimeout(() => {
           showToast(`Welcome back, Javier! Resumed on Day ${selectedDayNum} 🎯`);
