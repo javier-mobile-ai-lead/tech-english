@@ -10,6 +10,26 @@
 
 ---
 
+## ⏱️ The 3 Grammar Time Zones of an Upwork Interview
+> *Never get confused about which tense to use. Pick the right zone based on the client question:*
+
+### 1️⃣ PRESENT ZONE: Who You Are & How Code Works (Facts)
+- **When:** Describing your stack, what libraries do, or explaining architecture.
+- **Auxiliaries & Triggers:** *Currently, I specialize in..., My core stack includes..., Under the hood, this handles...*
+- **Formula:** `I specialize in [stack]` • `This library prevents [bug]` • `Under the hood, it manages...`
+
+### 2️⃣ PAST ZONE: What You Shipped & Bugs You Solved (CAR Stories)
+- **When:** Describing your past apps, previous companies, or past production crises.
+- **Auxiliaries & Triggers:** *In my previous project..., Over the past few years, I have built..., Most recently, I led...*
+- **Formula:** `I built...` • `I architected...` • `We encountered [issue], and I resolved it by [action]...`
+
+### 3️⃣ FUTURE & CONDITIONAL ZONE: Your Action Plan for THEIR App (Proposals)
+- **When:** The client asks 'What would you do?' or 'How would you fix our app?'.
+- **Auxiliaries & Triggers:** *First, I will..., I would start by..., In parallel, I can..., Once pinpointed, I will...*
+- **Formula:** `First, I will [audit]...` • `I would recommend [library] because...` • `Once resolved, I can [ship]...`
+
+---
+
 ## 🎯 My Prepared Interview Responses (CAR Framework)
 
 ### 📍 Day 1: The Tech Identity: Pitching Your Mobile Stack
@@ -86,6 +106,14 @@ Debería = You should
 
 **Senior Native Reference:**
 > That sounds like a classic combination of unnecessary re-renders and an uncollected memory leak. To tackle this, I wouldn't guess—I'd profile it first. On Android, I'd attach the Android Studio Profiler to inspect the memory heap and watch if memory escalates linearly without being garbage collected. For the laggy feed, I'd verify that list items are properly memoized, windowSize is optimized, and images use downsampling or cached disk loaders like FastImage or Coil so we don't load full-res bitmaps into memory.
+
+**Personal Notes:** To tackle this = para resolver esto
+I wouldn't guess" = "Yo no me pondría a adivinar / tantear a ciegas
+I would = Yo Haría
+avoid = evitar
+When, I don't understand audio = Sorry, your audio cut out for a second. Could you repeat that last part?
+
+
 
 ---
 

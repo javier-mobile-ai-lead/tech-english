@@ -35,10 +35,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#090d16">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <script src="data.js"></script>
+  <script src="anki_engine.js"></script>
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
+    /* 3D Anki Flashcard Flip Styles */
+    .perspective-1000 { perspective: 1000px; }
+    .transform-style-preserve-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .rotate-y-180 { transform: rotateY(180deg); }
+
     /* CUSTOM SCROLLBAR */
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
@@ -549,6 +562,121 @@
         </div>
       </section>
 
+      
+      <!-- ANKI SPACED REPETITION (SM-2) SYSTEM (TDAH MODE) -->
+      <section id="ankiSection" class="bg-gradient-to-br from-indigo-50/60 via-purple-50/40 to-slate-50 dark:from-slate-900 dark:via-indigo-950/30 dark:to-slate-900 border border-indigo-200/80 dark:border-indigo-800/60 rounded-2xl p-6 shadow-sm transition-all duration-300">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-indigo-100 dark:border-indigo-900/40">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs">
+              ⚡
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                <span>Daily Anki Flashcards</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-indigo-100 dark:bg-indigo-950 border border-indigo-300 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 font-bold">
+                  SM-2 Repetition
+                </span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Senior pattern chunks. Dilo en voz alta antes de voltear la tarjeta.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center space-x-2">
+            <button onclick="exportAnkiDeck()" title="Export to Anki desktop (.txt)" class="px-2.5 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 transition flex items-center space-x-1 btn-bounce shadow-2xs">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Export .txt</span>
+            </button>
+            <button onclick="toggleAnkiPracticeModal()" class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition flex items-center space-x-1.5 btn-bounce shadow-sm">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              <span>Repasar Hoy (<span id="ankiDueBadge">0</span>)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-4 Day Cards Preview Grid -->
+        <div id="ankiDayCardsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-3.5 mt-3">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+      <!-- Anki Flashcard Full Interactive Modal -->
+      <div id="ankiModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative flex flex-col">
+          <!-- Header -->
+          <div class="p-4 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 font-mono">ANKI SM-2 PRACTICE</span>
+              <span id="ankiProgressCounter" class="text-xs font-mono text-slate-500">Card 1 of 4</span>
+            </div>
+            <button onclick="toggleAnkiPracticeModal()" class="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <!-- Flip Card Container (Perspective) -->
+          <div class="p-6 flex flex-col items-center justify-center min-h-[320px] bg-slate-100/50 dark:bg-slate-950/40 perspective-1000">
+            <div id="ankiCardElement" onclick="flipAnkiCard()" class="w-full h-64 relative cursor-pointer transform-style-preserve-3d transition-transform duration-500 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 flex flex-col justify-between select-none">
+              <!-- Front Side -->
+              <div id="ankiCardFront" class="absolute inset-0 backface-hidden p-6 flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">Frente • Intención / Español</span>
+                  <span class="text-[10px] text-slate-400">Toca para voltear ↻</span>
+                </div>
+                <div class="my-auto text-center space-y-2">
+                  <div class="text-xs font-medium text-slate-500 dark:text-slate-400" id="ankiCardTriggerContext">Situación técnica:</div>
+                  <h3 id="ankiCardFrontText" class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white leading-snug">
+                    Para resolver esto, yo no...
+                  </h3>
+                  <p class="text-xs text-indigo-500 dark:text-indigo-400 font-medium">🗣️ Dilo en voz alta en inglés antes de ver la respuesta</p>
+                </div>
+                <div class="text-center text-[11px] text-slate-400 font-mono">Espacio o clic para revelar</div>
+              </div>
+
+              <!-- Back Side -->
+              <div id="ankiCardBack" class="absolute inset-0 backface-hidden rotate-y-180 p-6 flex flex-col justify-between rounded-2xl bg-indigo-50/90 dark:bg-slate-900 border-2 border-indigo-500/40">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-bold">Reverso • Molde Senior</span>
+                  <button type="button" onclick="event.stopPropagation(); speakAnkiCurrentCard();" class="p-1.5 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 rounded-full shadow-xs btn-bounce" title="Escuchar audio nativo">
+                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                  </button>
+                </div>
+                <div class="my-auto text-center space-y-2.5">
+                  <h3 id="ankiCardBackPhrase" class="text-lg md:text-xl font-black text-indigo-900 dark:text-indigo-200 leading-snug">
+                    To tackle this, I wouldn't...
+                  </h3>
+                  <p id="ankiCardPhonetic" class="text-xs font-mono text-slate-500"></p>
+                  <div id="ankiCardExampleBox" class="p-2.5 rounded-xl bg-white/80 dark:bg-slate-950/70 border border-indigo-100 dark:border-indigo-900/50 text-xs text-slate-700 dark:text-slate-300 italic">
+                  </div>
+                </div>
+                <div class="text-center text-[11px] text-indigo-700 dark:text-indigo-400 font-semibold">¿Qué tan fácil fue recordarlo?</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom SM-2 Grading Buttons -->
+          <div id="ankiGradingControls" class="p-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 hidden">
+            <div class="grid grid-cols-4 gap-2">
+              <button onclick="gradeAnkiCard(1)" class="py-2 px-1 rounded-xl bg-red-100 hover:bg-red-200 dark:bg-red-950/60 dark:hover:bg-red-900/80 text-red-700 dark:text-red-300 text-xs font-bold flex flex-col items-center transition btn-bounce border border-red-300 dark:border-red-800">
+                <span>Again</span>
+                <span class="text-[9px] font-mono opacity-80">&lt; 1 min</span>
+              </button>
+              <button onclick="gradeAnkiCard(2)" class="py-2 px-1 rounded-xl bg-amber-100 hover:bg-amber-200 dark:bg-amber-950/60 dark:hover:bg-amber-900/80 text-amber-800 dark:text-amber-300 text-xs font-bold flex flex-col items-center transition btn-bounce border border-amber-300 dark:border-amber-800">
+                <span>Hard</span>
+                <span class="text-[9px] font-mono opacity-80">1 day</span>
+              </button>
+              <button onclick="gradeAnkiCard(3)" class="py-2 px-1 rounded-xl bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/80 text-emerald-800 dark:text-emerald-300 text-xs font-bold flex flex-col items-center transition btn-bounce border border-emerald-300 dark:border-emerald-800">
+                <span>Good</span>
+                <span class="text-[9px] font-mono opacity-80">3 days</span>
+              </button>
+              <button onclick="gradeAnkiCard(4)" class="py-2 px-1 rounded-xl bg-blue-100 hover:bg-blue-200 dark:bg-blue-950/60 dark:hover:bg-blue-900/80 text-blue-800 dark:text-blue-300 text-xs font-bold flex flex-col items-center transition btn-bounce border border-blue-300 dark:border-blue-800">
+                <span>Easy</span>
+                <span class="text-[9px] font-mono opacity-80">7 days</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- CARD 4: PERSONAL NOTES & DAY COMPLETION -->
       <section id="card4Section" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm transition-all duration-300 interactive-card">
         <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
@@ -884,28 +1012,55 @@
       updateDailyStepChecks();
     }
 
-    // Load Data on Startup
+    // Load Data on Startup (Server + GitHub Pages / LocalStorage Offline Support)
     async function loadData() {
       initTheme();
       try {
-        const res = await fetch('/api/data');
-        appData = await res.json();
-        
-        // Remember exact last viewed day
+        let loadedFromApi = false;
+        try {
+          const res = await fetch('/api/data');
+          if (res.ok) {
+            appData = await res.json();
+            loadedFromApi = true;
+          }
+        } catch (e) {
+          // GitHub Pages or offline environment
+        }
+
+        if (!loadedFromApi) {
+          const localStored = localStorage.getItem('tech_english_db_v1');
+          if (localStored) {
+            try {
+              appData = JSON.parse(localStored);
+            } catch (e) {
+              appData = window.CURRICULUM_DATA;
+            }
+          } else if (window.CURRICULUM_DATA) {
+            appData = JSON.parse(JSON.stringify(window.CURRICULUM_DATA));
+          }
+        }
+
+        if (!appData || !appData.days) {
+          throw new Error('No curriculum data available');
+        }
+
+        // Initialize Anki Flashcards Deck in localStorage if not present
+        initAnkiDeck();
+
         const savedLastDay = parseInt(localStorage.getItem('tech_english_last_day'));
         selectedDayNum = (savedLastDay >= 1 && savedLastDay <= appData.days.length) ? savedLastDay : (appData.user_profile.current_day || 1);
 
         renderCurriculumList();
         renderDay(selectedDayNum);
         updateOverallStats();
+        renderAnkiTodayWidget();
 
-        // Welcome back notification
         setTimeout(() => {
-          showToast(`Welcome back! Resumed on Day ${selectedDayNum} 🎯`);
+          showToast(`Welcome back, Javier! Resumed on Day ${selectedDayNum} 🎯`);
         }, 500);
       } catch (err) {
         console.error('Error loading data:', err);
-        document.getElementById('dayTitle').innerText = 'Could not load curriculum. Make sure server.py is running!';
+        document.getElementById('dayTitle').innerText = 'Could not load curriculum. Make sure data.js is present!';
       }
     }
 
@@ -2088,7 +2243,7 @@ START NOW: Speak your first message as "${sc.persona.split('(')[0].trim()}" righ
       }, 1200);
     }
 
-    // Save Data to Server (Manual or Silent Autosave)
+    // Save Data to Server or LocalStorage (Manual or Silent Autosave)
     async function saveCurrentDay(markCompleted = false, isSilent = false) {
       const payload = {
         day: selectedDayNum,
@@ -2098,64 +2253,78 @@ START NOW: Speak your first message as "${sc.persona.split('(')[0].trim()}" righ
         mark_completed: markCompleted
       };
 
+      // Always persist in local appData state & localStorage immediately
+      const targetDay = appData.days.find(d => d.day === selectedDayNum);
+      if (targetDay) {
+        if (!targetDay.user_submission) targetDay.user_submission = {};
+        targetDay.user_submission.listening_answer = payload.listening_answer;
+        targetDay.user_submission.speaking_answer = payload.speaking_answer;
+        targetDay.user_submission.notes = payload.notes;
+        if (markCompleted) {
+          targetDay.user_submission.completed = true;
+          if (!appData.user_profile.completed_days.includes(selectedDayNum)) {
+            appData.user_profile.completed_days.push(selectedDayNum);
+            appData.user_profile.xp = (appData.user_profile.xp || 0) + 50;
+          }
+        }
+      }
+      localStorage.setItem('tech_english_db_v1', JSON.stringify(appData));
+
+      let savedToServer = false;
       try {
         const res = await fetch('/api/save', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        const result = await res.json();
-        if (result.success) {
-          appData = result.db;
-          updateOverallStats();
-          renderCurriculumList();
-          updateDailyStepChecks();
-
-          const indicator = document.getElementById('autoSaveStatus');
-          if (indicator) {
-            indicator.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>Saved to disk</span>`;
-            indicator.className = "text-[11px] font-mono text-emerald-600 dark:text-emerald-400 inline-flex items-center space-x-1 ml-2";
-            lucide.createIcons();
-          }
-
-          if (markCompleted) {
-            SoundFX.playChime();
-            showToast('Day Completed! +50 XP Earned! 🚀');
-
-            // MULTI-BURST CONFETTI
-            const count = 200;
-            const defaults = { origin: { y: 0.7 } };
-            function fire(particleRatio, opts) {
-              confetti(Object.assign({}, defaults, opts, {
-                particleCount: Math.floor(count * particleRatio)
-              }));
-            }
-            fire(0.25, { spread: 26, startVelocity: 55 });
-            fire(0.2, { spread: 60 });
-            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-            fire(0.1, { spread: 120, startVelocity: 45 });
-
-            if (selectedDayNum < appData.days.length) {
-              setTimeout(() => {
-                selectDay(selectedDayNum + 1);
-              }, 1200);
-            }
-          } else if (!isSilent) {
-            SoundFX.playPop();
-            showToast('Progress saved & synced to Playbook! ✓');
+        if (res.ok) {
+          const result = await res.json();
+          if (result.success) {
+            appData = result.db;
+            savedToServer = true;
           }
         }
       } catch (err) {
-        console.error('Save error:', err);
-        const indicator = document.getElementById('autoSaveStatus');
-        if (indicator) {
-          indicator.innerHTML = `<span>⚠️ Offline</span>`;
-          indicator.className = "text-[11px] font-mono text-red-500 inline-flex items-center ml-2";
+        // Fallback to local storage (GitHub Pages mode)
+      }
+
+      updateOverallStats();
+      renderCurriculumList();
+      updateDailyStepChecks();
+
+      const indicator = document.getElementById('autoSaveStatus');
+      if (indicator) {
+        indicator.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>${savedToServer ? 'Saved to disk' : 'Saved locally'}</span>`;
+        indicator.className = "text-[11px] font-mono text-emerald-600 dark:text-emerald-400 inline-flex items-center space-x-1 ml-2";
+        lucide.createIcons();
+      }
+
+      if (markCompleted) {
+        SoundFX.playChime();
+        showToast('Day Completed! +50 XP Earned! 🚀');
+
+        // MULTI-BURST CONFETTI
+        const count = 200;
+        const defaults = { origin: { y: 0.7 } };
+        function fire(particleRatio, opts) {
+          confetti(Object.assign({}, defaults, opts, {
+            particleCount: Math.floor(count * particleRatio)
+          }));
         }
-        if (!isSilent) {
-          showToast('Save failed. Check local server.', false);
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+
+        if (selectedDayNum < appData.days.length) {
+          setTimeout(() => {
+            selectDay(selectedDayNum + 1);
+          }, 1200);
         }
+      } else if (!isSilent) {
+        SoundFX.playPop();
+        showToast('Progress saved! ✓');
       }
     }
 
@@ -2228,6 +2397,14 @@ START NOW: Speak your first message as "${sc.persona.split('(')[0].trim()}" righ
 
     // Init
     window.addEventListener('DOMContentLoaded', loadData);
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW Reg failed:', err));
+      });
+    }
   </script>
 </body>
 </html>

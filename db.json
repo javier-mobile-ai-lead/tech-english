@@ -2,12 +2,13 @@
   "user_profile": {
     "name": "Mobile Engineer",
     "streak": 1,
-    "current_day": 5,
+    "current_day": 6,
     "completed_days": [
       1,
       2,
       3,
-      4
+      4,
+      5
     ],
     "last_active": "2026-10-14"
   },
@@ -382,8 +383,8 @@
       "user_submission": {
         "listening_answer": "",
         "speaking_answer": "I would prepare  ",
-        "notes": "",
-        "completed": false
+        "notes": "To tackle this = para resolver esto\nI wouldn't guess\" = \"Yo no me pondría a adivinar / tantear a ciegas\nI would = Yo Haría\navoid = evitar\nWhen, I don't understand audio = Sorry, your audio cut out for a second. Could you repeat that last part?\n\n",
+        "completed": true
       }
     },
     {
@@ -453,14 +454,14 @@
       "subtitle": "Full live simulation: Integrate your Tech Identity, Active Listening, and High-Impact Answers.",
       "category": "Mock Interview",
       "listening": {
-        "title": "Real Upwork Client Interview for a $45/hr Mobile Contract",
-        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
-        "video_description": "Observe the realistic flow and pacing of a real Upwork client discovery call.",
-        "timestamp": "00:00 - 05:00",
-        "question": "How does the candidate respond when the client asks about weekly hourly availability?",
-        "hint": "He specifies exact hours and timezone overlap.",
-        "ideal_answer": "He clearly stated he can dedicate 25 to 30 hours per week with a 4-hour daily overlap with US Eastern time."
+        "title": "Software Engineering Technical Interview Simulation",
+        "video_url": "https://www.youtube.com/embed/rw4s4M3hFfs",
+        "real_youtube_link": "https://www.youtube.com/watch?v=rw4s4M3hFfs",
+        "video_description": "Observe the live pacing, problem clarification, and back-and-forth communication between the candidate and the interviewer.",
+        "timestamp": "00:30 - 03:00",
+        "question": "How does the candidate clarify the problem constraints before jumping into writing code?",
+        "hint": "He asks about input edge cases and expected return types instead of guessing.",
+        "ideal_answer": "He explicitly asks about edge cases, input constraints, and validates his initial assumptions before writing any implementation."
       },
       "client_challenge": {
         "client_name": "Kevin Peterson (CEO)",
