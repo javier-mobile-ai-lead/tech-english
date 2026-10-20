@@ -1,0 +1,218 @@
+[
+  {
+    "id": "upwork_01",
+    "category": "Primeros 60 Segundos",
+    "front_trigger": "Para saludar con energía y pasarle la pelota al cliente de inmediato:",
+    "phrase": "Happy to connect! How's your week going so far?",
+    "phonetic": "/ˈhæpi tu kəˈnɛkt! haʊz jɔːr wiːk ˈɡoʊɪŋ soʊ fɑːr?/",
+    "meaning": "Saludo cálido y profesional que te quita los nervios y hace hablar al cliente.",
+    "example": "Hi Mark, happy to connect! How's your week going so far?"
+  },
+  {
+    "id": "upwork_02",
+    "category": "Primeros 60 Segundos",
+    "front_trigger": "Para tomar el control de la llamada y empezar sin rodeos incómodos:",
+    "phrase": "Whenever you're ready, we can dive right in.",
+    "phonetic": "/wɛnˈɛvər jʊr ˈrɛdi, wi kæn daɪv raɪt ɪn/",
+    "meaning": "Demuestra liderazgo y respeto por el tiempo del cliente.",
+    "example": "Whenever you're ready, we can dive right in. How would you like to kick things off?"
+  },
+  {
+    "id": "upwork_03",
+    "category": "Primeros 60 Segundos",
+    "front_trigger": "Para preguntar amablemente cómo quiere arrancar la reunión:",
+    "phrase": "How would you like to kick things off?",
+    "phonetic": "/haʊ wʊd ju laɪk tu kɪk θɪŋz ɒf?/",
+    "meaning": "Le cede la palabra al cliente para que exponga su problema.",
+    "example": "Great to meet you! How would you like to kick things off today?"
+  },
+  {
+    "id": "upwork_04",
+    "category": "Preguntas Clave",
+    "front_trigger": "Para preguntar si el proyecto es desde cero o hay código existente:",
+    "phrase": "Are we starting from scratch, or is there an existing codebase?",
+    "phonetic": "/ɑːr wi ˈstɑːrtɪŋ frʌm skrætʃ, ɔːr ɪz ðɛər ən ɪɡˈzɪstɪŋ ˈkoʊdˌbeɪs?/",
+    "meaning": "Pregunta fundamental de arquitectura que demuestra madurez.",
+    "example": "To get a clear picture: are we starting from scratch, or is there an existing codebase?"
+  },
+  {
+    "id": "upwork_05",
+    "category": "Preguntas Clave",
+    "front_trigger": "Para preguntar si ya tienen los diseños listos en Figma:",
+    "phrase": "Do you already have the designs ready in Figma?",
+    "phonetic": "/du ju ɔːlˈrɛdi hæv ðə dɪˈzaɪnz ˈrɛdi ɪn ˈfɪɡmə?/",
+    "meaning": "Aclara si tú tienes que diseñar UI o solo implementar código.",
+    "example": "Do you already have the designs ready in Figma, or are we defining wireframes together?"
+  },
+  {
+    "id": "upwork_06",
+    "category": "Preguntas Clave",
+    "front_trigger": "Para preguntar cuál es la fecha límite u objetivo de lanzamiento:",
+    "phrase": "What's your target launch deadline for the app stores?",
+    "phonetic": "/wʌts jɔːr ˈtɑːrɡɪt lɔːntʃ ˈdɛdˌlaɪn fɔːr ði æp stɔːrz?/",
+    "meaning": "Te ayuda a calcular el alcance y negociar tiempos realistas.",
+    "example": "What's your target launch deadline for publishing to Google Play and the App Store?"
+  },
+  {
+    "id": "upwork_07",
+    "category": "Preguntas Clave",
+    "front_trigger": "Para preguntar cuál es el objetivo principal del MVP (Fase 1):",
+    "phrase": "What does success look like for this first milestone?",
+    "phonetic": "/wʌt dʌz səkˈsɛs lʊk laɪk fɔːr ðɪs fɜːrst ˈmaɪlˌstoʊn?/",
+    "meaning": "Pregunta de consultor estrella: alinea expectativas exactas.",
+    "example": "To make sure we stay focused, what does success look like for this first milestone?"
+  },
+  {
+    "id": "upwork_08",
+    "category": "Preguntas Clave",
+    "front_trigger": "Para preguntar cómo se comunica y coordina el equipo a diario:",
+    "phrase": "What's your team's day-to-day communication workflow?",
+    "phonetic": "/wʌts jɔːr tiːmz deɪ-tu-deɪ kəˌmjuːnɪˈkeɪʃən ˈwɜːrkˌfloʊ?/",
+    "meaning": "Averigua si usan Slack, Jira, GitHub o llamadas diarias.",
+    "example": "What's your team's workflow? Do you prefer Slack standups or Jira tickets?"
+  },
+  {
+    "id": "upwork_09",
+    "category": "Pitch & Autonomía",
+    "front_trigger": "Para decir que puedes empezar a producir desde el día 1 sin perder tiempo:",
+    "phrase": "I can hit the ground running on day one.",
+    "phonetic": "/aɪ kæn hɪt ðə ɡraʊnd ˈrʌnɪŋ ɒn deɪ wʌn/",
+    "meaning": "La frase #1 que aman los founders gringos: cero atraso en onboarding.",
+    "example": "Since I already know your stack, I can hit the ground running on day one."
+  },
+  {
+    "id": "upwork_10",
+    "category": "Pitch & Autonomía",
+    "front_trigger": "Para decir que no necesitas que te supervisen ni te lleven de la mano:",
+    "phrase": "I don't need onboarding hand-holding; I work autonomously.",
+    "phonetic": "/aɪ doʊnt niːd ˈɒnˌbɔːrdɪŋ ˈhændˌhoʊldɪŋ; aɪ wɜːrk ɔːˈtɒnəməsli/",
+    "meaning": "Transmite total tranquilidad a clientes ocupados.",
+    "example": "You can count on me; I don't need onboarding hand-holding."
+  },
+  {
+    "id": "upwork_11",
+    "category": "Pitch & Autonomía",
+    "front_trigger": "Para decir que te haces cargo del proyecto desde la arquitectura hasta el store:",
+    "phrase": "I take full ownership from architecture to store deployment.",
+    "phonetic": "/aɪ teɪk fʊl ˈoʊnərˌʃɪp frʌm ˈɑːrkɪˌtɛktʃər tu stɔːr dɪˈplɔɪmənt/",
+    "meaning": "Demuestra seniority de Lead: no dejas cosas a medias.",
+    "example": "I take full ownership of mobile apps, from clean architecture to store deployment."
+  },
+  {
+    "id": "upwork_12",
+    "category": "Pitch & Autonomía",
+    "front_trigger": "Para decir que tu prioridad es llevar el proyecto con éxito a la meta:",
+    "phrase": "My main goal is getting this across the finish line.",
+    "phonetic": "/maɪ meɪn ɡoʊl ɪz ˈɡɛtɪŋ ðɪs əˈkrɒs ðə ˈfɪnɪʃ laɪn/",
+    "meaning": "Enfocado en resultados y entregables, no solo en picar código.",
+    "example": "My main goal is helping your team get this MVP across the finish line on time."
+  },
+  {
+    "id": "upwork_13",
+    "category": "Decisiones Técnicas",
+    "front_trigger": "Para plantear una solución diciendo lo que NO harías primero:",
+    "phrase": "To tackle this, I wouldn't guess—I'd profile it first.",
+    "phonetic": "/tu ˈtæk.əl ðɪs, aɪ ˈwʊdənt ɡɛs—aɪd ˈproʊfaɪl ɪt fɜːrst/",
+    "meaning": "Respuesta científica de Lead: tomas decisiones con datos, no a ciegas.",
+    "example": "To tackle this laggy feed, I wouldn't guess—I'd profile memory and CPU first."
+  },
+  {
+    "id": "upwork_14",
+    "category": "Decisiones Técnicas",
+    "front_trigger": "Para frenar una mala idea del cliente y proponer una mejor alternativa:",
+    "phrase": "I'd recommend against that because [...]; instead, we could [...]",
+    "phonetic": "/aɪd ˌrɛkəˈmɛnd əˈɡɛnst ðæt bɪˈkɒz... ɪnˈstɛd, wi kʊd.../",
+    "meaning": "Consultoría de alto valor: ahorras dinero y dolores de cabeza al cliente.",
+    "example": "I'd recommend against rewriting from scratch; instead, we could refactor the payment module."
+  },
+  {
+    "id": "upwork_15",
+    "category": "Decisiones Técnicas",
+    "front_trigger": "Para explicar que una decisión técnica implica una concesión (trade-off):",
+    "phrase": "The trade-off here is performance versus development time.",
+    "phonetic": "/ðə ˈtreɪd-ɒf hɪər ɪz pərˈfɔːrməns ˈvɜːrsəs dɪˈvɛləpmənt taɪm/",
+    "meaning": "Hablar de trade-offs es la marca distintiva de un Senior Developer.",
+    "example": "The trade-off here is slightly higher memory usage for instant local cache."
+  },
+  {
+    "id": "upwork_16",
+    "category": "Decisiones Técnicas",
+    "front_trigger": "Para advertir que una solución apresurada creará deuda técnica futura:",
+    "phrase": "A quick hack might introduce technical debt down the road.",
+    "phonetic": "/ə kwɪk hæk maɪt ˌɪntrəˈdjuːs ˈtɛknɪkəl dɛt daʊn ðə roʊd/",
+    "meaning": "Proteges la estabilidad del producto a largo plazo.",
+    "example": "I wouldn't hardcode this; a quick hack might introduce technical debt."
+  },
+  {
+    "id": "upwork_17",
+    "category": "Salvavidas (Anti-Freeze)",
+    "front_trigger": "Cuando no escuchaste o no entendiste lo que dijo el cliente:",
+    "phrase": "Sorry, your audio cut out for a second. Could you repeat that last part?",
+    "phonetic": "/ˈsɒri, jɔːr ˈɔːdioʊ kʌt aʊt fɔːr ə ˈsɛkənd. kʊd ju rɪˈpiːt ðæt lɑːst pɑːrt?/",
+    "meaning": "Pone la culpa en la conexión de internet, nunca en tu nivel de inglés.",
+    "example": "Sorry, your audio cut out for a second. Could you repeat that last question?"
+  },
+  {
+    "id": "upwork_18",
+    "category": "Salvavidas (Anti-Freeze)",
+    "front_trigger": "Para confirmar que entendiste bien los requerimientos sin decir \"I don't understand\":",
+    "phrase": "Just to make sure we're on the same page, the priority is [...], right?",
+    "phonetic": "/dʒʌst tu meɪk ʃʊər wɪər ɒn ðə seɪm peɪdʒ, ðə praɪˈɒrəti ɪz... raɪt?/",
+    "meaning": "Valida prioridades y te da 10 segundos para ordenar tu mente.",
+    "example": "Just to make sure we're on the same page, the priority is fixing the checkout bug, right?"
+  },
+  {
+    "id": "upwork_19",
+    "category": "Salvavidas (Anti-Freeze)",
+    "front_trigger": "Para pedirle al cliente que aclare un término específico o requerimiento:",
+    "phrase": "Could you clarify what you mean by [...] in this context?",
+    "phonetic": "/kʊd ju ˈklærəfaɪ wʌt ju miːn baɪ... ɪn ðɪs ˈkɒntɛkst?/",
+    "meaning": "Pregunta profesional que demuestra precisión técnica.",
+    "example": "Could you clarify what you mean by real-time sync in this context?"
+  },
+  {
+    "id": "upwork_20",
+    "category": "Cierre de Contrato",
+    "front_trigger": "Para responder sobre cuántas horas semanales puedes dedicar:",
+    "phrase": "I can commit 25 to 30 hours per week with a 4-hour daily overlap with US time.",
+    "phonetic": "/aɪ kæn kəˈmɪt ˈtwɛnti-faɪv tu ˈθɜːrti ˈaʊərz pɜːr wiːk wɪð ə fɔːr-aʊər ˈdeɪli ˈoʊvərˌlæp.../",
+    "meaning": "Respuesta perfecta para clientes de EE.UU. o Europa.",
+    "example": "I can commit 25 to 30 hours per week with a 4-hour daily overlap with Eastern time."
+  },
+  {
+    "id": "upwork_21",
+    "category": "Cierre de Contrato",
+    "front_trigger": "Para dar una estimación inicial sin pillarte los dedos con una fecha fija:",
+    "phrase": "As a rough ballpark estimate, an MVP like this usually takes 4 to 6 weeks.",
+    "phonetic": "/æz ə rʌf ˈbɔːlˌpɑːrk ˈɛstɪmət, ən ɛm-viː-piː laɪk ðɪs ˈjuːʒuəli teɪks.../",
+    "meaning": "Demuestra experiencia sin comprometerte a ciegas a fechas imposibles.",
+    "example": "As a rough ballpark estimate, integrating the payment flow usually takes 2 to 3 weeks."
+  },
+  {
+    "id": "upwork_22",
+    "category": "Cierre de Contrato",
+    "front_trigger": "Para preguntar cuáles son los siguientes pasos al terminar la llamada:",
+    "phrase": "What are the next steps on your end to move this forward?",
+    "phonetic": "/wʌt ɑːr ðə nɛkst stɛps ɒn jɔːr ɛnd tu muːv ðɪs ˈfɔːrwərd?/",
+    "meaning": "Cierre de ventas clásico: empuja al cliente a tomar la decisión de contratar.",
+    "example": "Awesome call! What are the next steps on your end to move this forward?"
+  },
+  {
+    "id": "upwork_23",
+    "category": "Cierre de Contrato",
+    "front_trigger": "Para prometer un resumen de propuesta por el chat de Upwork hoy mismo:",
+    "phrase": "I'll follow up with a brief scope summary in the Upwork chat today.",
+    "phonetic": "/aɪl ˈfɒloʊ ʌp wɪð ə briːf skoʊp ˈsʌməri ɪn ði ˈʌpˌwɜːrk tʃæt təˈdeɪ/",
+    "meaning": "Te asegura dejar huella escrita profesional antes de que hablen con otro candidato.",
+    "example": "I'll follow up with a brief scope summary and estimated milestones in the Upwork chat today."
+  },
+  {
+    "id": "upwork_24",
+    "category": "Cierre de Contrato",
+    "front_trigger": "Para despedirte con entusiasmo profesional:",
+    "phrase": "Thanks for your time! Really looking forward to collaborating on this.",
+    "phonetic": "/θæŋks fɔːr jɔːr taɪm! ˈrɪəli ˈlʊkɪŋ ˈfɔːrwərd tu kəˈlæbəˌreɪtɪŋ ɒn ðɪs/",
+    "meaning": "Deja una impresión positiva, segura y confiable.",
+    "example": "Thanks for your time, Mark! Really looking forward to collaborating on this project."
+  }
+]
