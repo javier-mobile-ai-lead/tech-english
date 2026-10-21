@@ -394,14 +394,14 @@
       "subtitle": "Demonstrate engineering maturity: how to audit messy code without complaining or demanding a full rewrite.",
       "category": "Code Quality & Strategy",
       "listening": {
-        "title": "How Senior Engineers Refactor without Breaking Production",
-        "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        "real_youtube_link": "https://www.youtube.com/watch?v=0tU_nS6yq2A",
-        "video_description": "Progressive refactoring tactics (Boy Scout Rule) in large mobile repositories.",
-        "timestamp": "02:15 - 03:40",
-        "question": "What is the golden rule before making refactoring changes to unfamiliar legacy code?",
-        "hint": "Establishing baseline smoke tests and verifying current behavior.",
-        "ideal_answer": "Establish test coverage or a baseline verification so you know exactly what the code currently does before refactoring."
+        "title": "Clean Code: Refactoring & Architecture (Uncle Bob Martin)",
+        "video_url": "https://www.youtube.com/embed/7EmboKQH8lM",
+        "real_youtube_link": "https://www.youtube.com/watch?v=7EmboKQH8lM",
+        "video_description": "Robert C. Martin (Uncle Bob) explains the true cost of bad code and why leaving the code cleaner than you found it (Boy Scout Rule) is essential.",
+        "timestamp": "05:00 - 08:30",
+        "question": "According to Uncle Bob, why does rushing code without refactoring actually slow down the team over time?",
+        "hint": "Bad code accumulates friction and turns simple changes into weeks of debugging.",
+        "ideal_answer": "He explains that bad code slows teams down exponentially over time because every new feature must navigate around mess and regressions."
       },
       "client_challenge": {
         "client_name": "Elena Rostova",
