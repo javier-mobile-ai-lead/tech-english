@@ -2635,9 +2635,24 @@ When, I don't understand audio = Sorry, your audio cut out for a second. Could y
             <span id="badgeWeek" class="text-xs text-slate-500 dark:text-slate-400 font-mono font-medium">Week 1</span>
           </div>
           
-          <div id="statusCompletedTag" class="hidden items-center space-x-1 text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/50 px-3 py-1 rounded-full font-bold">
-            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-            <span>Day Completed</span>
+          <div class="flex items-center space-x-2">
+            <!-- Mobile Day Selector & Quick Prev/Next -->
+            <div class="flex items-center space-x-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+              <button onclick="navigateDay(-1)" class="p-1 text-slate-600 dark:text-slate-300 hover:text-emerald-500" title="Día Anterior">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <select id="mobileDaySelect" onchange="selectDay(parseInt(this.value))" class="bg-transparent text-xs font-bold font-mono text-slate-800 dark:text-slate-100 focus:outline-hidden py-0.5 px-1 cursor-pointer">
+                <!-- Dynamically populated or updated in renderCurriculumList -->
+              </select>
+              <button onclick="navigateDay(1)" class="p-1 text-slate-600 dark:text-slate-300 hover:text-emerald-500" title="Día Siguiente">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div id="statusCompletedTag" class="hidden items-center space-x-1 text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/50 px-3 py-1 rounded-full font-bold">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+              <span>Day Completed</span>
+            </div>
           </div>
         </div>
 
@@ -3510,6 +3525,17 @@ When, I don't understand audio = Sorry, your audio cut out for a second. Could y
           // GitHub Pages or offline environment
         }
 
+        if (loadedFromApi && appData && appData.days && window.CURRICULUM_DATA && window.CURRICULUM_DATA.days) {
+          // Keep listening and instructional metadata strictly in sync with canonical curriculum
+          window.CURRICULUM_DATA.days.forEach(cd => {
+            const ad = appData.days.find(d => d.day === cd.day);
+            if (ad) {
+              ad.listening = cd.listening;
+              ad.client_challenge = cd.client_challenge;
+            }
+          });
+        }
+
         if (!loadedFromApi) {
           // Always use latest window.CURRICULUM_DATA as canonical source of truth for videos & content
           let baseData = JSON.parse(JSON.stringify(window.CURRICULUM_DATA || {}));
@@ -3599,6 +3625,19 @@ When, I don't understand audio = Sorry, your audio cut out for a second. Could y
         container.appendChild(btn);
       });
 
+      // Also populate and sync the mobile select dropdown
+      const mobileSelect = document.getElementById('mobileDaySelect');
+      if (mobileSelect) {
+        mobileSelect.innerHTML = '';
+        appData.days.forEach(day => {
+          const opt = document.createElement('option');
+          opt.value = day.day;
+          opt.innerText = `Día ${day.day}: ${day.title.substring(0, 24)}...`;
+          if (day.day === selectedDayNum) opt.selected = true;
+          mobileSelect.appendChild(opt);
+        });
+      }
+
       const activeEl = container.querySelector('.active-day-btn');
       if (activeEl) {
         activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -3655,6 +3694,8 @@ When, I don't understand audio = Sorry, your audio cut out for a second. Could y
 
       // Header
       document.getElementById('currentDayBadge').innerText = `Day ${day.day}`;
+      const mobileSelect = document.getElementById('mobileDaySelect');
+      if (mobileSelect) mobileSelect.value = day.day;
       document.getElementById('badgeCategory').innerText = day.category;
       document.getElementById('badgeWeek').innerText = `Week ${day.week}`;
       document.getElementById('dayTitle').innerText = day.title;
