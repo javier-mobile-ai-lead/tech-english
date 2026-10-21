@@ -3511,16 +3511,28 @@ When, I don't understand audio = Sorry, your audio cut out for a second. Could y
         }
 
         if (!loadedFromApi) {
+          // Always use latest window.CURRICULUM_DATA as canonical source of truth for videos & content
+          let baseData = JSON.parse(JSON.stringify(window.CURRICULUM_DATA || {}));
           const localStored = localStorage.getItem('tech_english_db_v1');
           if (localStored) {
             try {
-              appData = JSON.parse(localStored);
-            } catch (e) {
-              appData = window.CURRICULUM_DATA;
-            }
-          } else if (window.CURRICULUM_DATA) {
-            appData = JSON.parse(JSON.stringify(window.CURRICULUM_DATA));
+              const savedDb = JSON.parse(localStored);
+              // Merge user progress into baseData
+              if (savedDb.user_profile) {
+                baseData.user_profile = { ...baseData.user_profile, ...savedDb.user_profile };
+              }
+              if (savedDb.days) {
+                savedDb.days.forEach(sd => {
+                  const bd = baseData.days.find(d => d.day === sd.day);
+                  if (bd && sd.user_submission) {
+                    bd.user_submission = sd.user_submission;
+                  }
+                });
+              }
+            } catch(e) {}
           }
+          appData = baseData;
+          localStorage.setItem('tech_english_db_v1', JSON.stringify(appData));
         }
 
         if (!appData || !appData.days) {
