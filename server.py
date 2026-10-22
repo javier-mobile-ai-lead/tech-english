@@ -6,7 +6,7 @@ import os
 import sys
 from urllib.parse import urlparse
 
-PORT = 3000
+PORT = int(os.environ.get("PORT", 8080))
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_FILE = os.path.join(BASE_DIR, "db.json")
 PLAYBOOK_FILE = os.path.join(BASE_DIR, "MY_INTERVIEW_PLAYBOOK.md")

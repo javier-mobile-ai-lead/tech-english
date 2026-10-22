@@ -4962,10 +4962,18 @@ START NOW: Speak your first message as "${sc.persona.split('(')[0].trim()}" righ
   </script>
 
   <script>
+    // Force unregister stale service worker to guarantee immediate updates
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW Reg failed:', err));
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
       });
+      if ('caches' in window) {
+        caches.keys().then(keys => {
+          keys.forEach(k => caches.delete(k));
+        });
+      }
     }
   </script>
 </body>
