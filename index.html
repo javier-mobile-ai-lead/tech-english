@@ -4938,18 +4938,20 @@ START NOW: Speak your first message as "${sc.persona.split('(')[0].trim()}" righ
         showToast('Day Completed! +50 XP Earned! 🚀');
 
         // MULTI-BURST CONFETTI
-        const count = 200;
-        const defaults = { origin: { y: 0.7 } };
-        function fire(particleRatio, opts) {
-          confetti(Object.assign({}, defaults, opts, {
-            particleCount: Math.floor(count * particleRatio)
-          }));
+        if (typeof confetti === 'function') {
+          const count = 200;
+          const defaults = { origin: { y: 0.7 } };
+          function fire(particleRatio, opts) {
+            confetti(Object.assign({}, defaults, opts, {
+              particleCount: Math.floor(count * particleRatio)
+            }));
+          }
+          fire(0.25, { spread: 26, startVelocity: 55 });
+          fire(0.2, { spread: 60 });
+          fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+          fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+          fire(0.1, { spread: 120, startVelocity: 45 });
         }
-        fire(0.25, { spread: 26, startVelocity: 55 });
-        fire(0.2, { spread: 60 });
-        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-        fire(0.1, { spread: 120, startVelocity: 45 });
 
         if (selectedDayNum < appData.days.length) {
           setTimeout(() => {
@@ -4964,17 +4966,36 @@ START NOW: Speak your first message as "${sc.persona.split('(')[0].trim()}" righ
 
     // Overall 30-Day Stats & XP
     function updateOverallStats() {
+      if (!appData || !appData.user_profile) return;
       const completedList = appData.user_profile.completed_days || [];
       const completedCount = completedList.length;
-      const totalDays = appData.days.length || 30;
+      const totalDays = (appData.days && appData.days.length) || 30;
       const pct = Math.round((completedCount / totalDays) * 100);
 
-      document.getElementById('progressBar').style.width = `${Math.max(pct, completedCount > 0 ? pct : 2)}%`;
-      document.getElementById('progressPercent').innerText = `${completedCount}/${totalDays} (${pct}%)`;
-      document.getElementById('streakCount').innerText = `${appData.user_profile.streak || 1} Day Streak`;
+      const pBar = document.getElementById('progressBar');
+      if (pBar) pBar.style.width = `${Math.max(pct, completedCount > 0 ? pct : 2)}%`;
       
-      const xp = 150 + (completedCount * 50);
-      document.getElementById('xpBadge').innerText = `${xp} XP`;
+      const pPercent = document.getElementById('progressPercent');
+      if (pPercent) pPercent.innerText = `${completedCount}/${totalDays} (${pct}%)`;
+      
+      const sCount = document.getElementById('streakCount');
+      if (sCount) sCount.innerText = `${appData.user_profile.streak || 1} Day Streak`;
+      
+      const xpBadge = document.getElementById('xpBadge');
+      if (xpBadge) {
+        const xp = 150 + (completedCount * 50);
+        xpBadge.innerText = `${xp} XP`;
+      }
+
+      // Live update Anki Hero progress bar pill
+      const heroPBar = document.getElementById('ankiHeroProgressBar');
+      if (heroPBar) heroPBar.style.width = `${Math.max(pct, completedCount > 0 ? pct : 3)}%`;
+
+      const heroPct = document.getElementById('ankiHeroProgressPct');
+      if (heroPct) heroPct.innerText = `${pct}%`;
+
+      const heroText = document.getElementById('ankiHeroCompletedDaysText');
+      if (heroText) heroText.innerText = `${completedCount} de ${totalDays} Días Completados`;
     }
 
     // Playbook Modal View
